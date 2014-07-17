@@ -5,3 +5,13 @@
 ```
 $ sudo /etc/init.d/lightdm stop
 ```
+
+# 如何查看 ubuntu 的内核版本和发行版本号
+
+[参考](http://blog.csdn.net/debug_cpp/article/details/2687067)
+
+```
+$ sudo lsb_release -a
+$ uname -a
+```
+
