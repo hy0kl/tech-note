@@ -29,6 +29,8 @@ collect2: error: ld returned 1 exit status
 
 自带的 cmake 编译出来的是静态 *.a 库.因为就一个文件,手工编译成动态共享库.
 
+libcrypto.a 依赖 libssl.a,所有参数先后有顺序
+
 ```
 $ wget http://files.luaforge.net/releases/luacurl/luacurl/luacurl-1.2.1/luacurl-1.2.1.zip
 $ unzip luacurl-1.2.1.zip
