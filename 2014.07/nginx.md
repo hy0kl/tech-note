@@ -130,4 +130,17 @@ allow_url_fopen = Off   # 禁用打开远程url
 safe_mode = On     #打开php的安全模式
 ```
 
+# linux nginx 安装 lua 扩展报错
 
+```
+-Wl,-E -lpthread -lcrypt -llua -lm -lpcre -lcrypto -lcrypto -lz
+/usr/bin/ld: //usr/local/lib/liblua.a(loadlib.o): undefined reference to symbol 'dlclose@@GLIBC_2.2.5'
+//lib/x86_64-linux-gnu/libdl.so.2: error adding symbols: DSO missing from command line
+collect2: error: ld returned 1 exit status
+```
+
+```
+谷歌后有解决方法:
+$ vim objs/Makefile
+找到 -Wl,-E 所在行, 加入 -ldl 即可.
+```
