@@ -22,3 +22,10 @@
 *.x86_64
 *.hex
 .DS_Store
+*~
+*.swp
+*.swo
+*.dSYM
+a.out
+tags
+favicon.ico
