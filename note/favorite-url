@@ -1,0 +1,42 @@
+http://coolshell.cn/articles/1218.html # 常用的 code review 工具简介
+
+http://groogle.sourceforge.net # php 写的 code review 工具
+
+# base on jave
+https://code.google.com/p/gerrit/   # Web based code review and project management for Git based projects.
+
+# facebook
+http://phabricator.org/
+# phabricator 中文手册
+http://www.oschina.net/question/191440_125562
+
+# memcached 源码阅读笔记
+https://github.com/daoluan/decode-memcached
+
+# 一个故事告诉你比特币的原理及运作机制
+http://blog.codinglabs.org/articles/bitcoin-mechanism-make-easy.html
+
+# 安装完 MySQL 后必须调整的 10 项配置
+http://www.oschina.net/translate/10-mysql-settings-to-tune-after-installation
+
+# iOS 教程汇集地
+http://www.raywenderlich.com/
+
+# 58个最好的开源存储项目
+http://www.lembed.com/58%E4%B8%AA%E6%9C%80%E5%A5%BD%E7%9A%84%E5%BC%80%E6%BA%90%E5%AD%98%E5%82%A8%E9%A1%B9%E7%9B%AE/
+http://www.freenas.org/
+http://www.gluster.org/
+
+https://code.google.com/p/fastdfs # FastDFS是一款类GoogleFS的开源分布式文件系统，它用纯C语言实现，支持Linux、FreeBSD、AIX等UNIX系统。它只能通过专有API对文件进行存取访问，不支持POSIX接口方式，不能mount使用。准确地讲，GoogleFS以及FastDFS、mogileFS、HDFS、TFS等类GoogleFS都不是系统级的分布式文件系统，而是应用级的分布式文件存储服务。
+
+# The Doctrine Project is the home to several PHP libraries primarily focused on database storage and object mapping.
+http://www.doctrine-project.org/
+
+# 带有详细注释的 Redis 3.0 代码（annotated Redis 3.0 source code）
+https://github.com/huangz1990/redis-3.0-annotated
+
+# Find out available google ips
+https://github.com/PeerXu/google-ip-explorer
+
+# php 采集器
+https://github.com/endroy/Snoopy

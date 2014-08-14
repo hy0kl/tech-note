@@ -1,0 +1,10 @@
+1. darwin 源码编译 openssl
+如果出现 openssl 在64位编译不支持时,形如:
+
+ld: warning: in /Users/hy0kl/src/openssl-1.0.1c/.openssl/lib/libssl.a, file was built for unsupported file format which is not the architecture being linked (x86_64)
+ld: warning: in /Users/hy0kl/src/openssl-1.0.1c/.openssl/lib/libcrypto.a, file was built for unsupported file format which is not the architecture being linked (x86_64)
+Undefined symbols:
+  "_SSL_write", referenced from:
+
+先到 openssl 下执行 ./config --help,再修改 Makefile 文件, ./Configure darwin64-x86_64-cc.
+

@@ -1,0 +1,98 @@
+1. perl 脚本运行报错：Can't locate DBI.pm的解决办法
+FROM: http://blog.chinaunix.net/uid-7931217-id-3516802.html
+
+缺少DBI包，使用如下命令进行安装：
+perl -MCPAN -e "install DBI"
+
+2. Error on installing SVN extension with pecl
+failed to find svn_client.h
+
+http://stackoverflow.com/questions/2245907/error-on-installing-svn-extension-with-pecl
+sudo apt-get install libsvn-dev
+
+3. PHP Error[2]: Error while sending QUERY packet.
+http://stackoverflow.com/questions/5688403/how-to-check-and-set-max-allowed-packet-mysql-variable
+---
+max_allowed_packet is set in mysql config, not on php side
+
+[mysqld]
+max_allowed_packet=16M
+You can see it's curent value in mysql like this:
+
+SHOW VARIABLES LIKE 'max_allowed_packet'
+
+You can try to change it like this, but it's unlikely this will work on shared hosting:
+
+SET GLOBAL max_allowed_packet=16777216;
+
+You can read about it here http://dev.mysql.com/doc/refman/5.1/en/packet-too-large.html
+---
+The following PHP worked for me (using mysqli extension but queries should be the same for other extensions):
+
+$db = new mysqli( 'localhost', 'user', 'pass', 'dbname' );
+// to get the max_allowed_packet
+$maxp = $db->query( 'SELECT @@global.max_allowed_packet' )->fetch_array();
+echo $maxp[ 0 ];
+// to set the max_allowed_packet to 500MB
+$db->query( 'SET @@global.max_allowed_packet = ' . 500 * 1024 * 1024 );
+So if you've got a query you expect to be pretty long, you can make sure that mysql will accept it with something like:
+
+$sql = "some really long sql query...";
+$db->query( 'SET @@global.max_allowed_packet = ' . strlen( $sql ) + 1024 );
+$db->query( $sql );
+Notice that I added on an extra 1024 bytes to the length of the string because according to the manual,
+
+The value should be a multiple of 1024; nonmultiples are rounded down to the nearest multiple.
+
+That should hopefully set the max_allowed_packet size large enough to handle your query. I haven't tried this on a shared host, so the same caveat as @Glebushka applies.
+
+4. php htmlspecialchars() 有陷阱,默认不转义单引号,如果查数据库时,刚好用了单引号引起字段值,有被注入的危险.
+string htmlspecialchars ( string $string [, int $flags = ENT_COMPAT | ENT_HTML401 [, string $encoding = 'UTF-8' [, bool $double_encode = true ]]] );
+$flags
+ENT_COMPAT  Will convert double-quotes and leave single-quotes alone.
+ENT_QUOTES  Will convert both double and single quotes.
+ENT_NOQUOTES    Will leave both double and single quotes unconverted.
+ENT_IGNORE   Silently discard invalid code unit sequences instead of returning an empty string. Using this flag is discouraged as it » may have security implications.
+ENT_SUBSTITUTE   Replace invalid code unit sequences with a Unicode Replacement Character U+FFFD (UTF-8) or &#FFFD; (otherwise) instead of returning an empty string.
+ENT_DISALLOWED   Replace invalid code points for the given document type with a Unicode Replacement Character U+FFFD (UTF-8) or &#FFFD; (otherwise) instead of leaving them as is. This may be useful, for instance, to ensure the well-formedness of XML documents with embedded external content.
+ENT_HTML401  Handle code as HTML 4.01.
+ENT_XML1     Handle code as XML 1.
+ENT_XHTML    Handle code as XHTML.
+ENT_HTML5    Handle code as HTML 5.
+
+5. Tesseract ocr
+http://miphol.com/muse/2013/05/tesseract-ocr.html
+sudo apt-get install imagemagick
+把图片二值化(纯黑白化)也可以有效地提高准确率.
+convert input.png -threshold 50% output.png
+
+6. ssh连接报警does not map back to the address - POSSIBLE BREAK-IN ATTEM
+ssh连接远程服务器，报警信息 Address X.X.X.X maps to localhost, but this does not map back to the address - POSSIBLE BREAK-IN ATTEMPT! 如下:
+[root@upgirl ~]# ssh root@192.168.0.203
+Address 192.168.0.203 maps to localhost, but this does not map back to the address - POSSIBLE BREAK-IN ATTEMPT!
+root@192.168.0.203's password:
+Last login: Thu Feb 21 03:01:49 2013 from desktop100.example.com
+
+解决方法：修改本机ssh_config文件
+[root@h3 ~]# vim /etc/ssh/ssh_config
+GSSAPIAuthentication no
+
+测试OK：
+[root@upgirl ~]# ssh root@192.168.0.203
+root@192.168.0.203's password:
+Last login: Thu Feb 21 03:55:05 2013 from 192.168.0.11
+
+出处http://upgirl.blog.51cto.com/3744514/1136882
+
+7. vim 在 sudo 下的使用当前用户的配置文件
+部门配备了freebsd做为统一的开发环境，大家登上各自的jail进行软件开发任务。但是发现执行sudo vim之后，居然使用的是root的vim配置文件。
+
+那么有什么办法能够使用自己的配置文件呢？其实再简单不过,使用-E参数
+
+   -E  The -E (preserve environment) option will override the env_reset
+       option in sudoers(5)).  It is only available when either the match-
+       ing command has the SETENV tag or the setenv option is set in sudo-
+       ers(5).
+sudo -E vim file
+然后就可以使用自己的配置文件了。
+http://evoupsight.com/blog/2011/11/06/vim-sudo-use-vimrc-env/
