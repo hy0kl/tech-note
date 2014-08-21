@@ -118,3 +118,5 @@ https://github.com/nicolasff/webdis # Redis的Web代理
 https://github.com/ideawu/ssdb # 一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.
 https://github.com/twitter/kestrel # twitter 开源的 scala 消息队列 simple, distributed message queue system
 http://www.openldap.org/ # 开源的LDAP(LightweightDirectoryAccessProtocol)实现
+https://github.com/carhartl/jquery-cookie # jQuery cookie 插件
+https://code.google.com/p/smhasher/ # Test your hash functions.
