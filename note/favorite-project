@@ -120,3 +120,4 @@ https://github.com/twitter/kestrel # twitter 开源的 scala 消息队列 simple
 http://www.openldap.org/ # 开源的LDAP(LightweightDirectoryAccessProtocol)实现
 https://github.com/carhartl/jquery-cookie # jQuery cookie 插件
 https://code.google.com/p/smhasher/ # Test your hash functions.
+https://github.com/dodgepudding/wechat-php-sdk # 微信公众平台 php 开发包
