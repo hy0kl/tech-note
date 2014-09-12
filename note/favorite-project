@@ -121,3 +121,5 @@ http://www.openldap.org/ # 开源的LDAP(LightweightDirectoryAccessProtocol)实�
 https://github.com/carhartl/jquery-cookie # jQuery cookie 插件
 https://code.google.com/p/smhasher/ # Test your hash functions.
 https://github.com/dodgepudding/wechat-php-sdk # 微信公众平台 php 开发包
+http://www.question2answer.org/ # 基于 php + mysql 的问答系统.
+https://github.com/madrobby/zepto # 无线端 jQuery

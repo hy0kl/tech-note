@@ -43,3 +43,16 @@ http://cppkey.com/
 http://pppboy.blog.163.com/
 
 ```
+
+# 查看 linux 最大可以打开文件的数目
+
+```
+$ cat /proc/sys/fs/file-max
+```
+
+# linux shell 常见术语
+
+```
+IFS(Internal Field Seperator)
+```
+
