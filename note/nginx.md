@@ -90,3 +90,32 @@ $server_protocol 请求使用的协议，通常是HTTP/1.0或HTTP/1.1。
 
 $uri 请求中的当前URI(不带请求参数，参数位于$args)，不同于浏览器传递的$request_uri的值，它可以通过内部重定向，或者使用index指令进行修改。不包括协议和主机名，例如/foo/bar.html
 ```
+
+# nginx 开发环境编译参数
+
+```
+./configure --prefix=/Users/hy0kl/nginx \
+    --with-http_ssl_module \
+    --with-http_spdy_module \
+    --with-http_realip_module \
+    --with-http_addition_module \
+    --with-http_xslt_module \
+    --with-http_sub_module \
+    --with-http_dav_module \
+    --with-http_flv_module \
+    --with-http_mp4_module \
+    --with-http_gunzip_module \
+    --with-http_gzip_static_module \
+    --with-http_auth_request_module \
+    --with-http_random_index_module \
+    --with-http_secure_link_module \
+    --with-http_stub_status_module \
+    --with-pcre=/Users/hy0kl/src/pcre-8.35 \
+    --with-zlib=/Users/hy0kl/src/zlib-1.2.8 \
+    --with-openssl=/Users/hy0kl/src/openssl-1.0.1h \
+    --add-module=/Users/hy0kl/src/nginx-ext/ngx_devel_kit-0.2.19 \
+    --add-module=/Users/hy0kl/src/nginx-ext/lua-nginx-module-0.9.11 \
+    --add-module=/Users/hy0kl/src/nginx-ext/echo-nginx-module-0.55 \
+    --with-debug
+
+```

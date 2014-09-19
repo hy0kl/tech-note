@@ -41,7 +41,7 @@ make: *** [build] Error 2
 进入nginx src 目录
 $ ./configure
 
-手动修改 objs/Makefile: 
+手动修改 objs/Makefile:
 ./config --prefix=/Users/xxx/Downloads/openssl-1.0.1e/.openssl no-shared  no-threads
 改成
 ./Configure darwin64-x86_64-cc --prefix=/Users/xxx/Downloads/openssl-1.0.1e/.openssl no-shared  no-threads
