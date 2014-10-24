@@ -56,3 +56,19 @@ $ cat /proc/sys/fs/file-max
 IFS(Internal Field Seperator)
 ```
 
+# crontab 以日期为日志名重定向的坑
+
+% 在 crontab 里面是有特殊的意义的,需要使用 \ 进行转义
+
+```
+参考例子,每分钟产生一个随机数,写入指定的日志文件中:
+
+*   *   *   *   *   head -200 /dev/urandom | cksum | cut -f1 -d" " 2>&1 >> /var/log/t.`/bin/date +'\%Y-\%m-\%d'`.log
+
+*   *   *   *   *   head -200 /dev/urandom | cksum | cut -f1 -d" " 2>&1 >> /var/log/t.`/bin/date +\%Y-\%m-\%d`.log
+
+ps: 实测通过.
+$ uname -a
+Linux wrok-dev 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+```
+
