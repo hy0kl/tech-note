@@ -75,5 +75,6 @@ Linux wrok-dev 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86
 # curl 命令行中加入 UA
 
 以下例子只列出百度的 http 头信息. user agent 用的是本机 Chrome.
+
 $ curl --head  --verbose --user-agent 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36' 'www.baidu.com'
 
