@@ -266,3 +266,31 @@ collect2: error: ld returned 1 exit status
 $ vim objs/Makefile
 找到 -Wl,-E 所在行, 加入 -ldl 即可.
 ```
+
+# 扩展模块
+
+```
+* nginx-push-stream-module
+https://github.com/wandenberg/nginx-push-stream-module
+把 nginx 变成流式推服务器
+
+* nginx_http_push_module
+https://pushmodule.slact.net/
+把 nginx变成支持常连接的 HTTP 推服务器
+
+* ngx_cache_purge
+https://github.com/FRiCKLE/ngx_cache_purge
+nginx module which adds ability to purge content from FastCGI, proxy, SCGI and uWSGI caches.
+
+* HttpAccessKeyModule
+http://wiki.nginx.org/HttpAccessKeyModuleChs
+防盗链
+
+* fastdfs-nginx-module
+https://code.google.com/p/fastdfs-nginx-module/
+分存存储的 nginx 代理
+
+* nginx-upload-progress-module
+https://github.com/masterzen/nginx-upload-progress-module
+上传文件
+```
