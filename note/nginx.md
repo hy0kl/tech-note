@@ -294,3 +294,50 @@ https://code.google.com/p/fastdfs-nginx-module/
 https://github.com/masterzen/nginx-upload-progress-module
 上传文件
 ```
+# nginx 配置文件中的单位记法
+
+```
+当指定空间时,可以使用的单位有:
+    K 或者 k 千字节(kiloByte, KB)
+    M 或者 m 兆字节(MegaByte, MB)
+
+当指定时间时,可以使用的单位有:
+    ms  毫秒
+    s   秒
+    m   分钟
+    h   小时
+    d   天
+    w   周(包含7天)
+    M   月(包含30天)
+    y   年(包含365天)
+```
+# nginx 错误日志设置
+
+```
+语法: error_log /path/file level;
+默认: error_log logs/erro.log error;
+
+/path/file 可以是 /dev/null,这样不会输出任何日志,是关闭 error 日志的唯一手段.
+/path/file 也可是 stderr,这样日志输出到标准错误文件中.
+
+
+level 是日志的输出级别,取值范围是 debug, info, notice, warn, error, crit, alert, emerg, 从左到右级别依次增大.
+当设定一个级别时,大于或等于该级别的日志都会被输出到 /path/file 文件中,小于该级别的日志则不会输出.
+
+注意: 如果日志级别设定到 debug,必须在 configure 时加入 --with-debug 配置项.
+```
+
+# location 的匹配规则
+
+```
+1). = 表示把 URI 作为字符串,以便与参数中的 uri 做完全匹配.
+2). ~ 表示匹配 URI 时字母大小写敏感.
+3). ~* 表示匹配 URI 时忽略大小写.
+4). ^~ 表示匹配 URI 时只需要其前半部分与 uri 参数匹配即可.
+location ^~ /images/ {
+    # 以 /images/ 开始的请求都会匹配上
+    ...
+}
+5). @ 表示仅用于 nginx 服务内部请求之前的重定向,带有 @ 的 location 不直接处理用户请求.
+```
+
