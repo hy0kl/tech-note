@@ -341,3 +341,62 @@ location ^~ /images/ {
 5). @ 表示仅用于 nginx 服务内部请求之前的重定向,带有 @ 的 location 不直接处理用户请求.
 ```
 
+# 负载均衡的基本配置
+
+```
+(1) upstream 块
+语法: upstream name {...}
+配置块: http
+upstream 定义一个上游服务器的集群,便于反向代理中的 proxy_pass 使用.例如:
+
+upstream backend {
+    server backend1.example.com;
+    server backend2.example.com;
+    server backend3.example.com;
+}
+
+server {
+    location / {
+        proxy_pass http://backend
+    }
+}
+
+(2) server
+语法: server name [parameters];
+配置块: upstream
+server 配置项指定了一台上游服务器的名字,可以是域名,IP 地址端口, UNIX 句柄等,其后可跟下列参数:
+  weight=number:        设置这台服务器上游转发的权重,默认是 1;
+  max_fails=number:     该选项与 fail_timeout 配合使用,指在 fail_timeout 时间内,如果向当前的上游服务器转发失败次数超过 number,则认为当前的 fail_timeout 时间内这台上游服务器不可用. max_fails 默认是 1,如果设置为 0,则表示不检查失败次数.
+  fail_timeout=time:    表示该段时间内转发失败多少次后就认为上游服务器暂时不可用,用于优化反向代理功能.它与向上游服务器建立链接的超时时间,读取上流服务器的响应超时时间等完全无关. fail_timeout 默认为 10s.
+  down:                 表示所在有上游服务器永久下线,只有使用了 ip_hash 配置项时才有用.
+  backup:               在使用 ip_hash 配置项时它是无效的.它表示上游服务器只是个备份服务器,只有在所有的非备份上游服务器都失效后,才会向所在的上游服务器转发请求.
+  例如:
+upstream backend {
+    server backend1.example.com weight=5;
+    server 127.0.0.1:8080       max_fails=3 fail_timeout=30s;
+    server unix:/tmp/backend3;
+}
+
+(3) ip_hash
+语法: ip_hash;
+配置块: upstream
+将来自某一个用户的请求始终落到固定的一台上游服务器中.首先根据客户端的 ip 地址算出一个 key,将 key 按照 upstream 集群里的上游服务数量进行取模,然后以取模后的结果把请求转发到相应的上游服务器中.
+ip_hash 与 weight(权重) 配置不可同时使用.如果 upstream 集群中有一台上游服务器暂时不可用,不能直接删除该配置,而是要用 down 参数标识,确保转发策略的一致性.
+例如:
+
+upstream backend {
+    ip_hash;
+    server backend1.example.com;
+    server backend2.example.com down;
+    server backend3.example.com;
+}
+
+(4) 记录日志时支持的变量
+变量名                      意义
+$upstream_addr              处理请求的上游服务器的地址
+$upstream_cache_status      表示是否命中缓存,取值范围: MISS, EXPIRED, UPDATING, STALE, HIT
+$upstream_status            上游服务器返回的响应中的 HTTP 响应码
+$upstream_response_time     上游服务器的响应时间,精确到毫秒
+$upstream_http_$HEADER      HTTP 的头部,如 upstream_http_host
+```
+
