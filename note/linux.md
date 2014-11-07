@@ -107,3 +107,33 @@ $ curl --head  --verbose --user-agent 'User-Agent:Mozilla/5.0 (Macintosh; Intel 
 -v, --verbose       Make the operation more talkative
 ```
 
+# linux下如何删除 '-' 开头的文件
+
+[FROM](http://hi.baidu.com/zdz8207/item/85343a1855f47517e3f986b2)
+
+```
+不小心操作建立了一个 -ErrorMsg.txt 的文件
+
+$ rm "-ErrorMsg.txt"
+rm: invalid option -- E
+Try `rm ./-ErrorMsg.txt' to remove the file `-ErrorMsg.txt'.
+Try `rm --help' for more information.
+
+$ rm -rf "-ErrorMsg.txt"
+rm: invalid option -- E
+Try `rm ./-ErrorMsg.txt' to remove the file `-ErrorMsg.txt'.
+Try `rm --help' for more information.
+
+使用rm 不能删除,根据提示用 rm ./-ErrorMsg.txt 可以.查看 rm 的 man 手册时有这么一行提示:
+QUOTE:
+To remove a file whose name starts with a ‘-’, for example ‘-foo’, use one of these commands:
+    rm -- -foo
+    rm ./-foo
+
+这个指令是指删除当前目录 . 下的 -foo, 用 / 转义,如果要删除一个文件 -foo 不能用 rm 命令删除.
+rm -foo, rm \-foo, rm "-foo", rm "\-foo" …… 都无法将此文件删除,只能通过 rm -- -foo 或者 rm ./-foo 的方式删除
+同样此方法对于其它命令都是通用的
+vi -- -c 将生成一个 -c 文件
+ls -l -- -c 将显示 -c 文件
+```
+
