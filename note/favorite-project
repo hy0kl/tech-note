@@ -72,7 +72,7 @@ https://github.com/cloudwu/ejoy2d
 https://code.google.com/p/tesseract-ocr/ # 图像识别
 http://opencv.org/ # 图像识别
 https://github.com/arut/nginx-rtmp-module   # 战斗民族俄罗斯人民开发的一款NGINX的流媒体插件
-https://github.com/twitter/twemproxy    # 缓存代理, redis, memcache
+https://github.com/twitter/twemproxy    # 缓存代理, redis, memcache, 纯 c 实现
 https://github.com/ReactiveCocoa/ReactiveCocoa # 函数响应式编程框架
 https://github.com/phalcon/cphalcon # c 写的 php 扩展级的开发框架
 https://github.com/ErikDubbelboer/phpRedisAdmin # Redis管理工具之phpRedisAdmin
@@ -137,3 +137,10 @@ https://github.com/zxlie/WeixinApi # 微信 API
 https://github.com/chinatjnet/zTouch # Zepto.js v1.0.1 touch extend
 https://github.com/bh-lay/toucher # js 手势库
 https://github.com/allinurl/goaccess # GoAccess is an open source real-time web log analyzer and interactive viewer that runs in a terminal in *nix systems. 可作 nginx 日志分析
+https://github.com/facebook/hhvm # HHVM is an open-source virtual machine designed for executing programs written in Hack and PHP.
+
+# sql 注入工具
+https://github.com/sqlmapproject/sqlmap # python
+http://sourceforge.net/projects/hexjector/ # Hexjector是一个开放源代码、跨平台的 PHP 脚本程序，它可以自动扫描网站的 SQL 注入漏洞。
+http://sqlninja.sourceforge.net/ # SQLninja 是一个用Perl编写的用来检测SQL Server 的SQL注入攻击的工具。支持 Linux\BSD\Mac系统。
+
