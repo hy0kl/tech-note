@@ -100,3 +100,10 @@ $ ./configure --prefix=/usr \
 解决方法:
 将 ext 初始化对象 new ArrayObject().
 
+# yaf 中 ajax, iframe 页面出现反复刷新或闪动现象
+
+```
+原因是 yaf 框架代理页面时,没有遵行浏览器头缓存协议,在对应的 action 中加入以下代码可解决:
+$this->getView()->setLayout(null);
+```
+
