@@ -141,6 +141,6 @@ ls -l -- -c 将显示 -c 文件
 
 ```
 将其中的 $4 换成日志中的时间字段即可
-$ tail -f dev.access.log | awk 'BEGIN{OFS = "\t"; count = 0; iter_key = "check_key"}{count++; if (iter_key != $4) {print iter_key, count; count = 0; iter_key = $4; }}'
+$ tail -f dev.access.log | awk 'BEGIN{OFS = "\t"; count = 0; iter_key = "check_key"}{count++; current = $4; if (iter_key != current) {print iter_key, count; count = 0; iter_key = current; }}'
 ```
 
