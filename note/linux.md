@@ -10,40 +10,6 @@ print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" \
 | column -c3 -s " " -t | sort -nr | nl |  head -n10
 ```
 
-# Ubuntu 的桌面死机后重启桌面方法
-
-[FROM](http://pppboy.blog.163.com/blog/static/30203796201173013345251/)
-
-```
-一、现状
-大家都爱折腾一下Ubuntu的图形界面，调一下3D什么的，可能会由于你的过分折腾而死去。或者其它软件可能也会导致死去。
-
-二、解决办法
-从上到下依次优先
-
-1.如果配置了ctrl+alt+backspace，先试这个，用它重启桌面环境
-
-2.如果上面不行
-在alt+ctrl+f1~F6中重启gdm服务：
-    sudo /etc/init.d/gdm restart
-或
-    sudo /etc/init.d/gdm stop
-    sudo /etc/init.d/gdm start
-
-3. 在alt+ctrl+f1~F6中进入命令行Console运行：
-ps -t tty7
-此时可以发现一个Xorg的进程，记下他的PID。随后使用
-kill 进程号
-
-4.重启整个系统
-alt+ctrl+f1~F6
-
-三、出处
-http://cppkey.com/
-http://pppboy.blog.163.com/
-
-```
-
 # 查看 linux 最大可以打开文件的数目
 
 ```
@@ -142,5 +108,68 @@ ls -l -- -c 将显示 -c 文件
 ```
 将其中的 $4 换成日志中的时间字段即可
 $ tail -f dev.access.log | awk 'BEGIN{OFS = "\t"; count = 0; iter_key = "check_key"}{count++; current = $4; if (iter_key != current) {print iter_key, count; count = 0; iter_key = current; }}'
+```
+
+# linux 下查看某个端口是否被占用
+
+[FROM](http://my.oschina.net/u/193184/blog/146885)
+
+```
+查看端口占用情况的命令：lsof -i
+$ sudo lsof -i
+COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+smbd        733     root   30u  IPv6  10059      0t0  TCP *:microsoft-ds (LISTEN)
+smbd        733     root   31u  IPv6  10060      0t0  TCP *:netbios-ssn (LISTEN)
+smbd        733     root   32u  IPv4  10061      0t0  TCP *:microsoft-ds (LISTEN)
+smbd        733     root   33u  IPv4  10062      0t0  TCP *:netbios-ssn (LISTEN)
+nmbd        874     root   11u  IPv4   8874      0t0  UDP *:netbios-ns
+...
+
+查看某一端口的占用情况： lsof -i:端口号
+$ sudo lsof -i:80
+COMMAND   PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+nginx    2399  root   25u  IPv4  16050      0t0  TCP *:http (LISTEN)
+nginx   30784 baihe   25u  IPv4  16050      0t0  TCP *:http (LISTEN)
+nginx   30785 baihe   25u  IPv4  16050      0t0  TCP *:http (LISTEN)
+
+```
+
+# chmod 集锦
+
+```
+命令格式
+$ chmod [-cfvR] [--help] [--version] mode file
+
+必要参数:
+-c 当发生改变时，报告处理信息
+-f 错误信息不输出
+-R 处理指定目录以及其子目录下的所有文件
+-v 运行时显示详细处理信息
+
+选择参数:
+--reference=<目录或者文件> 设置成具有指定目录或者文件具有相同的权限
+--version 显示版本信息
+<权限范围>+<权限设置> 使权限范围内的目录或者文件具有指定的权限
+<权限范围>-<权限设置> 删除权限范围的目录或者文件的指定权限
+<权限范围>=<权限设置> 设置权限范围内的目录或者文件的权限为指定的值
+
+权限范围：
+u: 目录或者文件的当前的用户
+g: 目录或者文件的当前的群组
+o: 除了目录或者文件的当前用户或群组之外的用户或者群组
+a: 所有的用户及群组
+
+权限代号：
+r: 读权限,用数字 4 表示
+w: 写权限,用数字 2 表示
+x: 执行权限,用数字 1 表示
+-: 删除权限,用数字 0 表示
+
+set位及粘滞位
+权限值组合中的第4位数
+对应关系: suid=4, sgid=2, 粘滞位=1
+使用字母表示时对应关系: s=set位, t=粘滞位
+set位含义: 设置 set 位以后,其他用户执行该文件时也会拥有设置该 set 位用户的对应身份和权限,一般设置在文件上
+粘滞位含义: 设置粘滞位以后,让其他用户无法删除别人的文件,一般设置在目录上
 ```
 
