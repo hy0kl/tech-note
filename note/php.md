@@ -109,7 +109,7 @@ $this->getView()->setLayout(null);
 
 # php 低版兼容
 
-不用也可,只做个记录,毕竟用低版的概率很小了
+> 不用也可,只做个记录,毕竟用低版的概率很小了
 
 ```php
 if (PHP_VERSION < '4.1.0')
