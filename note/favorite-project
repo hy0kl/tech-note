@@ -146,6 +146,6 @@ http://sqlninja.sourceforge.net/ # SQLninja 是一个用Perl编写的用来检�
 
 # 软件负载均衡
 https://github.com/haproxy/haproxy # 软件负载均衡器
-https://github.com/alibaba/LVS # A distribution of Linux Virtual Server with some advanced features. 
+https://github.com/alibaba/LVS # A distribution of Linux Virtual Server with some advanced features.
 http://www.keepalived.org
 

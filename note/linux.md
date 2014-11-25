@@ -183,3 +183,8 @@ $ uname -m
 $ getconf LONG_BIT
 ```
 
+# 取昨天的时间串
+
+```
+$ date +"%Y%m%d" -d "yesterday"
+```
