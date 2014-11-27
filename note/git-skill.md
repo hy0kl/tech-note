@@ -145,3 +145,10 @@ $ git reset --hard origin/master
 ```
 $ git checkout --track origin/remote-branch
 ```
+
+# git log 实现 svn log -v 效果
+
+```
+$ git log --stat
+```
+
