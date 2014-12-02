@@ -83,9 +83,6 @@ https://github.com/google/gumbo-parser # google 的 html dom 解析库
 # Swoole是一个PHP的C扩展，可用来开发PHP的高性能高并发TCP/UDP Server。Swoole的网络IO部分基于epoll/kqueue事件循环，是全异步非阻塞的。 业务逻辑部分使用多进程同步阻塞方式来运行。这样既保证了Server能够应对高并发和大量TCP连接。又保证业务代码仍然可以简单的编写。
 https://github.com/matyhtf/swoole # PHP's asynchronous & concurrent & distributed networking framework.
 https://github.com/astaxie/build-web-application-with-golang #《Go Web 编程》
-https://github.com/doxygen/doxygen # 文档生成工具
-https://github.com/PHPOffice/PHPWord # php 操作 word 文档工具
-https://github.com/PHPOffice/PHPExcel # php 操作 excel 文档工具
 https://github.com/dodgepudding/wechat-php-sdk # 微信公众平台php开发包, weixin developer SDK
 http://nginx.org/en/docs/http/ngx_http_spdy_module.html # nginx spdy 协议实现
 http://www.mantisbt.org/ # 开源 bugs 系统
@@ -148,4 +145,20 @@ http://sqlninja.sourceforge.net/ # SQLninja 是一个用Perl编写的用来检�
 https://github.com/haproxy/haproxy # 软件负载均衡器
 https://github.com/alibaba/LVS # A distribution of Linux Virtual Server with some advanced features.
 http://www.keepalived.org
+
+https://github.com/doxygen/doxygen # 文档生成工具
+
+# php 操作 MS 办公文档
+https://github.com/PHPOffice
+https://github.com/PHPOffice/PHPWord
+https://github.com/PHPOffice/PHPExcel
+https://github.com/PHPOffice/PHPPowerPoint
+https://github.com/PHPOffice/PHPVisio
+https://github.com/PHPOffice/PHPProject
+
+# 虚拟技术
+https://github.com/qemu/qemu # 开源虚拟机
+http://www.linux-kvm.org/
+https://www.virtualbox.org/
+http://www.xenproject.org/
 

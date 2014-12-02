@@ -124,4 +124,24 @@ http://pppboy.blog.163.com/
 
 ```
 
+# 重启后 ping 不通外网
+
+```
+主要原因是 dns 配置丢失,解决方法有两种:
+
+1. 临时有效
+$ sudo vim /etc/resolv.conf
+加入以下内容
+nameserver 8.8.8.8
+nameserver 114.114.114.114
+
+2. 永久有效
+$ sudo vim /etc/resolvconf/resolv.conf.d/base
+加入以下内容
+nameserver 8.8.8.8
+nameserver 114.114.114.114
+
+执行以下命令,强制生效
+$ sudo resolvconf -u
+```
 
