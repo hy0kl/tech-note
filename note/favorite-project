@@ -3,30 +3,81 @@ https://github.com/harvesthq/chosen
 https://github.com/shift/libxml2
 https://github.com/puppetlabs/puppet
 https://github.com/cloudhead/less.js
-https://github.com/mattn/zencoding-vim
-https://github.com/hail2u/vim-css3-syntax
 https://github.com/sofish/imageXSS.js
 https://github.com/ltnetcase/libgd
 https://github.com/bitly/simplehttp
 https://github.com/brandonaaron/bgiframe
-https://github.com/vim-scripts/TabBar
 https://github.com/kbranigan/cJSON
 https://github.com/codehero/benejson
 https://github.com/agentzh/rds-json-nginx-module
 https://github.com/trondn/libmemcached
+
+# vim
+https://github.com/mattn/zencoding-vim
+https://github.com/altercation/solarized # vim 配色
+https://github.com/tomasr/molokai # vim 配色
+https://github.com/hail2u/vim-css3-syntax
+https://github.com/vim-scripts/TabBar
+
+# php 性能分析工具
 https://github.com/xdebug/xdebug
 https://github.com/facebook/xhprof # facebook 出品的 php 性能分析工具
-https://github.com/lighttpd/xcache
+
+# php 扩展
 https://github.com/php-memcached-dev/php-memcached
 https://github.com/facebook/hiphop-php
+https://github.com/mongodb/mongo-php-driver
+http://simplehtmldom.sourceforge.net/   # php 写的 html 解析器
+https://github.com/cowboy/php-simple-proxy
+https://github.com/Yehuda-Daniel/PHP-Crawler
+https://github.com/PHP-FFMpeg/PHP-FFMpeg # php 操作视频的扩展
+https://github.com/nicolasff/phpredis/ # php redis 扩展
+https://github.com/Neeke/SeasLog # php 扩展级的日志库
+https://github.com/phalcon/cphalcon # c 写的 php 扩展级的开发框架
+https://github.com/laruence/php-yaf
+# Swoole是一个PHP的C扩展，可用来开发PHP的高性能高并发TCP/UDP Server。Swoole的网络IO部分基于epoll/kqueue事件循环，是全异步非阻塞的。 业务逻辑部分使用多进程同步阻塞方式来运行。这样既保证了Server能够应对高并发和大量TCP连接。又保证业务代码仍然可以简单的编写。
+https://github.com/matyhtf/swoole # PHP's asynchronous & concurrent & distributed networking framework.
+
+https://github.com/jeanmonod/php-svn-hook
+https://github.com/phpDocumentor/phpDocumentor2
+https://github.com/dodgepudding/wechat-php-sdk # 微信公众平台php开发包, weixin developer SDK
+https://github.com/vrana/adminer # 新的php 写的数据库管理工具
+http://www.question2answer.org/ # 基于 php + mysql 的问答系统.
+https://github.com/dodgepudding/wechat-php-sdk # 微信公众平台 php 开发包
+https://github.com/dangoakachan/dangopress # 简洁的 wordpress 皮肤
+https://github.com/Seldaek/monolog # php 开源日志库
+https://github.com/anjuke/php-mmseg # php 中文分词器
+https://github.com/samacs/simple_html_dom
+https://github.com/zendframework/zf2
+https://github.com/yiisoft/yii2
+https://github.com/laravel/laravel
+http://symfony.com/
+https://github.com/ErikDubbelboer/phpRedisAdmin # Redis管理工具之phpRedisAdmin
+https://github.com/nnmatveev/php-stubs STUBS are normal, syntactically correct PHP files that contain function & class signatures, constant definitions, etc. for all built in PHP stuff and most standard extensions.
+
+# php 操作 MS 办公文档
+https://github.com/PHPOffice
+https://github.com/PHPOffice/PHPWord
+https://github.com/PHPOffice/PHPExcel
+https://github.com/PHPOffice/PHPPowerPoint
+https://github.com/PHPOffice/PHPVisio
+https://github.com/PHPOffice/PHPProject
+
+# lua
+https://github.com/alacner/lua-mysql
+https://github.com/chaoslawful/lua-nginx-module
+https://github.com/keplerproject/luasql
+https://github.com/mpx/lua-cjson/ # Fast JSON parsing and encoding support for Lua
+https://github.com/msva/lua-curl # lua curl c 扩展, easy, multi, share
+http://ittner.github.io/lua-iconv/ # lua iconv c 扩展
+https://github.com/diegonehab/luasocket # lua socket 扩展
+
+https://github.com/lighttpd/xcache
 https://github.com/mathquill/mathquill
 https://github.com/haiwen/seafile
 https://github.com/walmartlabs  # http://walmartlabs.com/
-https://github.com/alexdantas/yetris
-https://github.com/alacner/lua-mysql
-https://github.com/mpx/lua-cjson/ # Fast JSON parsing and encoding support for Lua
+https://github.com/alexdantas/yetris # shell 版俄罗斯方块
 https://code.google.com/p/zopfli/
-https://github.com/keplerproject/luasql
 https://github.com/libgdx/libgdx    # java 游戏引擎
 https://github.com/mmin18/WaxPatch  # 使用 lua 打 patch
 https://github.com/twitter/bootstrap
@@ -34,56 +85,48 @@ https://github.com/cocos2d/cocos2d-x
 https://github.com/DeepIT/XcodeColors
 https://github.com/alikaragoz/MCSwipeTableViewCell  # Mailbox 在 tableViewCell 上的手势开源实现
 https://gist.github.com/lexrus/5706727  # 使用 Makefile 编译,打包,生成 OTA 安装文件,短链接,二维码,邮件通知
-https://github.com/jeanmonod/php-svn-hook
-https://github.com/phpDocumentor/phpDocumentor2
-https://github.com/chaoslawful/lua-nginx-module
 https://github.com/ansjsun/ansj_seg # java 中文分词
 https://github.com/slembcke/Chipmunk2D  # c 物理引擎
+https://github.com/dualface/quick-cocos2d-x
+https://github.com/hxy060799/PlaneWar   # cocos2d 高仿微信打飞机
+
+# google host 项目
 https://code.google.com/p/huhamhire-hosts # google host
 https://github.com/smarthosts/smarthosts # google host,貌似停止维护了
 https://github.com/txthinking/google-hosts # 又一下 hosts 项目
-https://github.com/dualface/quick-cocos2d-x
+
 https://github.com/FRiCKLE/ngx_cache_purge
 https://github.com/FRiCKLE/ngx_postgres
+https://github.com/kung-fu-tzu/ngx_http_js_module
 https://github.com/DNSPod
-https://github.com/hxy060799/PlaneWar   # cocos2d 高仿微信打飞机
 https://github.com/CoryG89/MDNJump  # chrome 插件
 https://github.com/anhero/JsonBox
 https://github.com/rakshasa/libtorrent
 https://github.com/ucweb/ucmq
-https://github.com/zendframework/zf2
 https://github.com/imtiger/HappyEnglish # 开源 iOS app
 https://github.com/mongodb/mongo
-https://github.com/mongodb/mongo-php-driver
-https://github.com/Yehuda-Daniel/PHP-Crawler
 https://github.com/jourlin/WebCrawler   # c
-https://github.com/kung-fu-tzu/ngx_http_js_module
-https://github.com/samacs/simple_html_dom
 https://github.com/kevinzhow/PNChart    # 开源iOS 图表库
-https://github.com/nnmatveev/php-stubs
 https://github.com/GoalSmashers/clean-css   # node.js 的 css 处理工具
 https://github.com/bitcoin/bitcoin  # 比特币源码
 https://github.com/welefen/pjax
 https://github.com/qteqpid/spiderq  # c++
-http://simplehtmldom.sourceforge.net/   # php 写的 html 解析器
-https://github.com/cowboy/php-simple-proxy
 https://github.com/justinyhuang/the-little-mongodb-book-cn
 https://github.com/cloudwu/ejoy2d
+
+# 图像识别
 https://code.google.com/p/tesseract-ocr/ # 图像识别
 http://opencv.org/ # 图像识别
+
 https://github.com/arut/nginx-rtmp-module   # 战斗民族俄罗斯人民开发的一款NGINX的流媒体插件
 https://github.com/twitter/twemproxy    # 缓存代理, redis, memcache, 纯 c 实现
 https://github.com/ReactiveCocoa/ReactiveCocoa # 函数响应式编程框架
-https://github.com/phalcon/cphalcon # c 写的 php 扩展级的开发框架
-https://github.com/ErikDubbelboer/phpRedisAdmin # Redis管理工具之phpRedisAdmin
 https://github.com/cocos2d/cocos-docs # 翻译的游戏开发相关文章.
-https://github.com/Seldaek/monolog # php 开源日志库
 https://github.com/tracy-e/OCGumbo # oc 的 html dom 解析库,封装自 google 的 gumbo-parser
 https://github.com/google/gumbo-parser # google 的 html dom 解析库
-# Swoole是一个PHP的C扩展，可用来开发PHP的高性能高并发TCP/UDP Server。Swoole的网络IO部分基于epoll/kqueue事件循环，是全异步非阻塞的。 业务逻辑部分使用多进程同步阻塞方式来运行。这样既保证了Server能够应对高并发和大量TCP连接。又保证业务代码仍然可以简单的编写。
-https://github.com/matyhtf/swoole # PHP's asynchronous & concurrent & distributed networking framework.
+
+
 https://github.com/astaxie/build-web-application-with-golang #《Go Web 编程》
-https://github.com/dodgepudding/wechat-php-sdk # 微信公众平台php开发包, weixin developer SDK
 http://nginx.org/en/docs/http/ngx_http_spdy_module.html # nginx spdy 协议实现
 http://www.mantisbt.org/ # 开源 bugs 系统
 http://zookeeper.apache.org/ # 分布式服务框架 Zookeeper -- 管理分布式环境中的数据
@@ -95,21 +138,12 @@ https://github.com/mishoo/UglifyJS # js 代码压缩,混淆
 https://github.com/youtube/vitess # go 语言的 mysql proxy
 https://github.com/brucexx/heisenberg # 百度 dbproxy 的部分源代码, java 版
 http://www.tildeslash.com/libzdb/ # A small, easy to use Open Source Database Connection Pool Library
-https://github.com/anjuke/php-mmseg # php 中文分词器
 https://github.com/examplecode/mproxy # c 语言实现的一个最小的http代理，支持翻墙
 https://code.google.com/p/openerdns/ # OpenerDNS: 是面向中国普通互联网用户开放的"高速 安全 免费"的域名解析服务器
 https://github.com/opendns
-https://github.com/allinurl/goaccess # GoAccess is an open source real-time web log analyzer and interactive viewer that runs in a terminal in *nix systems. 实时日志分析工具
 http://linux-ha.org/wiki/Heartbeat # 高可用 mysql 工具
-http://www.keepalived.org/ # 高可用 mysql 工具
 https://github.com/scrapy/scrapy # Scrapy, a fast high-level screen scraping and web crawling framework for Python.
 https://github.com/makinacorpus/spynner # Programmatic web browsing module with AJAX support for Python
-https://github.com/altercation/solarized # vim 配色
-https://github.com/tomasr/molokai # vim 配色
-https://github.com/msva/lua-curl # lua curl c 扩展, easy, multi, share
-http://ittner.github.io/lua-iconv/ # lua iconv c 扩展
-https://github.com/diegonehab/luasocket # lua socket 扩展
-https://github.com/Neeke/SeasLog # php 扩展级的日志库
 https://github.com/cloudflare/lua-resty-cookie # nginx_lua 操作 cookie
 https://github.com/nicolasff/webdis # Redis的Web代理
 https://github.com/ideawu/ssdb # 一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.
@@ -117,16 +151,10 @@ https://github.com/twitter/kestrel # twitter 开源的 scala 消息队列 simple
 http://www.openldap.org/ # 开源的LDAP(LightweightDirectoryAccessProtocol)实现
 https://github.com/carhartl/jquery-cookie # jQuery cookie 插件
 https://code.google.com/p/smhasher/ # Test your hash functions.
-https://github.com/dodgepudding/wechat-php-sdk # 微信公众平台 php 开发包
-http://www.question2answer.org/ # 基于 php + mysql 的问答系统.
 https://github.com/madrobby/zepto # 无线端 jQuery
 https://github.com/itruf/crackify # 简单的 保护iOS应用崩溃
 https://github.com/kazuho/h2o # 号称是 nginx 的两倍
 https://github.com/sutoiku/formula.js # Microsoft Excel 所有函数的JavaScript实现
-https://github.com/vrana/adminer # 新的php 写的数据库管理工具
-https://github.com/dangoakachan/dangopress # 简洁的 wordpress 皮肤
-https://github.com/PHP-FFMpeg/PHP-FFMpeg # php 操作视频的扩展
-https://github.com/nicolasff/phpredis/ # php redis 扩展
 https://github.com/cocos3d/cocos3d # 开源 3d 游戏引擎.
 https://github.com/Clouda-team/touch.code.baidu.com # 百度开源 js 手势库
 https://github.com/zxlie/WeixinApi # 微信 API
@@ -143,17 +171,9 @@ http://sqlninja.sourceforge.net/ # SQLninja 是一个用Perl编写的用来检�
 # 软件负载均衡
 https://github.com/haproxy/haproxy # 软件负载均衡器
 https://github.com/alibaba/LVS # A distribution of Linux Virtual Server with some advanced features.
-http://www.keepalived.org
+http://www.keepalived.org/ # 高可用 mysql 工具
 
 https://github.com/doxygen/doxygen # 文档生成工具
-
-# php 操作 MS 办公文档
-https://github.com/PHPOffice
-https://github.com/PHPOffice/PHPWord
-https://github.com/PHPOffice/PHPExcel
-https://github.com/PHPOffice/PHPPowerPoint
-https://github.com/PHPOffice/PHPVisio
-https://github.com/PHPOffice/PHPProject
 
 # 虚拟技术
 https://github.com/qemu/qemu # 开源虚拟机
@@ -162,4 +182,8 @@ https://www.virtualbox.org/
 http://www.xenproject.org/
 http://www.parallels.com/
 https://github.com/docker/docker # 新概念虚拟技术
+
+http://caspian.dotconf.net/menu/Software/SendEmail/ # 命令行下通过代理发邮件
+
+http://www.highcharts.com/ # js 图表工具
 
