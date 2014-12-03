@@ -106,5 +106,9 @@ SELECT  COLUMN_NAME as '列名', DATA_TYPE as '字段类型', COLUMN_TYPE as '�
 FROM information_schema.`COLUMNS`
 WHERE TABLE_SCHEMA LIKE '库名'
 AND TABLE_NAME LIKE '表名';
+
+方法三:
+DESC `表名`;
+DESCRIBE `表名`;
 ```
 
