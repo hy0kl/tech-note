@@ -92,3 +92,19 @@ PRIMARY KEY (`devid`)
 指定以主键排序时可以使用到索引.
 有了主键就需要合理使用.
 ```
+
+# mysql 取表字段
+
+```
+方法一:
+SELECT COLUMN_NAME
+FROM information_schema.columns
+WHERE table_name = '要查询的表';
+
+方法二:
+SELECT  COLUMN_NAME as '列名', DATA_TYPE as '字段类型', COLUMN_TYPE as '长度加类型'
+FROM information_schema.`COLUMNS`
+WHERE TABLE_SCHEMA LIKE '库名'
+AND TABLE_NAME LIKE '表名';
+```
+
