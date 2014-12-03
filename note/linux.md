@@ -188,3 +188,24 @@ $ getconf LONG_BIT
 ```
 $ date +"%Y%m%d" -d "yesterday"
 ```
+
+# sendemail 使用 163 smtp 代理发邮件报错
+
+[官方](https://bugs.launchpad.net/ubuntu/+source/sendemail/+bug/1072299)
+[From](http://raspberrypi.stackexchange.com/questions/2118/sendemail-failure)
+
+```
+Linux:
+invalid SSL_version specified at /usr/share/perl5/IO/Socket/SSL.pm line 368.
+
+MaxOS:
+invalid SSL_version specified at /System/Library/Perl/Extras/5.18/IO/Socket/SSL.pm line 368.
+
+$ sudo vim /usr/share/perl5/IO/Socket/SSL.pm
+
+找到
+m{^(!?)(?:(SSL(?:v2|v3|v23|v2/3))|(TLSv1(?:_?[12])?))$}i
+替换为
+m{^(!?)(?:(SSL(?:v2|v3|v23|v2/3))|(TLSv1[12]?))}i
+```
+
