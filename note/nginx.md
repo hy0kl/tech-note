@@ -400,3 +400,29 @@ $upstream_response_time     上游服务器的响应时间,精确到毫秒
 $upstream_http_$HEADER      HTTP 的头部,如 upstream_http_host
 ```
 
+# 源码阅读记录
+
+```
+src/http/ngx_http_request.h 定义了 http 模块处理方法的返回值.
+
+nginx 全局错误码
+#define NGX_OK           0
+#define NGX_ERROR       -1
+#define NGX_AGAIN       -2
+#define NGX_BUSY        -3
+#define NGX_DONE        -4
+#define NGX_DECLINED    -5
+#define NGX_ABORT       -6
+```
+
+
+
+
+
+
+
+
+
+
+
+

@@ -187,3 +187,5 @@ http://caspian.dotconf.net/menu/Software/SendEmail/ # 命令行下通过代理�
 
 http://www.highcharts.com/ # js 图表工具
 
+# 入侵检测
+https://github.com/snortadmin/snort3
