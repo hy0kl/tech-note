@@ -209,3 +209,10 @@ m{^(!?)(?:(SSL(?:v2|v3|v23|v2/3))|(TLSv1(?:_?[12])?))$}i
 m{^(!?)(?:(SSL(?:v2|v3|v23|v2/3))|(TLSv1[12]?))}i
 ```
 
+# linux 终端不能输入中文解决方法
+
+[参考](http://blog.sina.com.cn/s/blog_5c4dd3330100cpmm.html)
+
+在用户目录下的 ~/.inputrc 文件（如果没有，则新建一个）添加：```set meta-flag onset convert-meta offset input-meta onset output-meta on```如果还是不能输入中文，再试试在 /etc/profile 文件里添加：
+```LANG="zh_CN.UTF-8"LC_MESSAGES="zh_CN.eucCN"export LANG LC_MESSAGES 
+```

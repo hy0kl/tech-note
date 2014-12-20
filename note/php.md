@@ -123,3 +123,6 @@ if (PHP_VERSION < '4.1.0')
 }
 ```
 
+# php 中验证电子邮箱地址是否合法
+
+一上来很自然会想到正则,今天刚好有个同事遇到 phpmailer 的一个问题,就顺便翻了下其源码,发现原来除了正则,还有更好的方法.源码摘抄如下:```phpfunction ValidateAddress($address) {     if (function_exists('filter_var')) { //Introduced in PHP 5.2       if(filter_var($address, FILTER_VALIDATE_EMAIL) === FALSE) {         return false;      } else {        return true;      }    } else {       return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);     } } ```

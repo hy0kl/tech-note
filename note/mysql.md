@@ -112,3 +112,7 @@ DESC `表名`;
 DESCRIBE `表名`;
 ```
 
+# mysql 先排序再分组
+
+[src](http://www.oschina.net/question/123890_35887)比如一个评论表:id uid title content ctime取出最近的 10 条评论, 一条人发的多条评论的只取一条 ```sqlSELECT MAX(id) AS max_idFROM table1GROUP BY uidORDER BY max_id DESC 
+```
