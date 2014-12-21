@@ -152,6 +152,13 @@ Darwin MacPro.local 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19 00:26:44 PDT
     --with-pcre-regex=/usr
 ```
 
+php 版本升级变化,编译参数会有变化,粘别人的编译参数,或者沿用旧的记录都有问题,从网上粘的问题就更大了.需要视当前版本支持的参数变动.
+
+php5.3 | php5.5
+------ | ------
+--enable-ndbm |  --with-ndbm
+--without-pear | --without-pear <br /> --with-pear=no
+
 # php 开发接口时空数组和空对象
 
 现象描述:
@@ -195,3 +202,29 @@ Can be very useful for big projects, when you create a lot of objects that shoul
 
 composer 在运行的时候会创建大量的对象，这些对象会触发 GC 机制，而这些对象需要被使用，所以 GC 无法清除，因此，使用 gc_disable 禁用 GC 之后，会节省 cpu 时间，效率更高。
 
+# mac下编译 php5.6
+
+```
+编译出错:
+checking whether to enable JIS-mapped Japanese font support in GD... no
+If configure fails try --with-vpx-dir=<DIR>
+configure: error: jpeglib.h not found.
+
+1. 下载 libjpeg http://libjpeg.sourceforge.net/
+2. ./configure --enable-shared
+编译时报个错: configure: error: cannot find macro directory `m4'
+创建个 m4 的目录即可.源码包里面没带这个目录
+但安装成功后出以下错:
+$ pbcopy -v
+dyld: Symbol not found: __cg_jpeg_resync_to_restart
+  Referenced from: /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+  Expected in: /Users/hy0kl/local/lib/libJPEG.dylib
+ in /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+Trace/BPT trap: 5
+貌似其他命令没有受到影响.
+
+If configure fails try --with-vpx-dir=<DIR>
+checking for jpeg_read_header in -ljpeg... yes
+configure: error: png.h not found.
+
+```
