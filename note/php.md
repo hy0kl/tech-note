@@ -205,7 +205,57 @@ composer 在运行的时候会创建大量的对象，这些对象会触发 GC �
 # mac下编译 php5.6
 
 ```
-编译出错:
+编译参数:
+./configure --prefix=/Users/hy0kl/php \
+    #--disable-dependency-tracking \
+    --enable-cli \
+    --with-libxml-dir=/usr \
+    --with-openssl=/usr \
+    --with-kerberos=/usr \
+    --with-zlib=/usr \
+    --enable-bcmath \
+    --with-bz2=/usr \
+    --enable-calendar \
+    --disable-cgi \
+    --with-curl=/usr \
+    --enable-dba \
+    --with-ndbm=/usr \
+    --enable-exif \
+    --enable-fpm \
+    --enable-ftp \
+    --with-gd \
+    --with-jpeg-dir=/Users/hy0kl/local \
+    --with-png-dir=/Users/hy0kl/local \
+    --enable-gd-native-ttf \
+    --with-icu-dir=/usr \
+    --with-ldap=/usr \
+    --with-ldap-sasl=/usr \
+    --with-libedit=/usr \
+    --enable-mbstring \
+    --enable-mbregex \
+    --with-mysql=mysqlnd \
+    --with-mysqli=mysqlnd \
+    --without-pear \
+    --with-pear=no \
+    --with-pdo-mysql=mysqlnd \
+    --with-readline=/usr \
+    --enable-shmop \
+    --with-snmp=/usr \
+    --enable-soap \
+    --enable-sockets \
+    --enable-sysvmsg \
+    --enable-sysvsem \
+    --enable-sysvshm \
+    --with-tidy \
+    --enable-wddx \
+    --with-xmlrpc \
+    --with-iconv-dir=/usr \
+    --with-xsl=/usr \
+    #--enable-zend-multibyte \
+    --enable-zip \
+    --with-pcre-regex=/Users/hy0kl/local
+
+configure出错:
 checking whether to enable JIS-mapped Japanese font support in GD... no
 If configure fails try --with-vpx-dir=<DIR>
 configure: error: jpeglib.h not found.
@@ -227,4 +277,13 @@ If configure fails try --with-vpx-dir=<DIR>
 checking for jpeg_read_header in -ljpeg... yes
 configure: error: png.h not found.
 
+下载 libpng http://libpng.sourceforge.net/index.html
+编译安装即可
+
+执行完报个警告:
+configure: WARNING: unrecognized options: --disable-dependency-tracking, --enable-zend-multibyte
+查看 php5.6 的编译参数时,发现这两个参数已经不存了.拿掉不支持参数再走一遍.
+
+configure 过了后 make 通常问题不大,但若真出问题,那可不好折腾了,换思想吧.
 ```
+
