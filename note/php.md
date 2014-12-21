@@ -92,6 +92,66 @@ $ ./configure --prefix=/usr \
     --enable-sysvmsg
 ```
 
+```
+$ uname -a
+Darwin MacPro.local 14.0.0 Darwin Kernel Version 14.0.0: Fri Sep 19 00:26:44 PDT 2014; root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64
+./configure --prefix=/usr \
+    --mandir=/usr/share/man \
+    --infodir=/usr/share/info \
+    --disable-dependency-tracking \
+    --sysconfdir=/private/etc \
+    --with-apxs2=/usr/sbin/apxs \
+    --enable-cli \
+    --with-config-file-path=/etc \
+    --with-config-file-scan-dir=/Library/Server/Web/Config/php \
+    --with-libxml-dir=/usr \
+    --with-openssl=/usr \
+    --with-kerberos=/usr \
+    --with-zlib=/usr \
+    --enable-bcmath \
+    --with-bz2=/usr \
+    --enable-calendar \
+    --disable-cgi \
+    --with-curl=/usr \
+    --enable-dba \
+    --with-ndbm=/usr \
+    --enable-exif \
+    --enable-fpm \
+    --enable-ftp \
+    --with-png-dir=no \
+    --with-gd \
+    --with-jpeg-dir=/BinaryCache/apache_mod_php/apache_mod_php-93~55/Root/usr/local \
+    --enable-gd-native-ttf \
+    --with-icu-dir=/usr \
+    --with-ldap=/usr \
+    --with-ldap-sasl=/usr \
+    --with-libedit=/usr \
+    --enable-mbstring \
+    --enable-mbregex \
+    --with-mysql=mysqlnd \
+    --with-mysqli=mysqlnd \
+    --without-pear \
+    --with-pear=no \
+    --with-pdo-mysql=mysqlnd \
+    --with-mysql-sock=/var/mysql/mysql.sock \
+    --with-readline=/usr \
+    --enable-shmop \
+    --with-snmp=/usr \
+    --enable-soap \
+    --enable-sockets \
+    --enable-sysvmsg \
+    --enable-sysvsem \
+    --enable-sysvshm \
+    --with-tidy \
+    --enable-wddx \
+    --with-xmlrpc \
+    --with-iconv-dir=/usr \
+    --with-xsl=/usr \
+    --enable-zend-multibyte \
+    --enable-zip \
+    --with-pcre-regex=/usr
+```
+
 # php 开发接口时空数组和空对象
 
 现象描述:
@@ -125,4 +185,13 @@ if (PHP_VERSION < '4.1.0')
 
 # php 中验证电子邮箱地址是否合法
 
-一上来很自然会想到正则,今天刚好有个同事遇到 phpmailer 的一个问题,就顺便翻了下其源码,发现原来除了正则,还有更好的方法.源码摘抄如下:```phpfunction ValidateAddress($address) {     if (function_exists('filter_var')) { //Introduced in PHP 5.2       if(filter_var($address, FILTER_VALIDATE_EMAIL) === FALSE) {         return false;      } else {        return true;      }    } else {       return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);     } } ```
+一上来很自然会想到正则,今天刚好有个同事遇到 phpmailer 的一个问题,就顺便翻了下其源码,发现原来除了正则,还有更好的方法.源码摘抄如下:```phpfunction ValidateAddress($address) {     if (function_exists('filter_var')) { //Introduced in PHP 5.2       if(filter_var($address, FILTER_VALIDATE_EMAIL) === FALSE) {         return false;      } else {        return true;      }    } else {       return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);     } } ```
+# 为 composer 提速
+[gc_disable()](http://php.net/manual/zh/function.gc-disable.php)
+[参考](http://segmentfault.com/q/1010000002402696)
+[github commit](https://github.com/composer/composer/commit/ac676f47f7bbc619678a29deae097b6b0710b799)
+
+Can be very useful for big projects, when you create a lot of objects that should stay in memory. So GC can't clean them up and just wasting CPU time.
+
+composer 在运行的时候会创建大量的对象，这些对象会触发 GC 机制，而这些对象需要被使用，所以 GC 无法清除，因此，使用 gc_disable 禁用 GC 之后，会节省 cpu 时间，效率更高。
+
