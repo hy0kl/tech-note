@@ -167,13 +167,6 @@ php5.3 | php5.5
 解决方法:
 将 ext 初始化对象 new ArrayObject().
 
-# yaf 中 ajax, iframe 页面出现反复刷新或闪动现象
-
-```
-原因是 yaf 框架代理页面时,没有遵行浏览器头缓存协议,在对应的 action 中加入以下代码可解决:
-$this->getView()->setLayout(null);
-```
-
 # php 低版兼容
 
 > 不用也可,只做个记录,毕竟用低版的概率很小了
@@ -307,5 +300,44 @@ configure: WARNING: unrecognized options: --disable-dependency-tracking, --enabl
 查看 php5.6 的编译参数时,发现这两个参数已经不存了.拿掉不支持参数再走一遍.
 
 configure 过了后 make 通常问题不大,但若真出问题,那可不好折腾了,换思想吧.
+```
+
+# yaf 相关点收集
+
+## yaf 下注册本地类
+
+在 Bootstrap.php 中初始化
+
+```php
+/* 注册本地类名前缀, 这部分类名将会在本地类库查找 */
+Yaf_Loader::getInstance()->registerLocalNameSpace(
+    array(
+         'Tool',
+         'Cache',
+         'Page',
+         'Model',
+    )
+);
+```
+
+## yaf 导入预置类
+
+在 Bootstrap.php 中初始化
+
+```php
+Yaf_loader::import(APPLICATION_PATH . '/application/actions/BaseAction.php');
+```
+
+## yaf 禁止自动渲染模板
+
+```php
+Yaf_Dispatcher::getInstance()->disableView();
+```
+
+## yaf 中 ajax, iframe 页面出现反复刷新或闪动现象
+
+```
+原因是 yaf 框架代理页面时,没有遵行浏览器头缓存协议,在对应的 action 中加入以下代码可解决:
+$this->getView()->setLayout(null);
 ```
 
