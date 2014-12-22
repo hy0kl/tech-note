@@ -268,6 +268,7 @@ composer 在运行的时候会创建大量的对象，这些对象会触发 GC �
     --with-xsl=/usr \
     #--enable-zend-multibyte \
     --enable-zip \
+    --with-mcrypt=/Users/hy0kl/local \
     --with-pcre-regex=/Users/hy0kl/local
 
 configure出错:
@@ -288,12 +289,17 @@ dyld: Symbol not found: __cg_jpeg_resync_to_restart
 Trace/BPT trap: 5
 貌似其他命令没有受到影响.
 
-If configure fails try --with-vpx-dir=<DIR>
+3. If configure fails try --with-vpx-dir=<DIR>
 checking for jpeg_read_header in -ljpeg... yes
 configure: error: png.h not found.
 
 下载 libpng http://libpng.sourceforge.net/index.html
 编译安装即可
+
+4. checking for mcrypt support... yes
+configure: error: mcrypt.h not found. Please reinstall libmcrypt.
+下载对应的 lib 库 ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt
+标准安装.
 
 执行完报个警告:
 configure: WARNING: unrecognized options: --disable-dependency-tracking, --enable-zend-multibyte

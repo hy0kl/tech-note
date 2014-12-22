@@ -53,7 +53,12 @@ https://github.com/yiisoft/yii2
 https://github.com/laravel/laravel
 http://symfony.com/
 https://github.com/ErikDubbelboer/phpRedisAdmin # Redis管理工具之phpRedisAdmin
-https://github.com/nnmatveev/php-stubs STUBS are normal, syntactically correct PHP files that contain function & class signatures, constant definitions, etc. for all built in PHP stuff and most standard extensions.
+#STUBS are normal, syntactically correct PHP files that contain function & class signatures, constant definitions, etc. for all built in PHP stuff and most standard extensions.
+https://github.com/nnmatveev/php-stubs
+
+# Better Markdown Parser in PHP
+https://github.com/erusev/parsedown
+https://github.com/michelf/php-markdown
 
 # php 操作 MS 办公文档
 https://github.com/PHPOffice
