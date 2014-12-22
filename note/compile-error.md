@@ -48,3 +48,16 @@ $ ./configure
 
 $ make
 ```
+
+# mac 编译 openssl 出错
+
+```
+openssl/ssl/man/man3/hmac.3: Too many levels of symbolic links
+```
+
+[参考](http://trac.nginx.org/nginx/ticket/583)
+
+```
+A workaround is to delete the folder ../openssl-1.0.1h/.openssl, at which point `make` in nginx-1.7.1 works as expected.
+```
+
