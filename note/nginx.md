@@ -94,7 +94,9 @@ $uri 请求中的当前URI(不带请求参数，参数位于$args)，不同于�
 # nginx 开发环境编译参数
 
 ```
-./configure --prefix=/Users/hy0kl/nginx \
+$ date
+Mon Dec 22 09:29:21 CST 2014
+$ ./configure --prefix=/Users/hy0kl/nginx \
     --with-http_ssl_module \
     --with-http_spdy_module \
     --with-http_realip_module \
@@ -117,7 +119,6 @@ $uri 请求中的当前URI(不带请求参数，参数位于$args)，不同于�
     --add-module=/Users/hy0kl/src/nginx-ext/lua-nginx-module-0.9.11 \
     --add-module=/Users/hy0kl/src/nginx-ext/echo-nginx-module-0.55 \
     --with-debug
-
 ```
 
 # nginx 日志切割
