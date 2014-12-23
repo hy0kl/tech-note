@@ -178,6 +178,10 @@ https://github.com/haproxy/haproxy # 软件负载均衡器
 https://github.com/alibaba/LVS # A distribution of Linux Virtual Server with some advanced features.
 http://www.keepalived.org/ # 高可用 mysql 工具
 
+# 数据库中间件,搜狐基于官方版改的
+https://github.com/SOHUDBA/SOHU-DBProxy
+http://dev.mysql.com/doc/mysql-proxy/en/ # 官方的
+
 https://github.com/doxygen/doxygen # 文档生成工具
 
 # 虚拟技术
