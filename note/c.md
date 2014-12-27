@@ -18,3 +18,18 @@ c 语言函数参数是形式,在调用函数时,参数实例,是在栈上新分
 如果想在函数内部改变外边的变量的值,需要参数实例化时取一级指针.
 
 [例子与详解](https://github.com/hy0kl/algorithm/blob/master/other/func_args.c)
+
+# 移位操作溢出
+
+[参见](http://stackoverflow.com/questions/4201301/warning-left-shift-count-width-of-type)
+
+```
+unsigned long long int t = 1 << 32;
+编译时报如下错.原因是 1 是 int 型,左移 32 位溢出.
+warning: shift count >= width of type [-Wshift-count-overflow]
+
+解决方法:
+unsigned long long int t = 1ULL << 32;
+显式指定更宽的位数.
+```
+
