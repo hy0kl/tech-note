@@ -294,7 +294,11 @@ https://code.google.com/p/fastdfs-nginx-module/
 * nginx-upload-progress-module
 https://github.com/masterzen/nginx-upload-progress-module
 上传文件
+
+* ngx_http_ssi_module
+The ngx_http_ssi_module module is a filter that processes SSI (Server Side Includes) commands in responses passing through it. Currently, the list of supported SSI commands is incomplete.
 ```
+
 # nginx 配置文件中的单位记法
 
 ```
