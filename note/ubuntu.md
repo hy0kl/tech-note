@@ -145,3 +145,12 @@ nameserver 114.114.114.114
 $ sudo resolvconf -u
 ```
 
+# 添加用户到已存在的组
+
+[参考](http://linux.cn/thread-11790-1-1.html)
+
+```
+$ sudo adduser 用户名 组名
+$ id 用户名
+```
+
