@@ -194,7 +194,6 @@ https://github.com/docker/docker # 新概念虚拟技术
 
 http://caspian.dotconf.net/menu/Software/SendEmail/ # 命令行下通过代理发邮件
 
-http://www.highcharts.com/ # js 图表工具
 
 # 入侵检测
 https://github.com/snortadmin/snort3
@@ -219,3 +218,17 @@ https://github.com/Supervisor/supervisor
 
 # 汉字拼音转换工具
 https://github.com/hotoo/pinyin
+
+# 蘑菇街
+https://github.com/mogutt
+
+http://www.highcharts.com/ # js 图表工具
+# 百度商业组开源 js 图表库
+https://github.com/ecomfe/echarts
+
+# 监控
+http://www.nagios.org/
+
+# a tool like grep, optimized for programmers
+http://beyondgrep.com/
+https://github.com/ggreer/the_silver_searcher

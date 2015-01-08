@@ -405,7 +405,7 @@ $upstream_response_time     上游服务器的响应时间,精确到毫秒
 $upstream_http_$HEADER      HTTP 的头部,如 upstream_http_host
 ```
 
-# 源码阅读记录
+# 源码阅读记录{read-src}
 
 ```
 src/http/ngx_http_request.h 定义了 http 模块处理方法的返回值.
