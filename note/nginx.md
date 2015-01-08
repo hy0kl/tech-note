@@ -18,7 +18,7 @@ rewrite_log on;
 error_log logs/error.log notice;
 ```
 
-# nginx 内置预定义变量
+<h1 id="nginx_var">nginx 内置预定义变量</h1>
 
 [FROM](http://www.nginx.cn/273.html)
 
