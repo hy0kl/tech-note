@@ -56,4 +56,25 @@ n|  移至第n 个字元(栏)处。注意，要用 Shift 键。 n 是从头起�
 
 # vim7 中文显示问题
 
-[vim中文显示问题](http://moralistxp.blog.163.com/blog/static/1161103982009101111364351/)安装了vim7.2，下载地址 [www.vim.org](http://www.vim.org)，但是在utf-8下输入中文却是乱码。  使用 :set 命令，发现vimrc中设置的字符集并未生效。  后发现是安装时 configuration 少写了参数；添加如下参数：  ```./configure --enable-multibyte```就可以正常显示输入的中文了。附上vimrc的部分内容:```let &termencoding=&encodingset encoding=utf-8set fileencoding=utf-8set fileencodings=utf-8,gb18030,utf-16,big5set langmenu=C```注: 如果不指定  --enable-multibyte, set enc, set fileencoding 时发现没有这样的指令.
+[vim中文显示问题](http://moralistxp.blog.163.com/blog/static/1161103982009101111364351/)
+
+安装了vim7.2，下载地址 [www.vim.org](http://www.vim.org)，但是在utf-8下输入中文却是乱码。
+使用 :set 命令，发现vimrc中设置的字符集并未生效。
+后发现是安装时 configuration 少写了参数；添加如下参数：
+
+```
+./configure --enable-multibyte
+```
+
+就可以正常显示输入的中文了。
+附上vimrc的部分内容:
+
+```
+let &termencoding=&encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,gb18030,utf-16,big5
+set langmenu=C
+```
+注: 如果不指定  --enable-multibyte, set enc, set fileencoding 时发现没有这样的指令.
+
