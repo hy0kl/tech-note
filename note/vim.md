@@ -78,3 +78,11 @@ set langmenu=C
 ```
 注: 如果不指定  --enable-multibyte, set enc, set fileencoding 时发现没有这样的指令.
 
+# vim 将回车替换为特殊字符 + 回车
+
+```
+:%s/\n/;\r/g
+```
+
+***注: 查换时用 \n, 替换时用 \r, 这些什么神逻辑!***
+
