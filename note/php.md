@@ -365,3 +365,12 @@ See any operating system documentation about shared libraries for
 more information, such as the ld(1) and ld.so(8) manual pages.
 ----------------------------------------------------------------------
 ```
+
+# PDO 和单例模式
+
+低版本 mysql, pdo,使用数据库单例模式,出现多条 sql 执行后,后续的 sql 不报错,不抛异常,却拿不到执行结果.将 db 类改为非单例模式,则问题解决.
+
+高版本的 mysql, pdo, db 又必须为单例模式.
+
+环境问题,老大难.
+
