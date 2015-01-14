@@ -213,6 +213,34 @@ m{^(!?)(?:(SSL(?:v2|v3|v23|v2/3))|(TLSv1[12]?))}i
 
 [参考](http://blog.sina.com.cn/s/blog_5c4dd3330100cpmm.html)
 
-在用户目录下的 ~/.inputrc 文件（如果没有，则新建一个）添加：```set meta-flag onset convert-meta offset input-meta onset output-meta on```如果还是不能输入中文，再试试在 /etc/profile 文件里添加：
-```LANG="zh_CN.UTF-8"LC_MESSAGES="zh_CN.eucCN"export LANG LC_MESSAGES 
+在用户目录下的 ~/.inputrc 文件（如果没有，则新建一个）添加：
+
 ```
+set meta-flag on
+set convert-meta off
+set input-meta on
+set output-meta on
+```
+
+如果还是不能输入中文，再试试在 /etc/profile 文件里添加：
+
+```
+LANG="zh_CN.UTF-8"
+LC_MESSAGES="zh_CN.eucCN"
+export LANG LC_MESSAGES
+```
+
+# 如何不解压tar.gz文件查看其中的文件大小
+
+[参考](http://www.codelast.com/?p=950)保留链接,小网站,有可能随时消失
+
+```
+$ tar tvf file.tar.gz
+
+# 只显示文件大小和文件名
+$ tar tvf file.tar.gz | awk '{print $3, $6}'
+
+# 以 KB/MB/GB 来显示文件大小
+$ tar tvf file.tar.gz | awk '{print $3 / 1024 / 1024 / 1024, $6}'
+```
+
