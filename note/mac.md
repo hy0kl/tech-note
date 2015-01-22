@@ -2,7 +2,7 @@
 
 ```
 在用户目录下安装了 libjpeg 后, pbcopy 报错了.
-$ pbcopy 
+$ pbcopy
 dyld: Symbol not found: __cg_jpeg_resync_to_restart
   Referenced from: /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
   Expected in: /Users/hy0kl/local/lib/libJPEG.dylib
