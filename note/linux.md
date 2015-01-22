@@ -278,3 +278,17 @@ $ diff -u -r dir1 dir2
 -I, --ignore-matching-lines=RE  ignore changes where all lines match RE
 ```
 
+# svn 报错
+
+```
+svn: warning: cannot set LC_CTYPE locale
+svn: warning: environment variable LC_CTYPE is UTF-8
+svn: warning: please check that your locale name is correct
+``
+
+[see](http://stackoverflow.com/questions/11300633/svn-cannot-set-lc-ctype-locale)
+
+```
+export LC_ALL=C
+```
+
