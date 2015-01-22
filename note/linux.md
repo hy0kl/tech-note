@@ -244,3 +244,37 @@ $ tar tvf file.tar.gz | awk '{print $3, $6}'
 $ tar tvf file.tar.gz | awk '{print $3 / 1024 / 1024 / 1024, $6}'
 ```
 
+# diff
+
+## 比较两个目录中文件差异
+
+```
+$ diff -u -r dir1 dir2
+```
+
+## 部分参数说明
+
+[see](http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html)
+
+由于历史原因, diff 有三种格式
+
+* 正常格式(normal diff)
+* -c 上下文格式(context diff)
+* -u 合并格式(unified diff)
+
+## 其他常用参数
+
+```
+-t, --expand-tabs               expand tabs to spaces in output
+-r, --recursive                 recursively compare any subdirectories found
+    --no-dereference            don't follow symbolic links
+
+-i, --ignore-case               ignore case differences in file contents
+-E, --ignore-tab-expansion      ignore changes due to tab expansion
+-Z, --ignore-trailing-space     ignore white space at line end
+-b, --ignore-space-change       ignore changes in the amount of white space
+-w, --ignore-all-space          ignore all white space
+-B, --ignore-blank-lines        ignore changes where lines are all blank
+-I, --ignore-matching-lines=RE  ignore changes where all lines match RE
+```
+
