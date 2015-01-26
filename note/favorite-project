@@ -242,3 +242,10 @@ https://github.com/plasticboy/vim-markdown
 
 # Apache Spark
 https://github.com/apache/spark
+
+# 开源结构化数据进行序列化和反序列化的方法
+https://github.com/apache/thrift
+https://github.com/google/protobuf
+https://github.com/allegro/php-protobuf # 对应的 php 扩展
+https://github.com/mingchen/protobuf-ios
+
