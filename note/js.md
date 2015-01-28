@@ -80,6 +80,8 @@ string | 必需。要被解析的字符串。
 
 ## js 实现从后端取微信 js-sdk 配置
 
+以下是同步方式加载.除非真的有必要,否则建议同步加载.
+
 ```html
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
