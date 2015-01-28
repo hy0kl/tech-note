@@ -78,3 +78,23 @@ string | 必需。要被解析的字符串。
 将 url 指定为:
 `http://app.qq.com/#id=detail&appid=应用id`
 
+## js 实现从后端取微信 js-sdk 配置
+
+```html
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+var _u = window.location.href;
+var _pos = _u.indexOf('#');
+if (-1 == _pos)
+{
+    _pos = _u.length;
+}
+var _c_url = _u.substr(0, _pos);
+var _s_url = '/wx/wxconfig?debug=0&url=' + encodeURIComponent(_c_url);
+document.write('<script src="' + _s_url + '"><\/script>');
+</script>
+```
+
+在开发环境中调试时,将 debug=1 传入即可,会将执行流程完整输出.
+
+
