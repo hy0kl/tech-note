@@ -92,7 +92,7 @@ if (-1 == _pos)
     _pos = _u.length;
 }
 var _c_url = _u.substr(0, _pos);
-var _s_url = '/wx/wxconfig?debug=0&url=' + encodeURIComponent(_c_url);
+var _s_url = '/wx/wxconfig?debug=0&url=' + encodeURIComponent(_c_url)  + '&p=' + (+(new Date()));
 document.write('<script src="' + _s_url + '"><\/script>');
 </script>
 ```
