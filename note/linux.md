@@ -308,3 +308,11 @@ sudo apt-get install libcurl4-openssl-dev
 
 原因是用户自己的编译的 libcurl 没有 SSL support.
 
+***openssl 能用系统提供的还是尽量用系统的吧,这个组件太变态了.***
+
+# 查看 gateway 等网络情况
+
+```
+$ netstat -rn
+```
+
