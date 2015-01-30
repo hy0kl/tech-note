@@ -154,3 +154,18 @@ $ sudo adduser 用户名 组名
 $ id 用户名
 ```
 
+# ubuntu 下干干净净的卸载软件
+
+[see](http://oss.org.cn/html/47/n-67447.html)
+
+```
+1. apt 方式
+  1). 一般卸载 sudo apt-get remove softname1 softname2 ...
+  2). 清除式卸载 sudo apt-get --purge remove softname1 softname2 ... # 同时清除配置
+  3). 同上 sudo apt-get purge sofname1 softname ...
+
+2. dpkg 方式
+  1). 移除式卸载 sudo dpkg -r pkg1 pkg2 ...
+  2). 清除式卸载 sudo dpkg -P pkg1 pkg2 ...
+```
+
