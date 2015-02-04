@@ -103,3 +103,17 @@ document.write('<script src="' + _s_url + '"><\/script>');
 
 *如果确认接口不需要缓存,为了防止以缓存为借口扯皮,切记加上噪音串,代码为证.*
 
+## 判断网页是否是在微信内嵌浏览器中打开
+
+真实的一条 HTTP_USER_AGENT
+`Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B466 MicroMessenger/6.1 NetType/WIFI`
+
+```js
+// 判断用户是不是用微信打开了浏览器
+// @see: https://gist.github.com/anhulife/8470534
+function isWeixinBrowser(){
+    // 截至2014年2月12日,这个方法不能测试 windows phone 中的微信浏览器
+    return (/MicroMessenger/i).test(window.navigator.userAgent);
+}
+```
+
