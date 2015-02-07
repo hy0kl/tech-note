@@ -181,6 +181,9 @@ $ uname -m
 
 方法二:
 $ getconf LONG_BIT
+
+方法三:
+$ arch
 ```
 
 # 取昨天的时间串

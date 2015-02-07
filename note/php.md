@@ -347,6 +347,19 @@ Yaf_Dispatcher::getInstance()->disableView();
 $this->getView()->setLayout(null);
 ```
 
+## yaf 从 controller 层关闭自动渲染模板
+
+在 controller 加入以下代码
+
+```php
+    public function init()
+    {
+        Yaf_Dispatcher::getInstance()->disableView();
+    }
+```
+
+或者在 action 执行完成后 `return false;`
+
 # libsvm
 
 ```
