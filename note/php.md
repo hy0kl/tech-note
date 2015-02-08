@@ -340,6 +340,13 @@ Yaf_loader::import(APPLICATION_PATH . '/application/actions/BaseAction.php');
 Yaf_Dispatcher::getInstance()->disableView();
 ```
 
+也可以在 `Bootstrap.php` 的 _init 方法中设置
+
+```php
+    // 禁止自动渲染
+    Yaf_Dispatcher::getInstance()->autoRender(false);
+```
+
 ## yaf 中 ajax, iframe 页面出现反复刷新或闪动现象
 
 ```
