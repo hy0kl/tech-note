@@ -68,4 +68,16 @@ sudo  make install
 
 [主页](http://tukaani.org/xz/)
 
+# shuf 命令不存在
+
+```
+$ shuf
+-bash: shuf: command not found
+```
+
+谷歌说要安装 `gnu coreutils`,下载了一份拷贝后发现,文件数挺多,为了一个 shuf 命令折腾一大圈,有点不划算.
+
+[Coreutils - GNU core utilities](https://www.gnu.org/software/coreutils/)
+
+先用 awk 代替,实在不成再来折腾.
 

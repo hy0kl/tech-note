@@ -340,3 +340,10 @@ fortune | cowsay -f $cowsay_file
 $ fortune | cowthink -f $(find /usr/share/cowsay/cows -type f | shuf -n 1)
 ```
 
+改良的方法:
+
+```shell
+cowsay_file=$(find /usr/share/cowsay/cows -type f | awk 'BEGIN{ i = 1; srand(); } {cntr[i] = $0; i++} END{ value = int(rand() * 1000); print cntr[value % (i - 1) + 1];}')
+fortune | cowsay -f $cowsay_file
+```
+
