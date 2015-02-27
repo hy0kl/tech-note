@@ -321,13 +321,26 @@ $ netstat -rn
 
 # 个性化登陆欢迎词
 
+先安装软件
+
+```
+$ sudo apt-get install fortune-zh cowsay
+```
+
+配置并使其生效
+
 ```
 $ sudo vim /etc/profile
 
 +
 
 cowsay_file=`echo "" | awk 'BEGIN{ srand(); } { animal = "apt beavis.zen bong bud-frogs bunny calvin cheese cock cower daemon default dragon dragon-and-cow duck elephant elephant-in-snake eyes flaming-sheep ghostbusters gnu head-in hellokitty kiss kitty koala kosh luke-koala mech-and-cow meow milk moofasa moose mutilated pony pony-smaller ren sheep skeleton snowman sodomized-sheep stegosaurus stimpy suse three-eyes turkey turtle tux unipony unipony-smaller vader vader-koala www"; value = int(rand() * 1000); count = split(animal, animal_cntr, " "); print animal_cntr[value % count + 1];}'`
-echo $f;            
 fortune | cowsay -f $cowsay_file
+```
+
+又找到一个更牛的方法[see](https://wiki.archlinux.org/index.php/Fortune):
+
+```
+$ fortune | cowthink -f $(find /usr/share/cowsay/cows -type f | shuf -n 1)
 ```
 
