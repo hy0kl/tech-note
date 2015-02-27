@@ -319,3 +319,13 @@ sudo apt-get install libcurl4-openssl-dev
 $ netstat -rn
 ```
 
+# 个性化登陆欢迎词
+
+```
+$ sudo vim /etc/profile
+
++
+
+fortune | cowsay -f `awk 'BEGIN{ srand(); } { animal = "apt beavis.zen bong bud-frogs bunny calvin cheese cock cower daemon default dragon dragon-and-cow duck elephant elephant-in-snake eyes flaming-sheep ghostbusters gnu head-in hellokitty kiss kitty koala kosh luke-koala mech-and-cow meow milk moofasa moose mutilated pony pony-smaller ren sheep skeleton snowman sodomized-sheep stegosaurus stimpy suse three-eyes turkey turtle tux unipony unipony-smaller vader vader-koala www"; value = int(rand() * 1000); count = split(animal, animal_cntr, " "); print animal_cntr[value % count + 1];}'`
+```
+
