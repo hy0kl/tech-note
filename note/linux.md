@@ -287,7 +287,7 @@ $ diff -u -r dir1 dir2
 svn: warning: cannot set LC_CTYPE locale
 svn: warning: environment variable LC_CTYPE is UTF-8
 svn: warning: please check that your locale name is correct
-``
+```
 
 [see](http://stackoverflow.com/questions/11300633/svn-cannot-set-lc-ctype-locale)
 
@@ -297,16 +297,14 @@ export LC_ALL=C
 
 # git 添加过 key, push 时要求用户名和密码验证
 
-```
+```shell
 $ uname -a
 Linux work-dev 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
 
 $ git push origin master
 git-remote-https: /home/work/local/lib/libcurl.so.4: no version information available (required by git-remote-https)
-```
 
-```
-sudo apt-get install libcurl4-openssl-dev
+$ sudo apt-get install libcurl4-openssl-dev
 ```
 
 原因是用户自己的编译的 libcurl 没有 SSL support.
@@ -315,7 +313,7 @@ sudo apt-get install libcurl4-openssl-dev
 
 # 查看 gateway 等网络情况
 
-```
+```shell
 $ netstat -rn
 ```
 
