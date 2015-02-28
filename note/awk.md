@@ -214,7 +214,7 @@ $ echo "" | awk '{ now = systime(); print now }'
 格式:
 
 ```
-systime( [format specification][,timestamp] );
+strftime( [format specification][,timestamp] );
 ```
 
 日期和时间格式说明符
@@ -283,4 +283,6 @@ system(cmd);
 system() 的返回值是 cmd 的退出状态.如果要获得 cmd 的输出,就要和 `getline` 结合使用.
 
 ***getline 会增加 awk 编程复杂度,吃力不讨好,建议用别的可行方案代替,不到万不得已,别查 getline.***
+
+*systime, strftime 在 gawk 下有效*
 
