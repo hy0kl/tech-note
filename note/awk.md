@@ -195,7 +195,7 @@ $ awk '{ split( "20:18:00", time, ":" ); print time[2] }' testfile
 
 ```
 sprintf(Format, Expr, Expr, . . . );
-``
+```
 
 ##  时间函数
 
