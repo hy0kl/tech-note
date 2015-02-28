@@ -165,7 +165,7 @@ $ awk '{start = match("this is a test", /[a-z]+$/); print start}' testfile
 $ awk '{start = match("this is a test", /[a-z]+$/); print start, RSTART, RLENGTH}' testfile
 ```
 
-- toupper 和 tolower 函数可用于字符串大小间的转换，该功能只在 gawk 中有效。
+- toupper 和 tolower 函数可用于字符串大小间的转换。
 
 格式:
 
