@@ -169,3 +169,32 @@ $ id 用户名
   2). 清除式卸载 sudo dpkg -P pkg1 pkg2 ...
 ```
 
+# setlocale: LC_MESSAGES: cannot change locale (zh_CN.eucCN): No such file or directory
+
+[see](http://wiki.ubuntu.org.cn/%E4%BF%AE%E6%94%B9locale)
+
+# perl 报错
+
+```
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+    LANGUAGE = "en_US:en",
+    LC_ALL = (unset),
+    LC_CTYPE = "UTF-8",
+    LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+```
+
+解决方法
+
+[参考](http://stackoverflow.com/questions/2499794/how-can-i-fix-a-locale-warning-from-perl)
+
+```
+# vi /etc/profile
+
+export LANG=C
+export LC_ALL=en_US.UTF-8
+```
