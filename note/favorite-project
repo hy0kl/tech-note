@@ -121,6 +121,7 @@ https://github.com/cloudwu/ejoy2d
 
 # 图像识别
 https://code.google.com/p/tesseract-ocr/ # 图像识别
+https://github.com/justin/tesseract-ocr
 http://opencv.org/ # 图像识别
 
 https://github.com/arut/nginx-rtmp-module   # 战斗民族俄罗斯人民开发的一款NGINX的流媒体插件
@@ -185,6 +186,9 @@ http://www.keepalived.org/ # 高可用 mysql 工具
 # 数据库中间件,搜狐基于官方版改的
 https://github.com/SOHUDBA/SOHU-DBProxy
 http://dev.mysql.com/doc/mysql-proxy/en/ # 官方的
+
+# 360 开源的 db 中间件
+https://github.com/Qihoo360/Atlas
 
 https://github.com/doxygen/doxygen # 文档生成工具
 
@@ -251,3 +255,12 @@ https://github.com/mingchen/protobuf-ios
 
 # Coreutils - GNU core utilities
 https://www.gnu.org/software/coreutils/
+
+http://wiki.nginx.org/X-accel
+
+# 通用 RPC 框架
+https://github.com/grpc
+
+# Github秘籍
+https://github.com/tiimgreen/github-cheat-sheet
+

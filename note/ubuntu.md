@@ -198,3 +198,12 @@ locale: Cannot set LC_ALL to default locale: No such file or directory
 export LANG=C
 export LC_ALL=en_US.UTF-8
 ```
+
+# sudo 不需要密码
+
+```
+# vim /etc/sudoers
+
+%sudo   ALL=(ALL:ALL) NOPASSWD: NOPASSWD: ALL
+```
+
