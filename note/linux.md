@@ -347,3 +347,58 @@ cowsay_file=$(find /usr/share/cowsay/cows -type f | awk 'BEGIN{ i = 1; srand(); 
 fortune | cowsay -f $cowsay_file
 ```
 
+# 实用技巧收集
+
+[from](http://mp.weixin.qq.com/s?__biz=MzAxODI5ODMwOA==&mid=205588580&idx=2&sn=eb0e399108cc4e79001e4d711ee4bc2d&key=b2574200810f04e8531657681efbaff73a3bc1c5683e0b9d5680e24ae90af6ee6f0ccc6522cc78633bce7c580afdc541&ascene=0&uin=MTQzNjU2MzQ2MQ%3D%3D&devicetype=iMac+MacBookPro11%2C1+OSX+OSX+10.10.2+build(14C1514)&version=11020012&pass_ticket=b%2Bt0c0kBZzWRHCg5%2BTjB5iYp2%2FKuFarbLymQkeDM%2BZtXXwE64E%2FqOoq9SMNpLF%2Fi)
+
+## 删除一个大文件
+
+```
+$ /path/to/file.log
+# 或使用如下格式
+$ : > /path/to/file.log
+
+# 然后删除它
+$ rm /path/to/file.log
+```
+
+## 在vim中用密码保护文件
+
+```
+害怕 root 用户或者其他人偷窥你的个人文件么？尝试在vim中用密码保护，输入：
+
+vim +X filename
+
+或者，在退出 vim 之前使用 :X 命令来加密你的文件，vim 会提示你输入一个密码。
+
+加密文件不需要加密，即停止对一个文件加密，可以把 'key' 选项设置为一个空字串：set key=
+然后在命令行模式输入：wq（保存退出）
+这样就可以把已加密文件去掉密码了。
+```
+
+## 清除屏幕上的乱码
+
+```
+$ reset
+```
+
+## 如何删除意外在当前文件夹下解压的文件？
+
+```
+意外在/var/www/html/而不是/home/projects/www/current下解压了一个tarball。它搞乱了/var/www/html下的文件，你甚至不知道哪些是误解压出来的。最简单修复这个问题的方法是：
+
+$ cd /var/www/html/
+$ /bin/rm -f "$(tar ztf /path/to/file.tar.gz)"
+```
+
+## 在 less 浏览时编辑文件
+
+```
+要编辑一个正在用 less 浏览的文件，可以按下 v。你就可以用变量 $EDITOR 所指定的编辑器来编辑了：
+
+$ less *.c
+$ less foo.html
+## 按下v键来编辑文件 ##
+## 退出编辑器后，你可以继续用less浏览了 ##
+```
+
