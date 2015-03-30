@@ -72,7 +72,15 @@ string | 必需。要被解析的字符串。
 以下方法止前可以绕过微信的限制.  时间: 2015.01.19  [参考](http://www.ildsea.com/1781.html)
 
 ```html
-<a href="http://mp.weixin.qq.com/mp/redirect?url=<?php echo urlencode('app store 中待推广下载链接'); ?>">下载并安装app</a>;
+<a href="http://mp.weixin.qq.com/mp/redirect?url=<?php echo urlencode('app store 中待推广下载链接'); ?>">下载并安装app</a>
+
+@date 2015.03.30 同事反应iOS不能跳转到 app store 里面,亲测,果然微信改策略了.
+```
+
+另外一种方法目前看还有效,还同时兼容 Android 和 iOS,但必须在腾讯应用包中有记录.这种重要的渠道会有多少 app 不支推包呢?
+
+```
+<a href="http://a.app.qq.com/o/simple.jsp?pkgname=<?php echo '待推广 app 名字'; ?>">下载并安装app</a>
 ```
 
 ## 安卓在微信中下载 apk
