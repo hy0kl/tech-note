@@ -79,8 +79,10 @@ string | 必需。要被解析的字符串。
 
 另外一种方法目前看还有效,还同时兼容 Android 和 iOS,但必须在腾讯应用包中有记录.这种重要的渠道会有多少 app 不支推包呢?
 
-```
+```html
 <a href="http://a.app.qq.com/o/simple.jsp?pkgname=<?php echo '待推广 app 名字'; ?>">下载并安装app</a>
+
+@date 2015.03.30 亲测管用.
 ```
 
 ## 安卓在微信中下载 apk
