@@ -420,6 +420,49 @@ nginx 全局错误码
 #define NGX_ABORT       -6
 ```
 
+# ngx_log_error 日志接口 level 参数取值范围
+
+级别名称 | 值 | 意义
+-------- | -- | ---
+NGX_LOG_STDERR  | 0 | 最高级别日志,日志的内容不会再写入 log 参数指定的文件,而是会直接将日志输出到标准错误设备,如控制台屏幕
+NGX_LOG_EMERG   | 1 | 大于 NGX_LOG_ALERT 级别,而小于或等于 NGX_LOG_EMERG 级别的日志都会输出到 log 参数指定的文件中
+NGX_LOG_ALERT   | 2 | 大于 NGX_LOG_CRIT 级别
+NGX_LOG_CRIT    | 3 | 大于 NGX_LOG_ERR 级别
+NGX_LOG_ERR     | 4 | 大于 NGX_LOG_WARN 级别
+NGX_LOG_WARN    | 5 | 大于 NGX_LOG_NOTICE 级别
+NGX_LOG_NOTICE  | 6 | 大于 NGX_LOG_INFO 级别
+NGX_LOG_INFO    | 7 | 大于 NGX_LOG_DEBUG 级别
+NGX_LOG_DEBUG   | 8 | 调试级别,最低级别日志
+
+# ngx_log_debug 日志接口 level 参数的取值范围
+
+级别名称 | 值 | 意义
+-------- | -- | ---
+NGX_LOG_DEBUG_CORE  | 0x010 | nginx 核心模块的调试日志
+NGX_LOG_DEBUG_ALLOC | 0x020 | nginx 在分配内存时使用的调试日志
+NGX_LOG_DEBUG_MUTEX | 0x040 | nginx 在使用进程锁时使用的调试日志
+NGX_LOG_DEBUG_EVENT | 0x080 | nginx 事件模块的调试日志
+NGX_LOG_DEBUG_HTTP  | 0x100 | nginx http 模块的调试日志
+NGX_LOG_DEBUG_MAIL  | 0x200 | nginx 邮件模块的调试日志
+NGX_LOG_DEBUG_MYSQL | 0x400 | nginx 表示与 MySQL 相关的 nginx 模块所使用的调试日志
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

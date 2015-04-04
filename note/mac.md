@@ -144,3 +144,26 @@ openssl/ssl/man/man3/hmac.3: Too many levels of symbolic links
 A workaround is to delete the folder ../openssl-1.0.1h/.openssl, at which point `make` in nginx-1.7.1 works as expected.
 ```
 
+# 安装 PostgreSQL php 扩展
+
+标准安装时报错:
+
+```
+checking for pg_config... not found
+configure: error: Cannot find libpq-fe.h. Please specify correct PostgreSQL installation path
+```
+
+解决方法[see](http://stackoverflow.com/questions/6588174/enabling-postgresql-support-in-php-on-mac-os-x):
+
+```shell
+$ cd php-src/ext/pgsql
+$ ./configure --with-php-config=/Users/hy0kl/php/bin/php-config  --with-pgsql=/Library/PostgreSQL/9.4/
+
+$cd php-src/pdo_pgsql
+$ ./configure --with-php-config=/Users/hy0kl/php/bin/php-config  --with-pdo-pgsql=/Library/PostgreSQL/9.4/
+
+$ ~/php/bin/php -m | grep pg
+pdo_pgsql
+pgsql
+```
+

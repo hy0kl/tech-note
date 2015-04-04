@@ -178,6 +178,9 @@ https://github.com/sqlmapproject/sqlmap # python
 http://sourceforge.net/projects/hexjector/ # Hexjector是一个开放源代码、跨平台的 PHP 脚本程序，它可以自动扫描网站的 SQL 注入漏洞。
 http://sqlninja.sourceforge.net/ # SQLninja 是一个用Perl编写的用来检测SQL Server 的SQL注入攻击的工具。支持 Linux\BSD\Mac系统。
 
+# 案例扫描
+https://www.snort.org/
+
 # 软件负载均衡
 https://github.com/haproxy/haproxy # 软件负载均衡器
 https://github.com/alibaba/LVS # A distribution of Linux Virtual Server with some advanced features.
@@ -236,6 +239,7 @@ https://github.com/ecomfe/echarts
 
 # 监控
 http://www.nagios.org/
+https://www.zabbix.org/
 
 # a tool like grep, optimized for programmers
 http://beyondgrep.com/
@@ -263,4 +267,7 @@ https://github.com/grpc
 
 # Github秘籍
 https://github.com/tiimgreen/github-cheat-sheet
+
+# php 代码美化工具 亲测能使
+https://github.com/FriendsOfPHP/PHP-CS-Fixer
 
