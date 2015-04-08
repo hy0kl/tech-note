@@ -159,7 +159,7 @@ configure: error: Cannot find libpq-fe.h. Please specify correct PostgreSQL inst
 $ cd php-src/ext/pgsql
 $ ./configure --with-php-config=/Users/hy0kl/php/bin/php-config  --with-pgsql=/Library/PostgreSQL/9.4/
 
-$cd php-src/pdo_pgsql
+$ cd php-src/pdo_pgsql
 $ ./configure --with-php-config=/Users/hy0kl/php/bin/php-config  --with-pdo-pgsql=/Library/PostgreSQL/9.4/
 
 $ ~/php/bin/php -m | grep pg

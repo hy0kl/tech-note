@@ -402,3 +402,73 @@ $ less foo.html
 ## 退出编辑器后，你可以继续用less浏览了 ##
 ```
 
+# kill 的信号量
+
+```
+Mac 下
+These signals are defined in the file <signal.h>:
+
+     No    Name         Default Action       Description
+     1     SIGHUP       terminate process    terminal line hangup
+     2     SIGINT       terminate process    interrupt program
+     3     SIGQUIT      create core image    quit program
+     4     SIGILL       create core image    illegal instruction
+     5     SIGTRAP      create core image    trace trap
+     6     SIGABRT      create core image    abort program (formerly SIGIOT)
+     7     SIGEMT       create core image    emulate instruction executed
+     8     SIGFPE       create core image    floating-point exception
+     9     SIGKILL      terminate process    kill program
+     10    SIGBUS       create core image    bus error
+     11    SIGSEGV      create core image    segmentation violation
+     12    SIGSYS       create core image    non-existent system call invoked
+     13    SIGPIPE      terminate process    write on a pipe with no reader
+     14    SIGALRM      terminate process    real-time timer expired
+     15    SIGTERM      terminate process    software termination signal
+     16    SIGURG       discard signal       urgent condition present on socket
+     17    SIGSTOP      stop process         stop (cannot be caught or ignored)
+     18    SIGTSTP      stop process         stop signal generated from keyboard
+     19    SIGCONT      discard signal       continue after stop
+     20    SIGCHLD      discard signal       child status has changed
+     21    SIGTTIN      stop process         background read attempted from control terminal
+     22    SIGTTOU      stop process         background write attempted to control terminal
+     23    SIGIO        discard signal       I/O is possible on a descriptor (see fcntl(2))
+     24    SIGXCPU      terminate process    cpu time limit exceeded (see setrlimit(2))
+     25    SIGXFSZ      terminate process    file size limit exceeded (see setrlimit(2))
+     26    SIGVTALRM    terminate process    virtual time alarm (see setitimer(2))
+     27    SIGPROF      terminate process    profiling timer alarm (see setitimer(2))
+     28    SIGWINCH     discard signal       Window size change
+     29    SIGINFO      discard signal       status request from keyboard
+     30    SIGUSR1      terminate process    User defined signal 1
+     31    SIGUSR2      terminate process    User defined signal 2
+
+不同系统还存在差别.
+
+$ uname -a
+Darwin MacPro.local 14.1.0 Darwin Kernel Version 14.1.0: Thu Feb 26 19:26:47 PST 2015; root:xnu-2782.10.73~1/RELEASE_X86_64 x86_64
+$ kill -l
+ 1) SIGHUP   2) SIGINT   3) SIGQUIT  4) SIGILL
+ 5) SIGTRAP  6) SIGABRT  7) SIGEMT   8) SIGFPE
+ 9) SIGKILL 10) SIGBUS  11) SIGSEGV 12) SIGSYS
+13) SIGPIPE 14) SIGALRM 15) SIGTERM 16) SIGURG
+17) SIGSTOP 18) SIGTSTP 19) SIGCONT 20) SIGCHLD
+21) SIGTTIN 22) SIGTTOU 23) SIGIO   24) SIGXCPU
+25) SIGXFSZ 26) SIGVTALRM   27) SIGPROF 28) SIGWINCH
+29) SIGINFO 30) SIGUSR1 31) SIGUSR2
+
+$ uname -a
+Linux work-dev 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+$ kill -l
+ 1) SIGHUP   2) SIGINT   3) SIGQUIT  4) SIGILL   5) SIGTRAP
+ 6) SIGABRT  7) SIGBUS   8) SIGFPE   9) SIGKILL 10) SIGUSR1
+11) SIGSEGV 12) SIGUSR2 13) SIGPIPE 14) SIGALRM 15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD 18) SIGCONT 19) SIGSTOP 20) SIGTSTP
+21) SIGTTIN 22) SIGTTOU 23) SIGURG  24) SIGXCPU 25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF 28) SIGWINCH    29) SIGIO   30) SIGPWR
+31) SIGSYS  34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+```
