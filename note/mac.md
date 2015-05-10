@@ -167,3 +167,12 @@ pdo_pgsql
 pgsql
 ```
 
+#  php Segmentation fault: 11
+
+```
+Generating phar.php
+/bin/sh: line 1: 76451 Segmentation fault: 11  ` if test -x "/Users/MLS/src/php-5.6.8/sapi/cli/php"; then /Users/MLS/src/php-5.6.8/build/shtool echo -n -- "/Users/MLS/src/php-5.6.8/sapi/cli/php -n"; if test "x" != "x"; then /Users/MLS/src/php-5.6.8/build/shtool echo -n -- " -d extension_dir=/Users/MLS/src/php-5.6.8/modules"; for i in bz2 zlib phar; do if test -f "/Users/MLS/src/php-5.6.8/modules/$i.la"; then . /Users/MLS/src/php-5.6.8/modules/$i.la; /Users/MLS/src/php-5.6.8/build/shtool echo -n -- " -d extension=$dlname"; fi; done; fi; else /Users/MLS/src/php-5.6.8/build/shtool echo -n -- "/Users/MLS/src/php-5.6.8/sapi/cli/php"; fi;` -d 'open_basedir=' -d 'output_buffering=0' -d 'memory_limit=-1' -d phar.readonly=0 -d 'safe_mode=0' /Users/MLS/src/php-5.6.8/ext/phar/build_precommand.php > ext/phar/phar.php
+make: *** [ext/phar/phar.php] Error 139
+```
+
+https://github.com/Homebrew/homebrew-php/issues/1430
