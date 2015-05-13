@@ -58,6 +58,7 @@ https://github.com/nnmatveev/php-stubs
 
 # Better Markdown Parser in PHP
 https://github.com/erusev/parsedown
+https://github.com/erusev/parsedown-extra
 https://github.com/michelf/php-markdown
 
 # php 操作 MS 办公文档
@@ -271,3 +272,5 @@ https://github.com/tiimgreen/github-cheat-sheet
 # php 代码美化工具 亲测能使
 https://github.com/FriendsOfPHP/PHP-CS-Fixer
 
+# rar 工具
+http://www.rarlab.com/
