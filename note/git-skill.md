@@ -152,3 +152,7 @@ $ git checkout --track origin/remote-branch
 $ git log --stat
 ```
 
+# 垃圾回收
+
+$ git gc
+
