@@ -419,3 +419,36 @@ kill -SIGUSR2 `cat /usr/local/php/var/run/php-fpm.pid`
 注意：/usr/local/php/var/run/php-fpm.pid 指存储master进程号的文件，这里是默认地址，在配置中可以修改，另外可以使用ps命令找到master的进程号，然后使用 kill 信号 进程号 的方式。
 ```
 
+# php-5.6.9 开发环境编译参数
+
+```
+$ uname -a
+Linux work-dev 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
+
+./configure --prefix=/home/work/php \
+    --enable-fpm \
+    --enable-bcmath \
+    --enable-ftp \
+    --enable-mbstring \
+    --enable-soap \
+    --enable-sockets \
+    --enable-zip \
+    --enable-mysqlnd \
+    --enable-exif \
+    --with-libxml-dir=/usr \
+    --with-openssl \
+    --with-pcre-regex \
+    --with-pcre-dir \
+    --with-zlib=/usr \
+    --with-bz2=/usr \
+    --with-gd \
+    --with-xpm-dir \
+    --with-jpeg-dir \
+    --with-freetype-dir \
+    --with-mysql \
+    --with-mysqli \
+    --with-pdo-mysql \
+    --enable-sysvsem \
+    --enable-sysvmsg
+```
+
