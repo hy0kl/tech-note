@@ -452,3 +452,11 @@ Linux work-dev 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86
     --enable-sysvmsg
 ```
 
+# http authorization
+
+```
+经分析, http authorization 的 header 头这样构造的:
+
+Authorization: Basic base64_encode(user:password)
+```
+
