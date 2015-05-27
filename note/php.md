@@ -460,3 +460,9 @@ Linux work-dev 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86
 Authorization: Basic base64_encode(user:password)
 ```
 
+# php curl post 的坑
+
+```
+nginx 可以 post php 数组
+apache 需要将数组 http_build_query() 才行.
+```
