@@ -152,3 +152,16 @@ $ git checkout --track origin/remote-branch
 $ git log --stat
 ```
 
+# 垃圾回收
+
+$ git gc
+
+# git pull 发生冲突, 让服务端代码覆盖掉本地代码
+
+```
+$ git fetch --all
+$ git reset --hard origin/master
+
+$ git fetch downloads the latest from remote without trying to merge or rebase anything. Then the $git reset resets the master branch to what you just fetched.
+```
+
