@@ -37,6 +37,8 @@ https://github.com/phalcon/cphalcon # c 写的 php 扩展级的开发框架
 https://github.com/laruence/php-yaf
 # Swoole是一个PHP的C扩展，可用来开发PHP的高性能高并发TCP/UDP Server。Swoole的网络IO部分基于epoll/kqueue事件循环，是全异步非阻塞的。 业务逻辑部分使用多进程同步阻塞方式来运行。这样既保证了Server能够应对高并发和大量TCP连接。又保证业务代码仍然可以简单的编写。
 https://github.com/matyhtf/swoole # PHP's asynchronous & concurrent & distributed networking framework.
+# 开源免费的简易中文分词系统，PHP分词的上乘之选！
+https://github.com/hightman/scws
 
 https://github.com/jeanmonod/php-svn-hook
 https://github.com/phpDocumentor/phpDocumentor2
