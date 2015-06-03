@@ -167,7 +167,6 @@ pdo_pgsql
 pgsql
 ```
 
-<<<<<<< HEAD
 # 命令行快速删除
 
 ```
@@ -184,7 +183,6 @@ ctrl + e 将光标置于行尾
 ctrl + f 光标向前移动一个字符
 ctrl + b 光标向后移动一个字符
 ```
-=======
 #  php Segmentation fault: 11
 
 ```
@@ -193,5 +191,3 @@ Generating phar.php
 make: *** [ext/phar/phar.php] Error 139
 ```
 
-https://github.com/Homebrew/homebrew-php/issues/1430
->>>>>>> 99cbe2e6473de04e7ab5083fc23bcffd0686ec20
