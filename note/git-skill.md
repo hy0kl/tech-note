@@ -165,3 +165,14 @@ $ git reset --hard origin/master
 $ git fetch downloads the latest from remote without trying to merge or rebase anything. Then the $git reset resets the master branch to what you just fetched.
 ```
 
+# git 忽略已经跟踪文件的改动
+
+```
+# 本地修改不提交到远程仓库
+$ git update-index --assume-unchanged 文件名
+# 取消本地忽略,上面命令的反操作
+$ git update-index --no-assume-unchanged 文件名
+# 查看本地仓库哪些文件被加入忽略列表
+$ git ls-files --other --exclude-standard
+```
+
