@@ -167,6 +167,24 @@ pdo_pgsql
 pgsql
 ```
 
+<<<<<<< HEAD
+# 命令行快速删除
+
+```
+ctrl + u[w] 从当前快速删除到开头
+ctrl + d 从当前光标向后删除一个字符
+ctrl + k 从当前光标向后删除所有内容
+```
+
+# 命令行定位
+
+```
+ctrl + a 将光标置于开头
+ctrl + e 将光标置于行尾
+ctrl + f 光标向前移动一个字符
+ctrl + b 光标向后移动一个字符
+```
+=======
 #  php Segmentation fault: 11
 
 ```
@@ -176,3 +194,4 @@ make: *** [ext/phar/phar.php] Error 139
 ```
 
 https://github.com/Homebrew/homebrew-php/issues/1430
+>>>>>>> 99cbe2e6473de04e7ab5083fc23bcffd0686ec20
