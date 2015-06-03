@@ -1,6 +1,6 @@
 # 经典 git work follow
 
-![git-work](resource/git-work.png)
+![git-work](/resource/git-work.png)
 
 # 推荐的 git 多人协同模式
 
