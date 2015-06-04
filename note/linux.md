@@ -511,3 +511,15 @@ $ kill -l
 [ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers.
 ```
 
+# 终端中文乱码
+
+```
+$ sudo vi /etc/profile
+或
+$ vi ~/.bashrc
+
+# set encode
+export LANG=C
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+```
