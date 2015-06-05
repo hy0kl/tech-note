@@ -466,3 +466,15 @@ Authorization: Basic base64_encode(user:password)
 nginx 可以 post php 数组
 apache 需要将数组 http_build_query() 才行.
 ```
+
+# phMyAdmin wrong
+
+```
+"Wrong permissions on configuration file, should not be world writable!"
+```
+
+[see](http://stackoverflow.com/questions/18923347/phpmyadmin-permissions-for-config-inc-php)
+
+```
+$ chmod 755 config.inc.php
+```
