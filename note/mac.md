@@ -191,3 +191,9 @@ Generating phar.php
 make: *** [ext/phar/phar.php] Error 139
 ```
 
+# dyld: Library not loaded: libmysqlclient.18.dylib
+
+```
+$ sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/local/lib/libmysqlclient.18.dylib
+```
+
