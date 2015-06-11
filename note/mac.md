@@ -197,3 +197,37 @@ make: *** [ext/phar/phar.php] Error 139
 $ sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/local/lib/libmysqlclient.18.dylib
 ```
 
+# config.status: error: cannot find input file: `Makefile.in'
+
+```
+https://github.com/rscada/libmbus/issues/68
+
+autoheader \
+    && aclocal \
+    && libtoolize --ltdl --copy --force \
+    && automake --add-missing --copy \
+    && autoconf \
+    && ./configure
+
+在我机器上没有解决
+
+http://stackoverflow.com/questions/8560997/installing-iulib-config-status-error-cannot-find-input-file-makefile-in
+
+> Try
+> 
+> automake --add-missing
+> or just
+> 
+> automake
+> It should create your Makefile.in.
+
+$ vim configure.ac
+
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_GCC_TRADITIONAL
++ AM_PROG_CC_C_O
+
+这样能过
+```
+
