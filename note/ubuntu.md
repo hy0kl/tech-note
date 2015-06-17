@@ -207,3 +207,11 @@ export LC_ALL=en_US.UTF-8
 %sudo   ALL=(ALL:ALL) NOPASSWD: NOPASSWD: ALL
 ```
 
+# 如何在vim保存时获得sudo权限
+
+[see](http://segmentfault.com/q/1010000000151086)
+
+```
+:w !sudo tee %
+```
+
