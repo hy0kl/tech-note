@@ -523,3 +523,20 @@ export LANG=C
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 ```
+
+# 启动 vim 的一些选项
+
+[see](http://www.cnblogs.com/jiqingwu/archive/2012/06/14/vim_notes.html)
+
+```
+vim -c cmd file: 在打开文件前，先执行指定的命令；
+vim -r file: 恢复上次异常退出的文件；
+vim -R file: 以只读的方式打开文件，但可以强制保存；
+vim -M file: 以只读的方式打开文件，不可以强制保存；
+vim -y num file: 将编辑窗口的大小设为num行；
+vim + file: 从文件的末尾开始；
+vim +num file: 从第num行开始；
+vim +/string file: 打开file，并将光标停留在第一个找到的string上。
+vim --remote file: 用已有的vim进程打开指定的文件。 如果你不想启用多个vim会话，这个很有用。但要注意， 如果你用vim，会寻找名叫VIM的服务器；如果你已经有一个gvim在运行了， 你可以用gvim --remote file在已有的gvim中打开文件。
+```
+
