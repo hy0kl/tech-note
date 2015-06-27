@@ -53,6 +53,7 @@
     $ git checkout dev
     $ git pull origin dev   # 拉取远端最新代码
     $ git merge master      # 将 master 上 feature 功能 merge 到 dev 分支
+    $ git push origin dev   # 将 feature 功能推到 dev 的远端
 9. 为了防止以后误操作,做好善后
     $ git push origin :feature  # 删除已经完成上线的远端分支
     $ git branch -D feature     # 删除本地分支
