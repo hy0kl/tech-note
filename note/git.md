@@ -29,9 +29,10 @@
 1. 参与项目,从中心仓库拉取代码
     $ git clone 工作项目的gitlab路径
 2. 创建本地开发分支,以 feature 为例,具体的开发分支尽量取有意义的英文名
-    $ git checkout master   # 从 master 分支创建最新开发分支,限定当前开发分支不依赖其他任何分支代码
-    $ git branch feature    # 创建本地开发分支
-    $ git checkout feature  # 切到本地的开发分支
+    $ git checkout master       # 从 master 分支创建最新开发分支,限定当前开发分支不依赖其他任何分支代码
+    $ git pull origin master    # 容错操作
+    $ git branch feature        # 创建本地开发分支
+    $ git checkout feature      # 切到本地的开发分支
     $ git push origin feature   # 多人参与一个开发分支,所以需要将此分支推送到远端
   仅参与开发的同学,在执行完第1步后,执行以下命令:
   $ git fetch --all
