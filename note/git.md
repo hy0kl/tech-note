@@ -166,7 +166,7 @@ merge 如果有冲突,请解决冲突后,再执行第 4 步.如果没有冲突,�
 # git 交叉合并后出现的灵异现象
 
 ```
-所谓的交叉合并类似场景为,从 master 上创建分支 dev和test,在 test 分支开发新功能,他人的新功能被合并到 dev 分支;这时将 dev 合并进 test,然后将 test 合并至 dev;之后将 test 合到 master 上线,完成上线后又将 mastr 合至 dev.
+所谓的交叉合并类似场景为,从 master 上创建分支 dev和test,在 test 分支开发新功能,他人的新功能被合并到 dev 分支;这时将 dev 合并进 test,然后将 test 合并至 dev;之后将 test 合到 master 上线,完成上线后又将 master 合至 dev.
 这样操作后出现的诡异现现象目前遇到两种:
 
 1. 递归合并.合并两个分支时,没有任何文件需要合并,仅提示进行了递归合并. git diff 两个无端分支时没有差异,但人工查看代码时发现,有分支代码并没有合并进去.
@@ -178,5 +178,39 @@ Merge made by the 'recursive' strategy.
 2. 每次合并都会出现几个与本分支功能无关的代码冲突,反复解决,反复冲突.
 
 建议: 合并代码时一定要搞清楚合并方向,完成合并后在 push 之前,做好必要的 code review,利人利己.
+```
+
+# git 多分支合并最佳实践
+
+```
+以 work-branch 为例,约定此分支为从最新的 master 分支创建的功能开发分支.
+
+1. 创建功能开发分支
+  $ git checkout master     # 切到 master 分支
+  $ git pull origin master  # 拉取最新 master 分支代码,因为可能有新功能已经合并上线
+  $ git checkout -b work-branch # 创建并切换新的分支
+2. 在功能开发分支开发新功能,建议频繁按小功能完成点提交代码,完成自测
+3. 将 master 最新功能合并进功能开发分支,并推送到远端
+  $ git fetch --all     # 抓取所有远端分支的最新代码
+  $ git merge origin/master     # 将远端 master 最新代码合并进入功能开发分支
+如果有冲突,用 `git log -p 冲突文件` 查看改动作者,尽量和原作者共同裁决冲突.
+  $ git push origin work-branch     # 将功能开发分支推送到远端
+4. 将新功能分支 work-branch 合并到 develop
+  $ git fetch --all     # 抓取所有远端分支的最新代码
+  # 以下操作为容错操作,建议所有合并代码的同学按此指导操作,因为很多功能开分的同学会忘记合并 master 最新代码
+  $ git checkout work-branch    # 切到待合并分支
+  $ git pull origin work-branch # 拉取功能分支最新代码并在本地完成自动合并
+  $ git fetch --all     # 抓取所有远端分支的最新代码
+  $ git merge origin/master     # 将远端 master 最新代码合并进入功能开发分支
+  $ git push origin work-branch # 将变化推送到远端
+  # 正式开始合并操作
+  $ git checkout develop    # 切换分支
+  $ git pull origin develop # 拉取并在本地合并 develop 分支最新代码
+  $ git fetch --all     # 抓取所有远端分支的最新代码
+  $ git merge origin/origin/work-branch  # 将功能分支的远端 origin/work-branch 合并进 develop 本地分支
+如果有冲突,用 `git log -p 冲突文件` 查看改动作者,尽量和原作者共同裁决冲突.
+  $ git push origin develop # 将合并结果推送到远端,完成合并
+
+按第 4 步如法炮制,可以完成 work-branch 到 master 的合并.将功能分支合并至 master,完成上线后一定要按第 4 步那样将 master 再合到 develop 中去,并删除远端的 work-branch.
 ```
 
