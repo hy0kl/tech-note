@@ -207,7 +207,7 @@ Merge made by the 'recursive' strategy.
   $ git checkout develop    # 切换分支
   $ git pull origin develop # 拉取并在本地合并 develop 分支最新代码
   $ git fetch --all     # 抓取所有远端分支的最新代码
-  $ git merge origin/origin/work-branch  # 将功能分支的远端 origin/work-branch 合并进 develop 本地分支
+  $ git merge origin/work-branch  # 将功能分支的远端 origin/work-branch 合并进 develop 本地分支
 如果有冲突,用 `git log -p 冲突文件` 查看改动作者,尽量和原作者共同裁决冲突.
   $ git push origin develop # 将合并结果推送到远端,完成合并
 
