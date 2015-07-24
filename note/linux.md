@@ -603,3 +603,11 @@ $ crontab -e
 + MAILTO=""
 ```
 
+# 查看服务监听的端口
+
+```
+$ netstat -nlp # linux 显示监听,进程
+$ lsof -ni | grep LISTEN # mac 下类似上条命令效果
+$ lsof -i:9000 # 查看9000端口的占用者
+```
+
