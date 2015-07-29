@@ -611,3 +611,12 @@ $ lsof -ni | grep LISTEN # mac 下类似上条命令效果
 $ lsof -i:9000 # 查看9000端口的占用者
 ```
 
+# 诡异的 date
+
+```
+$ date -d@1271397015 # debian Linux GNU/Linux
+$ date "+%Y-%m-%d %H:%M" -d@1433327259
+$ date -r 1271397015 # Mac OS/BSD
+$ date -r 1433327259 "+%Y-%m-%d %H:%M"
+```
+
