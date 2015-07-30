@@ -176,3 +176,8 @@ $ git update-index --no-assume-unchanged 文件名
 $ git ls-files --other --exclude-standard
 ```
 
+# 如何只克隆 git 仓库中的一个分支？
+
+```
+$ git clone -b <branch> <remote_repo>   # git clone -b 指定的分支名字
+```
