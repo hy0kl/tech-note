@@ -181,3 +181,41 @@ $ git ls-files --other --exclude-standard
 ```
 $ git clone -b <branch> <remote_repo>   # git clone -b 指定的分支名字
 ```
+
+# git tags 使用 远程创建git tags 删除（小抄版）
+
+[see](http://hlee.iteye.com/blog/1616461)
+
+```
+0. 获取远程tag
+$ git clone 代码仓库
+$ git ls-remote --heads origin
+
+$ git pull origin refs/tags/v0.13.3
+$ git pull origin refs/heads/2-2-stable
+
+1. 本地创建tags
+$ git tag -a v1.1 -m "new release"
+
+1.5 查看本地tags
+$ git tag -l
+
+2. push到服务器端
+$ git push --tags
+或
+$ git push origin v1.1
+
+2.1 删除本地tag
+$ git tag -d v1.1
+
+3. 删除服务器端远程tag
+$ git push origin :refs/tags/v1.1
+或
+$ git push origin --delete tag <tagname>
+
+4. 查看远程服务器端
+$ git remote show origin
+$ git ls-remote --heads origin
+$ git ls-remote --tags  # 列出远端的所有 tags
+```
+
