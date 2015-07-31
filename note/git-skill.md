@@ -60,6 +60,9 @@ URL: ... .git
 
 再 git branch -a 查看.搞定
 
+新版本可以使用以下命令:
+$ git fetch -p
+
 # 如何只克隆 git 仓库中的一个分支？
 
 ```
