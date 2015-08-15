@@ -231,3 +231,17 @@ AC_PROG_GCC_TRADITIONAL
 这样能过
 ```
 
+# mac 下源码编译 libzookeeper
+
+```
+由于要安装 php 扩展 zookeeper,安装过程依赖 libzookeeper.
+转而安装 libzookeeper 时问题一大堆.
+先从 http://mirrors.hust.edu.cn/apache/zookeeper/ 下载最新版.
+linux 下传统安装没有问题, mac 下报错:
+
+./include/recordio.h:76:9: error: conflicting types for '__builtin_constant_p'
+
+原因是有个函数在 mac 下出现了重复定义,产生了冲突.
+
+编辑 include/recordio.h, src/recordio.c 注释掉 int64_t htonll(int64_t v); 对应的申明还定义,再编译安装就 ok 了.
+```

@@ -553,3 +553,83 @@ vim +/string file: 打开file，并将光标停留在第一个找到的string上
 vim --remote file: 用已有的vim进程打开指定的文件。 如果你不想启用多个vim会话，这个很有用。但要注意， 如果你用vim，会寻找名叫VIM的服务器；如果你已经有一个gvim在运行了， 你可以用gvim --remote file在已有的gvim中打开文件。
 ```
 
+# CentOS 查看内核版本，位数，版本号
+
+总是查,索性记录一下.[see](http://blog.csdn.net/painsonline/article/details/7668824)
+
+```
+1)[root@localhost ~]# cat /proc/version
+Linux version 2.6.18-194.el5 (mockbuild@builder10.centos.org) (gcc version 4.1.2 20080704 (Red Hat 4.1.2-48)) #1 SMP Fri Apr 2 14:58:14 EDT 2010
+
+2)
+[root@localhost ~]# uname -a
+Linux localhost.localdomain 2.6.18-194.el5 #1 SMP Fri Apr 2 14:58:14 EDT 2010 x86_64 x86_64 x86_64 GNU/Linux
+
+3)
+[root@localhost ~]# uname -r
+2.6.18-194.el5
+
+2. 查看linux版本：
+1) 列出所有版本信息,
+[root@localhost ~]# lsb_release -a
+LSB Version:    :core-3.1-amd64:core-3.1-ia32:core-3.1-noarch:graphics-3.1-amd64:graphics-3.1-ia32:graphics-3.1-noarch
+Distributor ID: CentOS
+Description:    CentOS release 5.5 (Final)
+Release:        5.5
+Codename:       Final
+注:这个命令适用于所有的linux，包括Redhat、SuSE、Debian等发行版。
+
+2) 执行cat /etc/issue,例如如下:
+[root@localhost ~]# cat /etc/issue
+CentOS release 5.5 (Final)
+Kernel r on an m
+
+3) 执行cat /etc/redhat-release ,例如如下:
+[root@localhost ~]# cat /etc/redhat-release
+CentOS release 5.5 (Final)
+
+查看系统是64位还是32位:
+
+1、getconf LONG_BIT or getconf WORD_BIT
+[root@localhost ~]# getconf LONG_BIT
+64
+
+2、file /bin/ls
+[root@localhost ~]# file /bin/ls
+/bin/ls: ELF 64-bit LSB executable, AMD x86-64, version 1 (SYSV), for GNU/Linux 2.6.9, dynamically linked (uses shared libs), for GNU/Linux 2.6.9, stripped
+
+3、lsb_release  -a
+[root@localhost ~]# lsb_release -a
+LSB Version:    :core-3.1-amd64:core-3.1-ia32:core-3.1-noarch:graphics-3.1-amd64:graphics-3.1-ia32:graphics-3.1-noarch
+Distributor ID: CentOS
+Description:    CentOS release 5.5 (Final)
+Release:        5.5
+Codename:       Final
+在linux中我们要操作任何东西都需要使用命令模式来操作了，所以如果想精通linux服务器的朋友可以多看看这方面的教程了，像我们这里查获系统版本都使用了几行命令了哦。
+```
+
+# crontab 执行不发邮件
+
+```
+$ crontab -e
+
++ MAILTO=""
+```
+
+# 查看服务监听的端口
+
+```
+$ netstat -nlp # linux 显示监听,进程
+$ lsof -ni | grep LISTEN # mac 下类似上条命令效果
+$ lsof -i:9000 # 查看9000端口的占用者
+```
+
+# 诡异的 date
+
+```
+$ date -d@1271397015 # debian Linux GNU/Linux
+$ date "+%Y-%m-%d %H:%M" -d@1433327259
+$ date -r 1271397015 # Mac OS/BSD
+$ date -r 1433327259 "+%Y-%m-%d %H:%M"
+```
+
