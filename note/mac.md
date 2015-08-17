@@ -250,6 +250,8 @@ linux 下传统安装没有问题, mac 下报错:
 
 [bash-completion](https://bash-completion.alioth.debian.org/)
 
+mac 下需要升级 bash 到 4.0 以上.
+
 # possibly undefined macro: AM_INIT_AUTOMAKE
 
 [see](http://blog.sina.com.cn/s/blog_a1cafb9901016bzr.html)
