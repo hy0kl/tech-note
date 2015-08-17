@@ -250,3 +250,13 @@ linux 下传统安装没有问题, mac 下报错:
 
 [bash-completion](https://bash-completion.alioth.debian.org/)
 
+# possibly undefined macro: AM_INIT_AUTOMAKE
+
+[see](http://blog.sina.com.cn/s/blog_a1cafb9901016bzr.html)
+
+```
+执行 autoconf -i 是遇到 possibly undefined macro: AM_INIT_AUTOMAKE
+
+尝试运行： autoreconf --install
+```
+
