@@ -633,3 +633,22 @@ $ date -r 1271397015 # Mac OS/BSD
 $ date -r 1433327259 "+%Y-%m-%d %H:%M"
 ```
 
+# 命令行参数自动补全
+
+```
+$ vim ~/.bashrc
+
+加入以下配置
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+```
+

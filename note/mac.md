@@ -245,3 +245,8 @@ linux 下传统安装没有问题, mac 下报错:
 
 编辑 include/recordio.h, src/recordio.c 注释掉 int64_t htonll(int64_t v); 对应的申明还定义,再编译安装就 ok 了.
 ```
+
+# 命令行参数自动补齐
+
+[bash-completion](https://bash-completion.alioth.debian.org/)
+
