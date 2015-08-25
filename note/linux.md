@@ -652,3 +652,20 @@ if ! shopt -oq posix; then
 fi
 ```
 
+# linux 下编辑安装 sphinx
+
+```
+如果报以下错误,请重新指定编译参数:
+g++: error: /libmysqlclient.a: No such file or directory
+Makefile:326: recipe for target 'indexer' failed
+make[2]: *** [indexer] Error 1
+make[2]: Leaving directory '/home/work/src/sphinx-2.2.9-release/src'
+Makefile:244: recipe for target 'all' failed
+make[1]: *** [all] Error 2
+make[1]: Leaving directory '/home/work/src/sphinx-2.2.9-release/src'
+Makefile:332: recipe for target 'all-recursive' failed
+make: *** [all-recursive] Error 1
+
+./configure --prefix=/home/work/sphinx --with-static-mysql --with-mysql-libs=/usr/lib/x86_64-linux-gnu --enable-id64
+```
+
