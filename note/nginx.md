@@ -332,6 +332,17 @@ level 是日志的输出级别,取值范围是 debug, info, notice, warn, error,
 注意: 如果日志级别设定到 debug,必须在 configure 时加入 --with-debug 配置项.
 ```
 
+# if 指令
+
+```
+-f, !-f 检查一个文件是否存在
+-d, !-d 检查一个目录是否存在
+-e, !-e 检查一个文件、目录、符号链接是否存在
+-x, !-x 检查一个文件是否可执行
+=, !=   比较的一个变量和字符串
+~, ~*   与正则表达式匹配的变量，如果这个正则表达式中包含 }，; 则整个表达式需要用 " 或 ' 包围
+```
+
 # location 的匹配规则
 
 ```
@@ -445,7 +456,6 @@ NGX_LOG_DEBUG_EVENT | 0x080 | nginx 事件模块的调试日志
 NGX_LOG_DEBUG_HTTP  | 0x100 | nginx http 模块的调试日志
 NGX_LOG_DEBUG_MAIL  | 0x200 | nginx 邮件模块的调试日志
 NGX_LOG_DEBUG_MYSQL | 0x400 | nginx 表示与 MySQL 相关的 nginx 模块所使用的调试日志
-
 
 
 
