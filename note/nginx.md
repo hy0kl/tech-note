@@ -357,6 +357,23 @@ location ^~ /images/ {
 5). @ 表示仅用于 nginx 服务内部请求之前的重定向,带有 @ 的 location 不直接处理用户请求.
 ```
 
+# 对客户端的限制
+
+## 按 HTTP 方法名限制用户请求
+
+```
+语法: limit_except METHOD ... {...}
+配置块: location
+nginx 通过 limit_except 后面指定的方法名来限制用户请求.方法名可取值包括: GET, HEAD, POST, PUT, DELETE, MKCOL, COPY, MOVE, OPTIONS, PROPFIND, PROPPATCH, LOCK, UNLOCK 或者 PATCH.
+
+limit_except GET {
+    allow 192.168.1.0/32;
+    deny all;
+}
+
+注意,允许 GET 方法意味着也允许 HEAD 方法.上面的代码表示禁止 GET/HEAD 方法,但其他 HTTP 方法是允许的.
+```
+
 # 负载均衡的基本配置
 
 ```
