@@ -699,3 +699,19 @@ make: *** [all-recursive] Error 1
 MAILTO=""
 ```
 
+# shell 脚本经典之 fork 炸弹
+
+[see](http://www.ha97.com/2618.html)
+
+```sh
+:() { :|:& };:
+
+或
+
+.() { .|.& };.
+
+设置进程的 limit 数可预防
+
+# ulimit -u 128
+```
+
