@@ -262,3 +262,10 @@ mac 下需要升级 bash 到 4.0 以上.
 尝试运行： autoreconf --install
 ```
 
+# gcc 报错
+`Agreeing to the Xcode/iOS license requires admin privileges, please re-run as root via sudo.`
+[解决方法](http://stackoverflow.com/questions/26197347/agreeing-to-the-xcode-ios-license-requires-admin-privileges-please-re-run-as-r)
+
+```
+$ sudo xcodebuild -license
+```
