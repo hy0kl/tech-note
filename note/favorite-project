@@ -280,3 +280,10 @@ http://www.rarlab.com/
 
 # 新型日志收集分析工具
 https://www.elastic.co/
+
+# c 语言日志库
+https://github.com/armink/EasyLogger
+https://github.com/HardySimpson/zlog
+https://github.com/0xmalloc/c-log   # 貌似是 c++ 写的
+https://github.com/bmanojlovic/log4c
+https://github.com/ryanzhw1987/easynetwork
