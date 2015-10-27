@@ -287,3 +287,11 @@ https://github.com/HardySimpson/zlog
 https://github.com/0xmalloc/c-log   # 貌似是 c++ 写的
 https://github.com/bmanojlovic/log4c
 https://github.com/ryanzhw1987/easynetwork
+
+# 异步网络
+http://libevent.org/
+https://github.com/nmathewson/Libevent
+http://software.schmorp.de/pkg/libev.html
+https://github.com/enki/libev
+https://github.com/libuv/libuv
+http://libuv.org/
