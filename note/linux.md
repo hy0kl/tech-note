@@ -715,3 +715,8 @@ MAILTO=""
 # ulimit -u 128
 ```
 
+# 一行永不退出的 shell
+
+```
+$ while [[ 1 ]]; do echo `date`; sleep 5; done
+```
