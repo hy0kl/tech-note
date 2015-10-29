@@ -269,3 +269,12 @@ mac 下需要升级 bash 到 4.0 以上.
 ```
 $ sudo xcodebuild -license
 ```
+
+# OS X添加用户到以存在的组？
+
+[see](http://www.zhihu.com/question/23375941)
+
+```
+$ sudo dseditgroup -o edit -a username -t user www
+```
+
