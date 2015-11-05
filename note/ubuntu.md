@@ -122,6 +122,10 @@ alt+ctrl+f1~F6
 http://cppkey.com/
 http://pppboy.blog.163.com/
 
+最新的换了[20151105]
+
+/etc/init.d/lightdm
+
 ```
 
 # 重启后 ping 不通外网
