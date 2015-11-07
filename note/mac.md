@@ -269,3 +269,11 @@ mac 下需要升级 bash 到 4.0 以上.
 ```
 $ sudo xcodebuild -license
 ```
+
+# mac 下远程桌面访问 Ubuntu
+## X11
+```
+这是最简单最方便的方法，不需要在 Ubuntu 端做任何配置，不过在 Mac 端必须已装有 X11，在 Terminal 上敲（把 ubuntu 换成对应的服务器 IP 地址或域名）：
+$ Xnest -geometry 1280x800 :1 & DISPLAY=:1 ssh -X ubuntu  gnome-session
+```
+
