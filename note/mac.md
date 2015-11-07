@@ -277,3 +277,10 @@ $ sudo xcodebuild -license
 $ Xnest -geometry 1280x800 :1 & DISPLAY=:1 ssh -X ubuntu  gnome-session
 ```
 
+# OS X添加用户到以存在的组？
+[see](http://www.zhihu.com/question/23375941)
+
+```
+$ sudo dseditgroup -o edit -a username -t user www
+```
+
