@@ -284,3 +284,27 @@ $ Xnest -geometry 1280x800 :1 & DISPLAY=:1 ssh -X ubuntu  gnome-session
 $ sudo dseditgroup -o edit -a username -t user www
 ```
 
+# How can I install 7zip so I can run it from Terminal on OS X
+
+```
+mac app `The Unarchiver`
+
+1. http://sourceforge.net/projects/p7zip/files/p7zip/
+2. tar xf *.bz2
+3. cd
+4. make
+5. cp bin/* ~/local/bin
+
+实际操作总是 make 报错:
+
+p7zip_9.38.1
+ld: internal error: atom not found in symbolIndex(__ZN13CObjectVectorI9CMyComPtrI19ISequentialInStreamEED2Ev) for architecture x86_64
+
+p7zip_15.09
+ld: internal error: atom not found in symbolIndex(__ZN12NCoderMixer29CBindInfoaSERKS0_) for architecture x86_64
+
+p7zip_9.20.1
+ld: internal error: atom not found in symbolIndex(__ZN13CObjectVectorI11CStringBaseIwEE3AddERKS1_) for architecture x86_64
+
+下载: http://p7zip.en.softonic.com/mac/download
+```
