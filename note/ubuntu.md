@@ -219,3 +219,8 @@ export LC_ALL=en_US.UTF-8
 :w !sudo tee %
 ```
 
+# libstdc++.so.6: cannot open shared object file: No such file or directory
+
+```
+$ sudo apt-get install lib32stdc++6
+```
