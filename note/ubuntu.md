@@ -239,3 +239,11 @@ $ sudo apt-get install lib32z1 lib32ncurses5
 ```
 $ sudo apt-get install gcc-multilib
 ```
+
+# 交叉编译报 /usr/include/bits/mathinline.h error: impossible constraint in 'asm'
+
+```
+$ export LIBRARY_PATH=""
+$ export C_INCLUDE_PATH=""
+$ export CPLUS_INCLUDE_PATH=""
+```
