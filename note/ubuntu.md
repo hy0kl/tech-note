@@ -224,3 +224,18 @@ export LC_ALL=en_US.UTF-8
 ```
 $ sudo apt-get install lib32stdc++6
 ```
+
+# while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+[see](http://askubuntu.com/questions/396473/error-with-libz-so-1-on-android-studio)
+
+```
+$ sudo apt-get install lib32z1 lib32ncurses5
+```
+
+# /usr/bin/ld: skipping incompatible /usr/lib/gcc/x86_64-linux-gnu/4.9/libgcc.a when searching for -lgcc
+
+[see](http://askubuntu.com/questions/85978/building-a-32-bit-app-in-64-bit-ubuntu)
+
+```
+$ sudo apt-get install gcc-multilib
+```
