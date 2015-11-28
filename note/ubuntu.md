@@ -260,3 +260,5 @@ $ sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0
 
 貌似没啥用
 ``
+
+[安装](http://packages.ubuntu.com/precise/devel/gcc-arm-linux-gnueabi)
