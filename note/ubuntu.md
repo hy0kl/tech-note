@@ -261,4 +261,13 @@ $ sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0
 貌似没啥用
 ``
 
-[安装](http://packages.ubuntu.com/precise/devel/gcc-arm-linux-gnueabi)
+[abi安装](http://packages.ubuntu.com/precise/devel/gcc-arm-linux-gnueabi)
+[eabi安装](http://packages.ubuntu.com/zh-cn/precise/devel/gcc-arm-linux-gnueabihf)
+
+# build.xml:396: SDK Platform Tools component is missing. Please install it with the SDK Manager (tools/android)
+
+[see](http://stackoverflow.com/questions/16631693/android-build-failing-with-build-xml479-sdk-does-not-have-any-build-tools-inst)
+
+```
+$ android update sdk -u
+```
