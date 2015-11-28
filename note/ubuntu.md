@@ -247,3 +247,16 @@ $ export LIBRARY_PATH=""
 $ export C_INCLUDE_PATH=""
 $ export CPLUS_INCLUDE_PATH=""
 ```
+
+# arm-linux-gnueabihf-gcc: Command not found
+
+[see](http://stackoverflow.com/questions/14180185/gcc-arm-linux-gnueabi-command-not-found)
+
+```
+$ sudo apt-get install ia32-libs
+
+if you are on 64 bit os then you need to install this additional libraries.
+$ sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0
+
+貌似没啥用
+``
