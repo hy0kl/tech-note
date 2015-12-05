@@ -720,3 +720,79 @@ MAILTO=""
 ```
 $ while [[ 1 ]]; do echo `date`; sleep 5; done
 ```
+
+# 文件重定向
+[see](http://www.cnblogs.com/yangyongzhi/p/3364939.html)
+
+```
+一 相关知识
+
+1）默认地，标准的输入为键盘，但是也可以来自文件或管道（pipe |）。
+2）默认地，标准的输出为终端（terminal)，但是也可以重定向到文件，管道或后引号（backquotes `）。
+3) 默认地，标准的错误输出到终端，但是也可以重定向到文件。
+4）标准的输入，输出和错误输出分别表示为STDIN,STDOUT,STDERR，也可以用0，1，2来表示。
+5）其实除了以上常用的3中文件描述符，还有3~9也可以作为文件描述符。3~9你可以认为是执行某个地方的文件描述符，常被用来作为临时的中间描述符。
+
+
+二 实例
+
+1）command 2>errfile : command的错误重定向到文件errfile。
+2）command 2>&1 | ...: command的错误重定向到标准输出，错误和标准输出都通过管道传给下个命令。
+3）var=`command 2>&1`: command的错误重定向到标准输出，错误和标准输出都赋值给var。
+4）command 3>&2 2>&1 1>&3 | ...:实现标准输出和错误输出的交换。
+5）var=`command 3>&2 2>&1 1>&3`:实现标准输出和错误输出的交换。
+6）command 2>&1 1>&2 | ...     (wrong...) :这个不能实现标准输出和错误输出的交换。因为shell从左到右执行命令，当执行完2>&1后，错误输出已经和标准输出一样的，再执行 1>&2也没有意义。
+
+
+三 "2>&1 file"和 "> file 2>&1"区别
+
+1）cat food 2>&1 >file ：错误输出到终端，标准输出被重定向到文件file。
+2）cat food >file 2>&1 ：标准输出被重定向到文件file，然后错误输出也重定向到和标准输出一样，所以也错误输出到文件file。
+
+
+四 注意
+通 常打开的文件在进程推出的时候自动的关闭，但是更好的办法是当你使用完以后立即关闭。用m<&-来关闭输入文件描述符m，用 m>&-来关闭输出文件描述符m。如果你需要关闭标准输入用<&-; >&- 被用来关闭标准输出。
+
+
+五 同时输出到终端和文件 copy source dest | tee.exe copyerror.txt
+
+
+六 参考
+
+1）http://docstore.mik.ua/orelly/unix/upt/ch45_21.htm
+2）http://www.unix.com/shell-programming-scripting/34011-meaning-dev-null-2-1-a.html
+3）http://docstore.mik.ua/orelly/unix/upt/ch08_13.htm
+```
+
+之前我收集整理的:
+
+```
+标准输入,输出和错误
+---------------------------------
+文件文件 描述符
+---------------------------------
+输入文件—标准输入       0
+输出文件—标准输出       1
+错误输出文件—标准错误   2
+---------------------------------
+常用文件重定向命令
+-------------------------------------------------
+command > filename 把标准输出重定向到一个新文件中
+command >> filename 把标准输出重定向到一个文件中(追加)
+command 1 > fielname 把标准输出重定向到一个文件中
+command > filename 2>&1 把标准输出和标准错误一起重定向到一个文件中
+command 2 > filename 把标准错误重定向到一个文件中
+command 2 >> filename 把标准输出重定向到一个文件中(追加)
+command >> filename 2>&1 把标准输出和标准错误一起重定向到一个文件中(追加)
+command < filename >filename2 command 命令以 filename 文件作为标准输入,以 filename2 文件 作为标准输出
+command < filename command 命令以 filename 文件作为标准输入
+command << delimiter 从标准输入中读入,直至遇到 delimiter 分界符
+command <&m 把文件描述符m作为标准输入
+command >&m 把标准输出重定向到文件描述符 m 中
+command <&- 关闭标准输入
+--------------------------------------------------
+*注:在使用 sort 命令的时候(或其他含有相似输入文件参数的命令),重定向符号一定要离开 sort 命令两个空格,否则该命令会把它当作输入文件.
+如果想创建一个长度为0的空文件,可以用 '>filename':
+$ >myfile
+```
+
