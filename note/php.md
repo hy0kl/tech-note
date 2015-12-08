@@ -478,3 +478,32 @@ apache 需要将数组 http_build_query() 才行.
 ```
 $ chmod 755 config.inc.php
 ```
+
+# php7 开发环境编译参数
+
+```
+./configure --prefix=/home/work/php7 \
+    --enable-fpm \
+    --enable-bcmath \
+    --enable-ftp \
+    --enable-mbstring \
+    --enable-soap \
+    --enable-sockets \
+    --enable-zip \
+    --enable-mysqlnd \
+    --enable-exif \
+    --with-libxml-dir=/usr/lib \
+    --with-openssl \
+    --with-pcre-regex \
+    --with-pcre-dir \
+    --with-zlib=/usr \
+    --with-bz2=/usr \
+    --with-gd \
+    --with-xpm-dir \
+    --with-jpeg-dir \
+    --with-freetype-dir \
+    --with-mysqli \
+    --with-pdo-mysql \
+    --enable-sysvsem \
+    --enable-sysvmsg
+```
