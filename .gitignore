@@ -1,5 +1,6 @@
 # Object files
 *.o
+*.lo
 *.ko
 *.obj
 *.elf
@@ -29,3 +30,7 @@
 a.out
 tags
 favicon.ico
+
+# Rust project
+Cargo.lock
+target

@@ -499,6 +499,7 @@ $ chmod 755 config.inc.php
     --with-zlib=/usr \
     --with-bz2=/usr \
     --with-gd \
+    --with-curl \
     --with-xpm-dir \
     --with-jpeg-dir \
     --with-freetype-dir \
