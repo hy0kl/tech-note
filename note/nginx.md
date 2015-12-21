@@ -452,6 +452,16 @@ nginx 全局错误码
 #define NGX_ABORT       -6
 ```
 
+## 模块 ngx_http_handler_pt 方法返回值的意义
+
+返回值 | 意义
+------ | ---
+NGX_OK | 如果在 nginx.conf 中配置了 satisfy all,那么将按照顺序执行下一个 ngx_http_handler_pt 处理方法;如果在 nginx.conf 中配置了 satisfy any,那么将执行下一个 ngx_http_phases 阶段中的第一个 ngx_http_handler_pt 处理方法.
+NGX_DECLINED | 按照顺序执行下一个 ngx_http_handler_pt 处理方法
+NGX_AGAIN <br /> NGX_DONE | 当前的 ngx_http_handler_pt 处理方法尚未结束,这意味着该处理方法在当前阶段中有机会再次被调用.这时会把控制权交还给事件模块,下次可写事件发生时会再次执行到该 ngx_http_handler_pt 处理方法.
+NGX_HTTP_FORBIDDEN <br /> HGX_HTTP_UNAUTHORIZED | 如果在 nginx.conf 中配置了 satisfy any,那么将 ngx_http_request_t 中的 access_code 成员设为返回值,按照顺序执行下一个 ngx_http_handler_pt 处理方法;如果在 nginx.conf 中配置了 satisfy all,那么调用 ngx_http_finalize_request 结束请求.
+NGX_ERROR <br /> 其他 | 需要调用 ngx_http_finalize_request 结束请求.
+
 # ngx_log_error 日志接口 level 参数取值范围
 
 级别名称 | 值 | 意义
@@ -477,4 +487,12 @@ NGX_LOG_DEBUG_EVENT | 0x080 | nginx 事件模块的调试日志
 NGX_LOG_DEBUG_HTTP  | 0x100 | nginx http 模块的调试日志
 NGX_LOG_DEBUG_MAIL  | 0x200 | nginx 邮件模块的调试日志
 NGX_LOG_DEBUG_MYSQL | 0x400 | nginx 表示与 MySQL 相关的 nginx 模块所使用的调试日志
+
+
+
+
+
+
+
+
 
