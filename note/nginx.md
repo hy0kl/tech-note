@@ -478,30 +478,3 @@ NGX_LOG_DEBUG_HTTP  | 0x100 | nginx http 模块的调试日志
 NGX_LOG_DEBUG_MAIL  | 0x200 | nginx 邮件模块的调试日志
 NGX_LOG_DEBUG_MYSQL | 0x400 | nginx 表示与 MySQL 相关的 nginx 模块所使用的调试日志
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
