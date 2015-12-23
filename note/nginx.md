@@ -488,6 +488,30 @@ NGX_LOG_DEBUG_HTTP  | 0x100 | nginx http 模块的调试日志
 NGX_LOG_DEBUG_MAIL  | 0x200 | nginx 邮件模块的调试日志
 NGX_LOG_DEBUG_MYSQL | 0x400 | nginx 表示与 MySQL 相关的 nginx 模块所使用的调试日志
 
+# HTTP 框架为 11 个阶段实现的 checker 方法
+
+阶段名称 | checker 方法
+-------- | -----------
+NGX_HTTP_POST_READ_PHASE | ngx_http_core_generic_phase
+NGX_HTTP_SERVER_REWRITE_PHASE | ngx_http_core_rewrite_phase
+NGX_HTTP_FIND_CONFIG_PHASE | ngx_http_core_find_config_phase
+NGX_HTTP_REWRITE_PHASE | ngx_http_core_rewrite_phase
+NGX_HTTP_POST_REWRITE_PHASE | ngx_http_core_post_rewrite_phase
+NGX_HTTP_PREACCESS_PHASE | ngx_http_core_generic_phase
+NGX_HTTP_ACCESS_PHASE | ngx_http_core_access_phase
+NGX_HTTP_POST_ACCESS_PHASE | ngx_http_core_post_access_phase
+NGX_HTTP_TRY_FILES_PHASE | ngx_http_core_try_files_phase
+NGX_HTTP_CONTENT_PHASE | ngx_http_core_content_phase
+NGX_HTTP_LOG_PHASE | ngx_http_core_generic_phase
+
+
+
+
+
+
+
+
+
 
 
 
