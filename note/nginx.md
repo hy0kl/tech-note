@@ -336,6 +336,25 @@ level 是日志的输出级别,取值范围是 debug, info, notice, warn, error,
 注意: 如果日志级别设定到 debug,必须在 configure 时加入 --with-debug 配置项.
 ```
 
+# core dump 相关配置
+## 限制 coredump 核心转储的大小
+
+```
+语法: worker_rlimit_core size;
+```
+
+## 指定 coredump 文件生成目录
+
+```
+语法: working_directory path;
+```
+
+# 指定 nginx worker 进程可以打开的最大句柄描述符
+
+```
+语法: worker_rlimit_nofile limit;
+```
+
 # if 指令
 
 ```
