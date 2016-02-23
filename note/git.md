@@ -214,3 +214,27 @@ Merge made by the 'recursive' strategy.
 按第 4 步如法炮制,可以完成 work-branch 到 master 的合并.将功能分支合并至 master,完成上线后一定要按第 4 步那样将 master 再合到 develop 中去,并删除远端的 work-branch.
 ```
 
+# It looks like git-am is in progress. Cannot rebase.
+
+[see](http://lamb-mei.com/550/git-git-am-%E6%9B%B4%E6%96%B0%E9%8C%AF%E8%AA%A4%E8%99%95%E7%90%86%E6%96%B9%E5%BC%8F/)
+
+## 修复冲突
+
+```
+$ git apply PATCH --reject
+$ edit edit edit
+$ git add FIXED_FILES
+$ git am --resolved
+```
+
+## 放弃更新
+
+```
+$ git am --abort
+```
+
+## 直接刪除 rebase-apply
+
+```
+$rm -rf .git/rebase-apply
+```
