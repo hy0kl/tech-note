@@ -238,3 +238,18 @@ $ git am --abort
 ```
 $rm -rf .git/rebase-apply
 ```
+
+# rebase 还是 merge?
+
+`rebase`和`merge`是代码观察者查看代码线性变化的不同维度,对最终合并的代码来讲,没有任何区别.`merge`是完全的以时间为线性轴,体现出源码在不同时间点上发生的变化;而`rebase`是提交源码作者为轴,将同一作者的提交在目标源码的最后基线上线性的合并,表现为分支功能的代码提交是线性的,而不是与协作者提交相穿插.
+
+# 将 svn 项目源码迁到 github/gitlab
+
+```
+$ svn log svn-pro-src | grep '^r' | awk '{print $3 " = " $3 " <" $3 "@UFO.com>"}' | sort -u > users.txt
+$ git svn clone svn-pro-src --authors-file=users.txt --no-metadata
+$ cd project
+$ git remote add origin github/gitlab远程源
+$ git push -u origin master
+```
+
