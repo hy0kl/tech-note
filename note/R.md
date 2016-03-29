@@ -97,13 +97,94 @@ cbind() 把矩阵横向合并成一个大矩阵(列方式),而rbind() 是纵向�
 
 ### 数据框
 
+- 数据框(data frame)是一个属于"data.frame" 类的列表。
+- 符合数据框限制的列表可被函数`as.data.frame()`强制转换成数据框。
+- 从外部文件读取一个数据框最简单的方法是使用函数`read.table()`。
+- `attach()`和`detach()`
 
+## 从文件中读取数据
 
+### `read.table()`函数
 
+可以直接读取整个数据框,外部文件常常要求有特定的格式。
 
+## 概率分布
 
+概率分布 | R 对应的名字 | 附加参数
+-------  | ------------ | -------
+β分布 | beta | shape1, shape2, ncp
+二项式分布 | binom | size, prob
+Cauchy 分布 | cauchy | location, scale
+卡方分布 | chisq | df, ncp
+指数分布 | exp | rate
+F分布 | f | df1, df1, ncp
+γ分布 | gamma | shape, scale
+几何分布 | geom | prob
+超几何分布 | hyper | m,n,k
+对数正态分布 | lnorm | meanlog, sdlog
+logistic 分布 | logis | location, scale
+负二项式分布 | nbinom | size, prob
+正态分布 | norm | mean, sd
+Poisson 分布 | pois | lambda
+t 分布 | t | df, ncp
+均匀分布 | unif | min, max
+Weibull 分布 | weibull | shape, scale
+Wilcoxon 分布 | wilcox | m, n
 
+不同的名字前缀表示不同的含义,d表示概率密度函数,p 表示累积分布函数(cumulative distribution function,CDF),q 表示分位函数以及r 表示随机模拟(random deviates)或者随机数发生器。dxxx 的第一个参数是x,pxxx是q,qxxx是p,和rxxx的是n (rhyper 和rwilcox例外,二者的参数是nn)。偏态指数(noncentrality parameter)ncp 现在仅用于累积分布函数.
 
+pxxx 和qxxx 函数都有逻辑参数lower.tail 和log.p, dxxx 也有一个逻辑参数log。
 
+## 成组,循环和条件控制
 
+### 成组表达式
+
+### 控制语句
+
+```
+if (expr1 ) expr2 else expr3
+```
+
+“短路”(short-circuit)操作符&& 和|| 常常用于if 语句的条件控制部分。这里要注意& 和| 将作用于向量的所有元素1,而&& 和|| 仅用于长度为1的向量,并且必要时 才对第二个参数求值.
+
+R 提供了if/else 条件语句向量形式的函数ifelse。它的使用方式是ifelse(condition, a, b),最终返回一个和最长的参数向量同长的向量。
+
+### 循环控制:for循环,repeat 和while
+
+```
+for (name in expr 1) expr 2repeat expr
+
+while (condition) expr```
+
+关键字break可以用于结束任何循环,甚至是非常规的。它是结束repeat 循环的 唯一办法。
+
+关键字next 可以用来结束一次特定的循环,然后直接跳入“下一次”循环。
+
+## 编写函数
+
+```
+name <- function(arg ￼ ￼ 1 , arg ￼ 2 , ...) expression
+```
+
+### 参数命名和默认值
+
+- 如果被调用函数的参数以`name = object`方式给出,它们可以用任何顺序设置。
+- 参数赋值序列可能以未命名的,位置特异性的方式给出,同时也有可能在这些位置特异性的参数后加上命名参数赋值。
+- 默认参数与其他语言类似
+
+### ... 参数
+
+### 在函数中赋值
+
+如果想在一个函数里面全局赋值或者永久赋值,可以采用“强赋值”(superassignment)操作符`<<-`或者采用函数`assign()`。
+
+### 递归式的数值积分
+
+### 类,泛型函数和面向对象
+
+## R中的统计模型
+
+## 图形工具
+
+## 包
 
