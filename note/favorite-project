@@ -196,6 +196,8 @@ http://dev.mysql.com/doc/mysql-proxy/en/ # 官方的
 # 360 开源的 db 中间件
 https://github.com/Qihoo360/Atlas
 
+https://github.com/flike/kingshard
+
 https://github.com/doxygen/doxygen # 文档生成工具
 
 # 虚拟技术
