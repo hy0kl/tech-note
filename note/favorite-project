@@ -314,3 +314,8 @@ http://gearman.org/
 
 # 二进制比较工具
 http://www.zynamics.com/index.html
+
+# 内存管理优化
+https://github.com/jemalloc/jemalloc
+https://github.com/gperftools/gperftools
+
