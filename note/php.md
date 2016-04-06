@@ -367,6 +367,45 @@ $this->getView()->setLayout(null);
 
 或者在 action 执行完成后 `return false;`
 
+## [Yaf 多模块开发](https://segmentfault.com/a/1190000002599259)
+
+### 新建模块
+在目录`application/`下新建目录`modules`。除了默认模块，其他模块都放在`application/modules/`下。
+
+新建一个模块，模块名自定义。假设我的新模块叫Api吧。
+
+创建目录`application/modules/Api`。
+
+修改项目配置文件`conf/application.ini`：
+
+```ini
+; 多个模块，使用逗号分隔
+application.modules = "Index,Api"
+```
+
+### 在新模块下创建控制器
+在目录`application/modules/Api/`下创建控制器目录`controllers`，用于存放模块`Api`下的控制器文件。
+
+新建文件`application/modules/Api/controllers/Passport.php`：
+
+```php
+<?php
+
+class PassportController extends Yaf_Controller_Abstract {
+
+    public function loginAction() {
+        echo '我是登录接口';
+        return false;
+    }
+
+}
+```
+
+### 效果
+浏览器访问：`http://127.0.0.1/api/passport/login`
+
+输出：我是登录接口
+
 # libsvm
 
 ```
