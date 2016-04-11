@@ -253,3 +253,16 @@ $ git remote add origin github/gitlab远程源
 $ git push -u origin master
 ```
 
+# [使用自己生成SSL证书时，Git报错的解决办法](http://my.oschina.net/jlan/blog/506065)
+
+git clone https://....
+
+时报错，说证书校验有问题：
+
+最简单的解决方法是加一个环境变量：
+
+```
+$ export GIT_SSL_NO_VERIFY=1
+$ git config --global http.sslVerify false
+```
+
