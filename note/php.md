@@ -547,3 +547,9 @@ $ chmod 755 config.inc.php
     --enable-sysvsem \
     --enable-sysvmsg
 ```
+
+# [zend_mm_heap corrupted](http://stackoverflow.com/questions/2247977/what-does-zend-mm-heap-corrupted-mean)
+
+```
+After much trial and error, I found that if I increase the output_buffering value in the php.ini file, this error goes away
+```
