@@ -266,3 +266,18 @@ $ export GIT_SSL_NO_VERIFY=1
 $ git config --global http.sslVerify false
 ```
 
+# [OS X Yosemite(10.10)下无法使用git svn解决方法](http://blog.puhao.me/%E5%90%90%E6%A7%BD/OS-X-Yosemite(10.10)%E4%B8%8B%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8git-svn%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/)
+
+自己在OS X下面没有找到好用的免费SVN客户端，又不想使用破解软件，更因为觉得SourceTree实在是太好，对它爱不离手，因此当自己遇到代码管理使用SVN的时候，还是习惯使用git svn做一个桥接，让代码在我本地是通过GIT来管理的。
+
+近日电脑系统升级到了Yosemite后，使用git svn clone命令报错，错误信息如下：
+`Can’t locate SVN/Core.pm in @INC (you may need to install the SVN::Core module)`
+
+添加Perl库链接
+这个错误以前在10.9的时候也遇到过，Google一下就找到了[解决方案](http://www.contrid.co.za/2014/10/solved-os-x-yosemite-git-svn-broken/)。那个时候Perl库用的是5.16版本，现在系统升级到了5.18版本后，跟以前一样，添加两条软连接命令：
+
+```
+sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/SVN /System/Library/Perl/Extras/5.18/SVN
+sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/auto/SVN/ /System/Library/Perl/Extras/5.18/auto/SVN
+```
+
