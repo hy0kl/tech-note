@@ -308,3 +308,19 @@ ld: internal error: atom not found in symbolIndex(__ZN13CObjectVectorI11CStringB
 
 下载: http://p7zip.en.softonic.com/mac/download
 ```
+
+# mac R  Warning messages
+
+[参考](http://stackoverflow.com/questions/27299420/how-to-get-rid-of-warning-messages-after-installing-r)
+
+```
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C"
+2: Setting LC_COLLATE failed, using "C"
+3: Setting LC_TIME failed, using "C"
+4: Setting LC_MESSAGES failed, using "C"
+5: Setting LC_MONETARY failed, using "C"
+
+$ defaults write org.R-project.R force.LANG en_US.UTF-8
+```
+
