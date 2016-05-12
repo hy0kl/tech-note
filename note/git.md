@@ -281,3 +281,25 @@ sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-t
 sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/auto/SVN/ /System/Library/Perl/Extras/5.18/auto/SVN
 ```
 
+# [OS X El Capitan下git-svn无法使用](https://paulschreiber.com/blog/2015/11/09/fixing-git-svn-on-os-x-el-capitan/)
+
+Unfortunately, the old solutions no longer work due to El Capitan’s System Integrity Protection:
+
+```
+$ sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/SVN /System/Library/Perl/Extras/5.18/SVN
+ln: /System/Library/Perl/Extras/5.18/SVN: Operation not permitted
+```
+
+While you can disable SIP, that’s unnecessary in this case.
+
+Here’s how you get git-svn working:
+
+```
+$ sudo mkdir /Library/Perl/5.18/auto
+$ sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/SVN /Library/Perl/5.18/darwin-thread-multi-2level
+$ sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/auto/SVN /Library/Perl/5.18/auto/
+```
+
+You can’t write to /System, but you can still write to /Library.
+
+
