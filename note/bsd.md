@@ -35,3 +35,15 @@ sendmail_msp_queue_enable="NO"
 # pkg install gcc
 # pkg install git
 ```
+
+## 标准开发环境配置
+
+```
+$ cd ~
+$ git clone https://github.com/hy0kl/profile.git
+$ cd profile/
+$ ./install.sh
+
+$ login # OR 退出重登陆
+```
+
