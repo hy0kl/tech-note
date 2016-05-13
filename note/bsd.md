@@ -32,4 +32,6 @@ sendmail_msp_queue_enable="NO"
 # pkg install curl
 # pkg install gettext
 # pkg install bash
+# pkg install gcc
+# pkg install git
 ```

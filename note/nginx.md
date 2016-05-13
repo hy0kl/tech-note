@@ -91,6 +91,27 @@ $server_protocol 请求使用的协议，通常是HTTP/1.0或HTTP/1.1。
 $uri 请求中的当前URI(不带请求参数，参数位于$args)，不同于浏览器传递的$request_uri的值，它可以通过内部重定向，或者使用index指令进行修改。不包括协议和主机名，例如/foo/bar.html
 ```
 
+# 日志格式允许包含的变量
+
+```
+$remote_addr, $http_x_forwarded_for 记录客户端IP地址
+$remote_user 记录客户端用户名称
+$request 记录请求的URL和HTTP协议
+$status 记录请求状态
+$body_bytes_sent 发送给客户端的字节数，不包括响应头的大小； 该变量与Apache模块mod_log_config里的“%B”参数兼容。
+$bytes_sent 发送给客户端的总字节数。
+$connection 连接的序列号。
+$connection_requests 当前通过一个连接获得的请求数量。
+$msec 日志写入时间。单位为秒，精度是毫秒。
+$pipe 如果请求是通过HTTP流水线(pipelined)发送，pipe值为“p”，否则为“.”。
+$http_referer 记录从哪个页面链接访问过来的
+$http_user_agent 记录客户端浏览器相关信息
+$request_length 请求的长度（包括请求行，请求头和请求正文）。
+$request_time 请求处理时间，单位为秒，精度毫秒； 从读入客户端的第一个字节开始，直到把最后一个字符发送给客户端后进行日志写入为止。
+$time_iso8601 ISO8601标准格式下的本地时间。
+$time_local 通用日志格式下的本地时间。
+```
+
 # nginx 开发环境编译参数
 
 ```
