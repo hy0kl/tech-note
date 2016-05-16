@@ -27,13 +27,7 @@ sendmail_msp_queue_enable="NO"
 ```
 # cd /usr/ports/ports-mgmt/pkg
 # make install clean
-# pkg install wget
-# pkg install tree
-# pkg install curl
-# pkg install gettext
-# pkg install bash
-# pkg install gcc
-# pkg install git
+# pkg install --yes tree ctags gettext git wget curl gcc bash gmake pcre libxml2 libxslt
 ```
 
 ## 标准开发环境配置
