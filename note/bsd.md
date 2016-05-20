@@ -41,3 +41,23 @@ $ ./install.sh
 $ login # OR 退出重登陆
 ```
 
+# [配置静态 ip](https://wiki.freebsdchina.org/faq/networking)
+
+## 即时生效
+
+```
+# ifconfig em0 192.168.0.200 255.255.254.0
+# ifconfig em0 inet 192.168.0.201 netmask 255.255.254.0 alias   # 增加第二个ip
+# route add default 192.168.0.1
+```
+
+## 永久生效
+
+```
+# vim /etc/rc.conf
+
+ifconfig_em0="inet 192.168.0.200  netmask 255.255.254.0"
+ifconfig_em0_alias0="inet 192.168.0.201  netmask 255.255.254.0"
+defaultrouter="192.168.0.1"
+```
+
