@@ -61,3 +61,12 @@ ifconfig_em0_alias0="inet 192.168.0.201  netmask 255.255.254.0"
 defaultrouter="192.168.0.1"
 ```
 
+# DNS 配置
+
+```
+# vim  /etc/resolv.conf
+
+nameserver 114.114.114.114
+nameserver 8.8.8.8
+```
+
