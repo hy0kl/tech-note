@@ -324,3 +324,42 @@ During startup - Warning messages:
 $ defaults write org.R-project.R force.LANG en_US.UTF-8
 ```
 
+# [在Mac OSX 编译tree命令](http://rockyfeng.me/mac_tree.html)
+
+在Linux中一个tree命令就可以把文件夹的目录结构很好的展现，但Mac下默认是没有 这个命令的，所以得自己编译。
+
+从 http://mama.indstate.edu/users/ice/tree/ 下载最新得tree, 现在的版本 是1.7.0
+
+```
+tar xf tree-1.7.0.tgz
+cd tree-1.7.0
+make
+```
+
+本来以为这样就会成功，结果出现了以下错误
+
+```
+Undefined symbols for architecture x86_64:
+  "_strverscmp", referenced from:
+      _versort in tree.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+
+查看一下Makefile, 如果是Mac系统的话，需要去掉一下的注释，
+
+```
+# Uncomment for OS X:
+CC=cc
+CFLAGS=-O2 -Wall -fomit-frame-pointer -no-cpp-precomp
+LDFLAGS=
+MANDIR=/usr/share/man/man1
+OBJS+=strverscmp.o
+```
+
+从新来一遍make
+
+```
+make
+sudo make install
+```
