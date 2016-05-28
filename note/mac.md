@@ -363,3 +363,15 @@ OBJS+=strverscmp.o
 make
 sudo make install
 ```
+
+# 常见错误解决思路
+
+```
+Undefined symbols for architecture x86_64:
+...
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+
+经验表明,出现以上编译错误,大概率是软件版本与系统不匹配造成的,可适当向前或向前几个版本试试.
+
