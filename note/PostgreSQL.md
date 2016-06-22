@@ -134,3 +134,133 @@ ALTER TABLE table_name RENAME COLUMN field_name TO field_new_name;
 ```sql
 ALTER TABLE table_name RENAME TO table_new_name;
 ```
+
+## [权限](http://www.postgres.cn/docs/9.3/sql-grant.html)
+
+有多种不同的权限：SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER, CREATE, CONNECT, TEMPORARY, EXECUTE, 和 USAGE 。
+
+```sql
+/** 在权限的位置写上ALL则赋予所有与该对象类型相关的权限 */
+GRANT UPDATE ON db_table_name TO db_user;
+REVOKE ALL ON db_table_name FROM PUBLIC;
+```
+
+对象所有者的特殊权限(也就是DROP, GRANT, REVOKE 等权限)总是隐含地属于所有者，并且不能赋予或者撤销。
+
+可以赋予一个"with grant option"权限，允许接受权限的人将该权限转授他人。
+
+## 模式
+
+### 创建模式
+
+```sql
+CREATE SCHEMA schema_name;
+
+DROP SCHEMA schema_name;
+DROP SCHEMA schema_name CASCADE;
+
+/** 创建一个他人拥有的模式 */
+CREATE SCHEMA schemaname AUTHORIZATION username;
+```
+
+以pg_开头的模式名是保留给系统使用的，用户不能创建这样的名字。
+
+### Public 模式
+
+### 模式搜索路径
+
+```sql
+/** 显示当前搜索路径 */
+SHOW search_path;
+
+/** 置模式的搜索路径 */
+SET search_path TO schema_name,public;
+```
+
+public 模式没有任何特殊之处， 只不过它缺省时就存在。
+
+### 模式和权限
+
+- 缺省时每个人都在public模式上有CREATE和USAGE权限。
+- 缺省时，用户无法访问模式中不属于他们所有的对象。为了让他们能够访问， 模式的所有者需要在模式上赋予他们USAGE权限。
+
+```sql
+REVOKE CREATE ON SCHEMA public FROM PUBLIC;
+```
+
+### 系统表模式
+
+## 继承 INHERITS
+
+SELECT, UPDATE 和 DELETE都支持`ONLY`关键字
+
+## 分区
+
+- 范围分区
+- 列表分区
+
+### 管理分区
+
+### 分区和约束排除
+
+## 查询
+
+- NULLS FIRST和NULLS LAST选项可以决定在排序操作中在 non-null 值之前还是之后。默认情况下，空值大于任何非空值；也就是说，DESC 排序默认是NULLS FIRST，否则为NULLS LAST。
+- 排序选项对于每个排序列是相对独立的。
+- ORDER BY可以应用于UNION, INTERSECT,EXCEPT 组合的计算结果，不过在这种情况下，只允许按照字段的名字或编号进行排序，而不允许按照表达式进行排序。
+- LIMIT ALL和省略LIMIT子句是一样的。
+- OFFSET 0和省略 OFFSET子句是一样的，LIMIT NULL和省略LIMIT子句 是一样的。
+
+### WITH 查询 (通用表表达式)
+
+WITH提供了一种在更大的查询中编写辅助语句的方式。
+
+可选的RECURSIVE修饰符将WITH 从一个单纯的语法方便改变为在SQL标准中不可能实现的功能。 使用RECURSIVE，一个WITH查询可以引用它自己的输出。
+
+递归查询通常用于处理分层或树状结构数据。
+
+## 数据类型
+
+### 数值类型
+
+浮点类型有几个特殊值：Infinity, -Infinity, NaN.分别表示 IEEE 754 特殊值"正无穷大"、"负无穷大"、 "不是一个数字"。在不遵循 IEEE 754 浮点算术的机器上， 这些值的含义可能不是预期的。如果在 SQL 命令里把这些数值当作常量写， 你必须在它们周围放上单引号。
+
+*注意: IEEE754声明NaN不应该等于任何其他浮点值（包括NaN）。 为了能存储浮点值，并且使用Tree索引，PostgreSQL认为NaN 相等，并且大于所有非NaN值。*
+
+### 序列号类型
+
+smallserial,serial和bigserial类型不是真正的类型， 只是为在表中创建唯一标识做的概念上的便利。类似其它一些数据库中的AUTO_INCREMENT 属性。
+
+### 字符类型
+
+### 二进制数据类型
+
+bytea数据类型允许存储二进制字符串。
+
+### 日期/时间类型
+
+### 布尔类型
+
+### 枚举类型
+
+### 几何类型
+
+### 网络地址类型
+
+### 位串类型
+
+### 文本搜索类型
+
+### UUID 类型
+
+### XML 类型
+
+### JSON 类型
+
+### Arrays
+
+### 复合类型
+
+## 函数和操作符
+
+
