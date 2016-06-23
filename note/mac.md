@@ -214,10 +214,10 @@ autoheader \
 http://stackoverflow.com/questions/8560997/installing-iulib-config-status-error-cannot-find-input-file-makefile-in
 
 > Try
-> 
+>
 > automake --add-missing
 > or just
-> 
+>
 > automake
 > It should create your Makefile.in.
 
@@ -386,7 +386,7 @@ Ignoring ensurepip failure: pip 7.1.2 requires SSL/TLS
 指定新的编译参数后编译又报错:
 
 ```
-./configure --prefix=/Users/hy0kl/local/python3.5.1 --with-libs='-lssl' --disable-ipv6
+./configure --prefix=/Users/hy0kl/local/python3.5.1 --with-libs='-lssl' --disable-ipv6 --with-ensurepip=install
 
 Include/pyport.h:261:13: error: "This platform's pyconfig.h needs to define PY_FORMAT_LONG_LONG"
 #           error "This platform's pyconfig.h needs to define PY_FORMAT_LONG_LONG"
@@ -399,3 +399,35 @@ vim Include/pyport.h
 ```
 
 发现安装还是报一样的提示.
+
+[安装最新的openssl](http://mac-dev-env.patrickbougie.com/openssl/)
+
+```
+./configure darwin64-x86_64-cc --prefix=/User/hy0kl/local/openssl
+make depend
+make
+make install
+```
+
+
+```
+vi Modules/Setup.dist
+
+SSL=/Users/hy0kl/local/openssl
+_ssl _ssl.c \
+    -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
+    -L$(SSL)/lib -lssl -lcrypto
+
+./configure --prefix=/Users/hy0kl/local/python3.5.1
+```
+
+重新编译安装:
+
+```
+Python build finished successfully!
+The necessary bits to build these optional modules were not found:
+_gdbm                 _ssl                  ossaudiodev
+spwd
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+```
+
