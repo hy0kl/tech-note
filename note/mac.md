@@ -375,3 +375,27 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 经验表明,出现以上编译错误,大概率是软件版本与系统不匹配造成的,可适当向前或向前几个版本试试.
 
+# 源码编译安装Python-3.5.1
+
+默认编译参数报错:
+
+```
+Ignoring ensurepip failure: pip 7.1.2 requires SSL/TLS
+```
+
+指定新的编译参数后编译又报错:
+
+```
+./configure --prefix=/Users/hy0kl/local/python3.5.1 --with-libs='-lssl' --disable-ipv6
+
+Include/pyport.h:261:13: error: "This platform's pyconfig.h needs to define PY_FORMAT_LONG_LONG"
+#           error "This platform's pyconfig.h needs to define PY_FORMAT_LONG_LONG"
+
+vim Include/pyport.h
+打开此宏
+256 #ifndef PY_FORMAT_LONG_LONG
+257 #   define PY_FORMAT_LONG_LONG "I64"
+258 #endif
+```
+
+发现安装还是报一样的提示.
