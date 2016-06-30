@@ -70,3 +70,11 @@ nameserver 114.114.114.114
 nameserver 8.8.8.8
 ```
 
+# [时区与时间同步](https://www.freebsdchina.org/forum/topic_50795.html)
+
+```
+# tzsetup # 安装完系统后设定时区
+## 校对时间,建议系统初始时执行,以免影响依赖时间的服务
+# ntpdate -t 3 -b asia.pool.ntp.org
+```
+

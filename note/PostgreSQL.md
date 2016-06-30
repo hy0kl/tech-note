@@ -263,4 +263,159 @@ bytea数据类型允许存储二进制字符串。
 
 ## 函数和操作符
 
+### 逻辑操作符
+
+AND OR NOT
+
+### 比较操作符
+
+`!=操作符在分析器阶段被转换成<>。 !=和<>操作符是完全等价的。`
+
+![比较操作符](../resource/cmp-ops.png)
+
+### 数学函数和操作符
+
+#### 数学操作符
+
+![数学操作符](../resource/math-ops.png)
+
+
+#### 数学函数
+
+![数学函数](../resource/math-func.png)
+
+#### 三角函数
+
+![三角函数](../resource/trigonometric.png)
+
+### 字符串函数和操作符
+
+![SQL 字符串函数和操作符](../resource/string-func.png)
+
+### 聚合函数
+
+![通用聚合函数](../resource/aggregation.png)
+
+![统计聚合函数](../resource/statistics.png)
+
+### 系统信息函数
+
+## 类型转换
+
+##　索引
+
+- 使用多字段索引应该谨慎。在大多数情况下，在单字段上的索引就足够了，并且还节约时间和空间。 除非表的使用模式非常固定，否则超过三个字段的索引几乎没什么用处。
+- 如果索引声明为唯一的，那么就不允许出现多个索引值相同的行。NULL 值被认为互不相等。 一个多字段唯一索引只在多行数据里所有被索引字段都相同时才拒绝。
+
+### 部分索引
+
+### 检查索引的使用 EXPLAIN
+
+## 全文检索
+
+## 并发控制
+
+在内部，PostgreSQL利用多版本并发控制(MVCC)来维护数据的一致性。
+
+在同一个事务里两个相邻的SELECT命令可能看到不同的快照，因为其它事务会在第一个SELECT执行期间提交。
+
+![冲突锁模式](../resource/table-lock.png)
+
+## 性能提升技巧
+
+## 服务器管理
+
+```shell
+./configure
+gmake
+su
+gmake install
+adduser postgres
+mkdir /usr/local/pgsql/data
+chown postgres /usr/local/pgsql/data
+su - postgres
+/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data >logfile 2>&1 &
+/usr/local/pgsql/bin/createdb test
+/usr/local/pgsql/bin/psql test
+```
+
+## 服务器设置和操作
+
+## 服务器配置
+
+如果有1GB或更多内存的专用数据库服务器， 对于`shared_buffers`合理的初始值是系统内存的25%。
+
+## 数据库角色
+
+```sql
+/** 创建数据库超级用户 */
+CREATE ROLE name SUPERUSER
+
+/** 角色可以创建数据库 */
+CREATE ROLE name CREATEDB
+
+/** 角色可以创建角色 */
+CREATE ROLE name CREATEROLE
+
+/** 启动复制 */
+REATE ROLE name REPLICATION LOGIN
+
+/** 创建角色时设置口令 */
+CREATE ROLE name PASSWORD 'string'
+
+/** 删除一个组角色 */
+DROP ROLE name;
+```
+
+## 管理数据库
+
+```sql
+/** 创建数据库 */
+CREATE DATABASE db_name;
+
+CREATE DATABASE dbname OWNER rolename;
+
+/** 通过拷贝template0的方法创建一个数据库 */
+CREATE DATABASE dbname TEMPLATE template0;
+
+/** 关闭某个数据库上的GEQO优化器 */
+ALTER DATABASE db_name SET geqo TO off;
+
+DROP DATABASE db_name;
+
+/** 定义一个表空间 */
+CREATE TABLESPACE fastspace LOCATION '/mnt/sda1/postgresql/data';
+
+/** 设置默认表空间 */
+SET default_tablespace = fastspace;
+
+/** 删除一个表空间 */
+DROP TABLESPACE IF EXISTS tablespace_name
+
+/** 检查pg_tablespace 系统表就可以获取现有的表空间 */
+SELECT spcname FROM pg_tablespace;
+
+SET NAMES 'UTF8';
+```
+
+`CREATE DATABASE`实际上是通过拷贝一个现有的数据库进行工作的。缺省时， 它拷贝名为`template1`的标准系统数据库。
+
+## 日常数据库维护工作
+
+PostgreSQL数据库需要定期/维护被称为`vacuuming`。
+
+有VACUUM的两个变形：标准VACUUM 和VACUUM FULL。VACUUM FULL可以回收更多磁盘空间，但运行速度要慢得多。另外，VACUUM的标准形式可以与生产数据库操作并行运行。
+
+```sql
+# SQL转储
+pg_dump dbname > outfile.sql
+
+# 从转储中恢复
+psql --set ON_ERROR_STOP=on dbname < infile.sql
+```
+
+### 文件系统级别备份
+
+## 高可用性与负载均衡，复制
 
