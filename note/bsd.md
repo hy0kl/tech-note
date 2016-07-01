@@ -78,3 +78,12 @@ nameserver 8.8.8.8
 # ntpdate -t 3 -b asia.pool.ntp.org
 ```
 
+## 开机自动校对时间
+
+```shell
+# vim /etc/rc.local
+/usr/sbin/ntpdate -t 3 -b asia.pool.ntp.org
+
+# chmod +x /etc/rc.local
+```
+
