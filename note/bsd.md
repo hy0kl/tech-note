@@ -87,3 +87,12 @@ nameserver 8.8.8.8
 # chmod +x /etc/rc.local
 ```
 
+# pkg 无法更新
+
+```
+## 查看更新记录
+# pkg updating | less
+## 强制更新
+# pkg update -f
+```
+
