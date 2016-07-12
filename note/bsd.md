@@ -1,13 +1,5 @@
 # 初始化系统
 
-## 加速 sshd 服务
-
-```
-# vi /etc/ssh/sshd_config
-
-+ UseDNS no
-```
-
 ## 禁掉 sendmail 服务,有安全隐患
 
 ```
@@ -95,4 +87,41 @@ nameserver 8.8.8.8
 ## 强制更新
 # pkg update -f
 ```
+
+# BSD下运维小工具,防止重复劳动
+
+## `relay`机`sshd`建议配置
+
+编辑`/etc/ssh/sshd_config`
+
+```
+# 加速
+UseDNS no
+# ssh 禁止 root 远程登陆
+PermitRootLogin no
+# RSA认证
+RSAAuthentication yes
+# 开启公钥验证
+PubkeyAuthentication yes
+# 验证文件路径
+AuthorizedKeysFile .ssh/authorized_keys
+# 禁止密码认证
+PasswordAuthentication no
+# 禁止空密码
+PermitEmptyPasswords no
+# 禁用PAM
+UsePAM no
+
+# 配置完毕重启sshd
+# service sshd restart
+```
+
+## `sshd`绑定`ip`
+
+`ListenAddress`参数确定sshd监听的ip地址
+
+# BSD 手工编译安装 Redis
+
+- 记得用 gmake
+- 修改`PREFIX`
 
