@@ -125,3 +125,14 @@ UsePAM no
 - 记得用 gmake
 - 修改`PREFIX`
 
+
+# 加速 pkg 安装
+
+改为台湾的源,能有效的加速
+
+```
+# vim /etc/pkg/FreeBSD.conf
+
+亚洲的源: pkg0.twn.freebsd.org
+```
+
