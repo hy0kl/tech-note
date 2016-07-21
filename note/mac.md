@@ -431,3 +431,39 @@ spwd
 To find the necessary bits, look in setup.py in detect_modules() for the module's name.
 ```
 
+# [compile php with openssl on mac osx error](https://upliu.net/compile-php-with-openssl-on-max-osx-error.html)
+
+从源码手动编译 PHP 时出现如下错误：
+
+```
+Undefined symbols for architecture x86_64:
+  "_PKCS5_PBKDF2_HMAC", referenced from:
+      _zif_openssl_pbkdf2 in openssl.o
+  "_TLSv1_1_client_method", referenced from:
+      _php_openssl_setup_crypto in xp_ssl.o
+  "_TLSv1_1_server_method", referenced from:
+      _php_openssl_setup_crypto in xp_ssl.o
+  "_TLSv1_2_client_method", referenced from:
+      _php_openssl_setup_crypto in xp_ssl.o
+  "_TLSv1_2_server_method", referenced from:
+      _php_openssl_setup_crypto in xp_ssl.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [libs/libphp5.bundle] Error 1
+```
+
+解决办法
+
+MakeFile 里面找到类似下面这一行：
+
+```
+EXTRA_LIBS = -lresolv -lmcrypt -lltdl -liconv-lm -lxml2 -lcurl -lssl -lcrypto
+```
+
+删除所有的 -lssl 和 -lcrypto 然后添加 libssl.dylib 和 libcrypto.dylib 的路径（如果你安装了 brew，那么则是 /usr/local/opt/openssl/lib/），重新运行 make 命令，done。
+
+附上我修改后的 MakeFile EXTRA_LIBS 那一行：
+
+```
+EXTRA_LIBS = -lz -lresolv -lmcrypt -lltdl -lstdc++ -liconv -liconv -lpng -lz -lcurl -lz -lm -lxml2 -lz -licucore -lm -lcurl -lxml2 -lz -licucore -lm -licui18n -licuuc -licudata -licuio -lxml2 -lz -licucore -lm -lxml2 -lz -licucore -lm -lxml2 -lz -licucore -lm -lxml2 -lz -licucore -lm /usr/local/opt/openssl/lib/libssl.dylib /usr/local/opt/openssl/lib/libcrypto.dylib
+```
