@@ -136,3 +136,12 @@ UsePAM no
 亚洲的源: pkg0.twn.freebsd.org
 ```
 
+# sqlmap error
+
+missing one or more core extensions ('gzip', 'ssl', 'sqlite3', 'zlib') most probably because current version of Python has been built without appropriate dev packages (e.g. 'libsqlite3-dev')
+
+```
+## FreeBSD 10.1-RELEASE
+# pkg install py27-sqlite3
+```
+
