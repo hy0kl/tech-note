@@ -1,7 +1,7 @@
 # 使用 nc 传输文件
 
 ```
-1. 在远程服务器上
+1. 在远程服务器上(linux)
 $ sudo /etc/init.d/iptables stop
 $ nc -l 54321 > 传输文件目标名
 
@@ -13,8 +13,9 @@ $ nc 192.168.3.201 54321 < 待传输的文件
 tar 命令中加入 v 可以查看正在传送的文件
 
 接收端:
-$ nc -l 54321 | tar zxvf -
+$ nc -l 54321 | tar xvf -
 
 发送端:
-$ tar zcf - nginx | nc 192.168.3.201 54321
+$ tar czf - nginx | nc 192.168.3.201 54321
 ```
+
