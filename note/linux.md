@@ -804,3 +804,16 @@ $ rm -rf ~/.ssh/id_rsa*
 $ ssh-keygen -q -t rsa -C "your.email@UFO.com" -f ~/.ssh/id_rsa -N ''
 ```
 
+# tar: Removing leading '/' from member names
+
+[see](http://bbs.chinaunix.net/thread-2247633-1-1.html)
+
+```
+# 忽略绝对路径,有警告
+tar xf f.tar -C ./
+tar: Removing leading '/' from member names
+
+# 按打包的绝对路径解压
+tar xPf f.tar
+```
+
