@@ -302,4 +302,14 @@ $ sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin
 
 You can’t write to /System, but you can still write to /Library.
 
+# `git`使用`https`方式记住密码
+
+[see git-scm](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%87%AD%E8%AF%81%E5%AD%98%E5%82%A8)
+[see other](http://www.yalewoo.com/git_https_password.html)
+
+git使用https方式进行连接时，默认每次推送时都要输入用户名和密码。
+
+`git config credential.helper store`
+
+为当前仓库设置记住密码，设置后，只要在推送一次，以后就不需要用户名和密码了
 
