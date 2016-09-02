@@ -65,11 +65,29 @@ mysqldump -t -u db_user db_name -p > db_name.sql
 ```
 
 # PostgreSQL
-## 导出表结构
+
+## 导出数据
 
 ```
-pg_dump -U dbuser -d dbname -h HOST -p PORT -c -s
+# 仅导出原始表结构
+pg_dump -U dbuser -d dbname -h HOST -p PORT -c -s -f dbname.sql
+# 导出结构和数据,以 INSERT 替代 COPY
+pg_dump -U dbuser -d dbname -h HOST -p PORT --inserts -f dbname.sql
+pg_dump -U dbuser -d dbname -h HOST -p PORT --inserts --if-exists -f dbname.sql
+pg_dump -U dbuser -d dbname -h HOST -p PORT -c -C --column-inserts --if-exists -f dbname.sql
 ```
+
+## `pg_dump`主要参数说明:
+
+参数 | 说明
+---- | ---
+-c, --clean | clean (drop) database objects before recreating
+-C, --create | include commands to create database in dump
+-s, --schema-only | dump only the schema, no data
+-t, --table=TABLE | dump the named table(s) only
+--column-inserts | dump data as INSERT commands with column names
+--if-exists | use IF EXISTS when dropping objects
+--inserts | dump data as INSERT commands, rather than COPY
 
 ## 时间戳相关
 
