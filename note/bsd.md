@@ -145,3 +145,13 @@ missing one or more core extensions ('gzip', 'ssl', 'sqlite3', 'zlib') most prob
 # pkg install py27-sqlite3
 ```
 
+# pkg 错误
+
+pkg: uk-libgd-2.2.3,1 conflicts with libgd-2.1.1,1 (installs files into the same place).  Problematic file: /usr/local/bin/annotate
+
+解决方法:
+
+```
+## 升级
+# pkg upgrade libgd
+```
