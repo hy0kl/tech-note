@@ -20,4 +20,12 @@ INSERT INTO persons (lastname,firstname) VALUES ('Smith', 'John') RETURNING id;
 
 This is the most clean, efficient and safe way to get the id. It doesn't have any of the risks of the previous.
 
+# 导入数据时报以下警告
+
+```
+WARNING:  no privileges could be revoked for "public"
+WARNING:  no privileges could be revoked for "public"
+WARNING:  no privileges were granted for "public"
+WARNING:  no privileges were granted for "public"
+```
 
