@@ -81,6 +81,7 @@ pg_dump -U dbuser -d dbname -h HOST -p PORT -c -C --column-inserts --if-exists -
 
 参数 | 说明
 ---- | ---
+-a, --data-only | dump only the data, not the schema
 -c, --clean | clean (drop) database objects before recreating
 -C, --create | include commands to create database in dump
 -s, --schema-only | dump only the schema, no data
