@@ -29,3 +29,9 @@ WARNING:  no privileges were granted for "public"
 WARNING:  no privileges were granted for "public"
 ```
 
+# SQL错误后停止执行
+
+```
+$ psql --set ON_ERROR_STOP=on -U db_user -d db_name -f backup.sql
+```
+
