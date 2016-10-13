@@ -155,3 +155,19 @@ pkg: uk-libgd-2.2.3,1 conflicts with libgd-2.1.1,1 (installs files into the same
 ## 升级
 # pkg upgrade libgd
 ```
+
+# [FreeBSD下查看物理内存大小](http://blog.haohtml.com/archives/11697)
+
+```
+法一：
+
+[root@www ~]# cat /var/run/dmesg.boot | grep memory
+real memory  = 2147483648 (2048 MB)
+avail memory = 2091028480 (1994 MB)
+法二：
+
+[root@www ~]# sysctl -a | grep hw.physmem
+hw.physmem: 2134253568
+第二个命令和第一个命令有些差别，这个基本上可以忽略．换成MB的话，基本上也是2G的
+```
+
