@@ -53,6 +53,12 @@ ifconfig_em0_alias0="inet 192.168.0.201  netmask 255.255.254.0"
 defaultrouter="192.168.0.1"
 ```
 
+## [查看路由](https://www.freebsd.org/doc/zh_CN.UTF-8/books/handbook/network-routing.html)
+
+```
+$ netstat -r
+```
+
 # DNS 配置
 
 ```
