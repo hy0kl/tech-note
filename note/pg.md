@@ -358,3 +358,36 @@ WARNING:  no privileges were granted for "public"
 $ psql --set ON_ERROR_STOP=on -U db_user -d db_name -f backup.sql
 ```
 
+# [pg 序列Sequence](https://segmentfault.com/a/1190000002980194)
+
+## 创建序列
+
+```sql
+CREATE SEQUENCE sequence_name
+    [ INCREMENT increment ]     -- 自增数，默认是 1
+    [ MINVALUE minvalue ]       -- 最小值
+    [ MAXVALUE maxvalue ]       -- 最大值
+    [ START start ]             -- 设置起始值
+    [ CACHE cache ]             -- 是否预先缓存
+    [ CYCLE ]                   -- 是否到达最大值的时候，重新返回到最小值
+```
+
+## 查看序列
+
+```sql
+\ds
+
+/** 查看详细 Sequence 信息 */
+\d table_name_id_seq
+
+/** 查询下 seq 的 last_value（当前的序列值）和 increment_by (当 nextval() 被调用，当前值将会被增加) */
+SELECT last_value, increment_by FROM table_name_id_seq;
+```
+
+## Sequence 的函数
+
+```
+nextval('sequence_name'): 将当前值设置成递增后的值，并返回
+currval('sequence_name'): 返回当前值
+setval('sequence_name', n, b=true): 设置当前值；b 默认设置 true，下一次调用 nextval() 时，直接返回 n，如果设置 false，则返回 n+increment:
+```
