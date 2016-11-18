@@ -467,3 +467,18 @@ EXTRA_LIBS = -lresolv -lmcrypt -lltdl -liconv-lm -lxml2 -lcurl -lssl -lcrypto
 ```
 EXTRA_LIBS = -lz -lresolv -lmcrypt -lltdl -lstdc++ -liconv -liconv -lpng -lz -lcurl -lz -lm -lxml2 -lz -licucore -lm -lcurl -lxml2 -lz -licucore -lm -licui18n -licuuc -licudata -licuio -lxml2 -lz -licucore -lm -lxml2 -lz -licucore -lm -lxml2 -lz -licucore -lm -lxml2 -lz -licucore -lm /usr/local/opt/openssl/lib/libssl.dylib /usr/local/opt/openssl/lib/libcrypto.dylib
 ```
+
+# pod 报警告
+
+```
+$ pod
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/universal-darwin16/rbconfig.rb:213: warning: Insecure world writable dir /usr/local/mysql in PATH, mode 040777
+```
+
+解决方法:
+
+```
+$ cd /usr/local
+$ sudo chmod go-w mysql-5.6.19-osx10.7-x86_64
+```
+
