@@ -177,3 +177,16 @@ hw.physmem: 2134253568
 第二个命令和第一个命令有些差别，这个基本上可以忽略．换成MB的话，基本上也是2G的
 ```
 
+# [Installing Python package manager pip on FreeBSD](https://nerd.h8u.net/2016/01/29/installing-python-package-manager-pip-on-freebsd/)
+
+```
+[cmp@server ~]# python -m ensurepip
+Ignoring indexes: https://pypi.python.org/simple
+Requirement already satisfied (use --upgrade to upgrade): setuptools in /usr/local/lib/python2.7/site-packages
+Collecting pip
+Installing collected packages: pip
+Successfully installed pip-7.1.2
+
+[cmp@server ~]# pip
+pip     pip2    pip2.7
+```
