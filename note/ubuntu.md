@@ -208,7 +208,7 @@ export LC_ALL=en_US.UTF-8
 ```
 # vim /etc/sudoers
 
-%sudo   ALL=(ALL:ALL) NOPASSWD: NOPASSWD: ALL
+%sudo   ALL=(ALL:ALL) NOPASSWD: ALL
 ```
 
 # 如何在vim保存时获得sudo权限
