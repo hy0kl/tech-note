@@ -271,3 +271,10 @@ $ sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0
 ```
 $ android update sdk -u
 ```
+
+# import _tkinter # If this fails your Python may not be configured for Tk
+
+```
+sudo apt-get install python3-tk # 然后重新编译python3
+```
+
