@@ -275,6 +275,7 @@ $ android update sdk -u
 # import _tkinter # If this fails your Python may not be configured for Tk
 
 ```
-sudo apt-get install python3-tk # 然后重新编译python3
+$ sudo apt-get install python3-tk # 然后重新编译python3
+$ sudo apt-get install python-tk  # python2 的报错解决
 ```
 
