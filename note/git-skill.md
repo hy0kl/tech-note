@@ -63,12 +63,6 @@ URL: ... .git
 新版本可以使用以下命令:
 $ git fetch -p
 
-# 如何只克隆 git 仓库中的一个分支？
-
-```
-$ git clone -b <branch> <remote_repo>
-```
-
 # windows warning: CRLF will be replaced by LF.
 
 参考: [1](http://stackoverflow.com/questions/17628305/windows-git-warning-lf-will-be-replaced-by-crlf-is-that-warning-tail-backwar) [2](http://blog.csdn.net/feng88724/article/details/11600375)
