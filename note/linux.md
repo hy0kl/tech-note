@@ -817,3 +817,10 @@ tar: Removing leading '/' from member names
 tar xPf f.tar
 ```
 
+# 随机删除文件
+
+```
+$ find . -type f | awk '{cmd="echo "$1" | md5sum | cksum"; cmd | getline var; close(cmd); split(var, cntr, " "); if (cntr[1] % 10 == 0) {print "rm "$0}}'
+```
+
+只将上面的结果通过`|`交给`sh`,就可实现随机删除文件的功能.其实是名字的hash值取模后满足条件的文件,算不上真的随机,但稍加改造后可实现按概率删除文件.
