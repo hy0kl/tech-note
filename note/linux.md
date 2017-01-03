@@ -824,3 +824,10 @@ $ find . -type f | awk '{cmd="echo "$1" | md5sum | cksum"; cmd | getline var; cl
 ```
 
 只将上面的结果通过`|`交给`sh`,就可实现随机删除文件的功能.其实是名字的hash值取模后满足条件的文件,算不上真的随机,但稍加改造后可实现按概率删除文件.
+
+# 生成随机密码
+
+```
+$ openssl rand -base64 12
+```
+

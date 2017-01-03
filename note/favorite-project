@@ -103,6 +103,7 @@ https://code.google.com/p/huhamhire-hosts # google host
 https://github.com/smarthosts/smarthosts # google host,貌似停止维护了
 https://github.com/txthinking/google-hosts # 又一下 hosts 项目
 
+https://github.com/pagespeed/ngx_pagespeed # 加速
 https://github.com/FRiCKLE/ngx_cache_purge
 https://github.com/FRiCKLE/ngx_postgres
 https://github.com/kung-fu-tzu/ngx_http_js_module
