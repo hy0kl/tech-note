@@ -391,3 +391,10 @@ nextval('sequence_name'): 将当前值设置成递增后的值，并返回
 currval('sequence_name'): 返回当前值
 setval('sequence_name', n, b=true): 设置当前值；b 默认设置 true，下一次调用 nextval() 时，直接返回 n，如果设置 false，则返回 n+increment:
 ```
+
+## 清空表,并重置序列发生器
+
+```sql
+TRUNCATE table_name RESTART IDENTITY;
+```
+
