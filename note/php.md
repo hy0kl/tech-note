@@ -553,3 +553,7 @@ $ chmod 755 config.inc.php
 ```
 After much trial and error, I found that if I increase the output_buffering value in the php.ini file, this error goes away
 ```
+
+# windows 开发中的坑
+
+utf-8编码还分有BOM和无BOM,坑的不要不要的
