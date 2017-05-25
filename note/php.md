@@ -556,4 +556,4 @@ After much trial and error, I found that if I increase the output_buffering valu
 
 # windows 开发中的坑
 
-utf-8编码还分有BOM和无BOM,坑的不要不要的
+utf-8编码还分有BOM和无BOM,坑的不要不要的,好在`git diff`能查看到.windows,你值得远离!!!
