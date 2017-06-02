@@ -285,3 +285,9 @@ Branch develop set up to track remote branch develop from origin.
     remote = origin
     merge = refs/heads/develop
 ```
+
+# 查询当前分支的最新版本号(commit id)
+
+```
+$ git rev-parse HEAD
+```
