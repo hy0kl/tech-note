@@ -289,5 +289,13 @@ Branch develop set up to track remote branch develop from origin.
 # 查询当前分支的最新版本号(commit id)
 
 ```
+# 只输出 commit hash 串
 $ git rev-parse HEAD
+
+# 同时输出提交日志内容
+$ git log --pretty=oneline -1 --color=never
 ```
+
+如果仅用于自动化部署,建议使用第一条命令.第二行命令需要重定向,默认会唤起`less`
+
+
