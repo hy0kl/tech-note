@@ -298,4 +298,11 @@ $ git log --pretty=oneline -1 --color=never
 
 如果仅用于自动化部署,建议使用第一条命令.第二行命令需要重定向,默认会唤起`less`
 
+# 取得`git commit`的提交计数
+
+```
+$ git rev-list --all --count
+$ git rev-list --count master
+$ git log --pretty=oneline | wc -l
+```
 
