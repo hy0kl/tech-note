@@ -214,6 +214,12 @@ Merge made by the 'recursive' strategy.
 按第 4 步如法炮制,可以完成 work-branch 到 master 的合并.将功能分支合并至 master,完成上线后一定要按第 4 步那样将 master 再合到 develop 中去,并删除远端的 work-branch.
 ```
 
+# 版本控制之道
+
+0. 先人后己
+0. 小批量提交
+0. 走心的日志
+
 # It looks like git-am is in progress. Cannot rebase.
 
 [see](http://lamb-mei.com/550/git-git-am-%E6%9B%B4%E6%96%B0%E9%8C%AF%E8%AA%A4%E8%99%95%E7%90%86%E6%96%B9%E5%BC%8F/)
@@ -242,6 +248,8 @@ $rm -rf .git/rebase-apply
 # rebase 还是 merge?
 
 `rebase`和`merge`是代码观察者查看代码线性变化的不同维度,对最终合并的代码来讲,没有任何区别.`merge`是完全的以时间为线性轴,体现出源码在不同时间点上发生的变化;而`rebase`是提交源码作者为轴,将同一作者的提交在目标源码的最后基线上线性的合并,表现为分支功能的代码提交是线性的,而不是与协作者提交相穿插.
+
+建议同分支合并使用`rebase`,跨分支合并使用`merge`,这样不会丢失关键的`merge message`.
 
 # 将 svn 项目源码迁到 github/gitlab
 
