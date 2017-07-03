@@ -258,7 +258,8 @@ $ svn log svn-pro-src | grep '^r' | awk '{print $3 " = " $3 " <" $3 "@UFO.com>"}
 $ git svn clone svn-pro-src --authors-file=users.txt --no-metadata
 $ cd project
 $ git remote add origin github/gitlab远程源
-$ git push -u origin master
+$ git push -u origin --all
+$ git push -u origin --tags
 ```
 
 # [使用自己生成SSL证书时，Git报错的解决办法](http://my.oschina.net/jlan/blog/506065)
