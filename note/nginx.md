@@ -323,8 +323,9 @@ The ngx_http_ssi_module module is a filter that processes SSI (Server Side Inclu
 HTTP 1.1 chunked-encoding request body support for Nginx.
 http://wiki.nginx.org/HttpChunkinModule
 ```
+# nginx 配置相关
 
-# nginx 配置文件中的单位记法
+## nginx 配置文件中的单位记法
 
 ```
 当指定空间时,可以使用的单位有:
@@ -341,7 +342,7 @@ http://wiki.nginx.org/HttpChunkinModule
     M   月(包含30天)
     y   年(包含365天)
 ```
-# nginx 错误日志设置
+## nginx 错误日志设置
 
 ```
 语法: error_log /path/file level;
@@ -357,23 +358,106 @@ level 是日志的输出级别,取值范围是 debug, info, notice, warn, error,
 注意: 如果日志级别设定到 debug,必须在 configure 时加入 --with-debug 配置项.
 ```
 
-# core dump 相关配置
-## 限制 coredump 核心转储的大小
+## core dump 相关配置
+### 限制 coredump 核心转储的大小
 
 ```
 语法: worker_rlimit_core size;
 ```
 
-## 指定 coredump 文件生成目录
+### 指定 coredump 文件生成目录
 
 ```
 语法: working_directory path;
 ```
 
-# 指定 nginx worker 进程可以打开的最大句柄描述符
+## 指定 nginx worker 进程可以打开的最大句柄描述符
 
 ```
 语法: worker_rlimit_nofile limit;
+```
+
+## 限制信号队列
+
+```
+语法: worker_rlimit_sigpending limit;
+```
+
+## 性能优化相关
+
+### worker进程数
+
+```
+语法: worker_processes number;
+默认: 1
+```
+
+### 绑定worker进程到指定的CPU内核
+
+```
+语法: worker_cpu_affinity cpumask [cpumask...]
+```
+
+### SSL硬件加速
+
+```
+语法: ssl_engine device;
+```
+
+### 系统调用`gettimeofday`的执行频率
+
+```
+语法: time_resolution t;
+```
+
+### worker进程优先级设置
+
+```
+语法: worker_priority nice;
+默认: worker_priority 0;
+```
+
+## 事件类配置项
+
+### 是否打开`accept`锁
+
+```
+语法: accept_mutex [on | off];
+默认: accept_mutex on;
+```
+
+### lock文件路径
+
+```
+语法: lock_file path/file;
+默认: lock_file logs/nginx.lock;
+```
+
+### 使用accept锁后到真正建立连接之间的延迟时间
+
+```
+语法: accept_mutex_delay Nms;
+默认: accept_mutex_delay 500ms;
+```
+
+### 批量建立新连接
+
+```
+语法: multi_accept [on | off];
+默认: multi_accept off;
+```
+
+### 选择事件模型
+
+```
+语法: use [kqueue | rtsig | epoll | /dev/poll | select | poll | eventport];
+默认: nginx 会自动使用最适合的事件模型.
+```
+
+### 每个worker的最大连接数
+
+```
+语法: worker_connections number;
 ```
 
 # if 指令
@@ -543,20 +627,5 @@ NGX_HTTP_POST_ACCESS_PHASE | ngx_http_core_post_access_phase
 NGX_HTTP_TRY_FILES_PHASE | ngx_http_core_try_files_phase
 NGX_HTTP_CONTENT_PHASE | ngx_http_core_content_phase
 NGX_HTTP_LOG_PHASE | ngx_http_core_generic_phase
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
