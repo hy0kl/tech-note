@@ -460,6 +460,301 @@ level 是日志的输出级别,取值范围是 debug, info, notice, warn, error,
 语法: worker_connections number;
 ```
 
+## 虚拟主机与请求分发
+
+### 监听端口
+
+```
+语法: listen address:port [default(deprecated in 0.8.21) | default_server | [backlog=num] | rcvbuf=size | sndbuf=size | accept_filter=filter | deferred | bind | ipv6only=[on|off] | ssl];
+默认: listen 80;
+配置块: server
+```
+
+### 主机名
+
+```
+语法: server_name name [...];
+配置块: server
+```
+
+如果`server_name`后跟着空字符串`"";`,那边表示匹配没有`Host`这个HTTP头部的请求.
+
+### `server_name_hash_bucket_size`
+
+```
+语法: server_name_hash_bucket_size size;
+默认: server_name_hash_bucket_size 32|64|128;
+配置块: http, server, location
+```
+
+### `server_name_hash_max_size`
+
+```
+语法: server_name_hash_max_size size;
+默认: server_name_hash_max_size 512;
+配置块: http, server, location
+```
+
+### 重定向主机名称的处理
+
+```
+语法: server_name_in_redirect on | off;
+默认: server_name_in_redirect on;
+配置块: http, server 或者 location
+```
+
+### 文件路径的定义
+
+```
+语法: root path;
+默认: root html;
+配置块: http, server, location, if
+```
+
+### 以alias方式设置资源路径
+
+```
+语法: alias path;
+配置块: location
+```
+
+alias 后面可以添加正则表达式.
+
+### 访问首页
+
+```
+语法: index file ...;
+默认: index index.html;
+配置块: http, server, location
+```
+
+### 根据HTTP返回码重定向页面
+
+```
+语法: error_page code [code..] [= | =anser-code] uri | @named_location;
+配置块: http, server, location, if
+
+error_page 502 503 504 /50x.html;
+error_page 404 =200 /empty.gif;
+```
+
+### 是否允许递归使用`error_page`
+
+```
+语法: recursive_error_pages [on | off];
+默认: recursive_error_pages off;
+配置块: http, server, location
+```
+
+### `try_files`
+
+```
+语法: try_files path1 [path2] uri;
+配置块: server, location
+```
+
+## 内存及磁盘资源分配
+
+### HTTP包体只存储到磁盘文件中
+
+```
+语法: client_body_in_file_only on | clean | off;
+默认: client_body_in_file_only off;
+配置块: http, server, location
+```
+
+### HTTP包体尽量写入到一个内存的buffer中
+
+```
+语法: client_body_in_single_buffer on | off;
+默认: client_body_in_single_buffer off;
+配置块: http, server, location
+```
+
+### 存储HTTP头部的内存buffer大小
+
+```
+语法: client_header_buffer_size size;
+默认: client_header_buffer_size 1k;
+配置块: http, server
+```
+
+### 存储超大HTTP头部的内存buffer大小
+
+```
+语法: large_client_header_buffers number size;
+默认: large_client_header_buffers 4 8k;
+配置块: http, server
+```
+
+### 存储HTTP包体的内存的buffer大小
+
+```
+语法: client_body_buffer_size size;
+默认: client_body_buffer_size 8k/16k;
+配置块: http, server, location
+```
+
+### HTTP包体的临时存放目录
+
+```
+语法: client_body_temp_path dir-path [level1 [level2 [level3]]];
+默认: client_body_temp_path client_body_temp;
+配置块: http, server, location
+```
+
+### `connection_pool_size`
+
+```
+语法: connection_pool_size size;
+默认: connection_pool_size 256;
+配置块: http, server
+```
+
+### `request_pool_size`
+
+```
+语法: request_pool_size size;
+默认: request_pool_size 4k;
+配置块: http, server
+```
+
+## 网络连接的设置
+
+### 读取HTTP头部的超时时间
+
+```
+语法: client_header_timeout time(默认单位: 秒);
+默认: client_header_timeout 60;
+配置块: http, server, location
+
+408 "Request timed out"
+```
+
+### 读取HTTP包体的超时时间
+
+```
+语法: client_body_timeout time;(默认单位: 秒)
+默认: client_body_timeout 60;
+配置块: http, server, location
+```
+
+### 发送响应的超时时间
+
+```
+语法: send_timeout time;
+默认: send_timeout 60;
+配置块: http, server, location
+```
+
+### `reset_timeout_connection`
+
+```
+语法: reset_timeout_connection on | off;
+默认: reset_timeout_connection off;
+配置块: http, server, location
+连接超时后将通过向客户端发送RST包来直接重置连接.打开后nginx会在某个连接超时后,不是使用正常情形下的四次握手关闭TCP连接,而是直接向用户发送RST重置包,不再等待用户的应答,直接释放nginx服务器上关于这个套接字使用的所有缓存(如TCP滑动窗口),相比正常的关闭方式,它使得服务器避免产生许多处于FIN_WAIT1,FIN_WAIT2,TIME_WAIT状态的TCP连接.
+注意,使用RST重置包关闭连接会带来一些问题,默认情况下不会开启.
+```
+
+### `lingering_close`
+
+```
+语法: lingering_close off | on | always;
+默认: lingering_close on;
+配置块: http, server, location
+控制nginx关闭用户连接的方式.always表示关闭用户连接前必须无条件地处理连接上所有用户发送的数据.off表示关闭连接时完全不管连接上是否已经有准备就绪的来自用户数据.on是中间值,一般情况下在关闭连接前都会处理连接上的用户发送的数据,除了有些情况下业务上认定这之后的数据是不必要的.
+```
+
+### `lingering_time`
+
+```
+语法: lingering_time time;
+默认: lingering_time 30s;
+配置块: http, server, location
+启用后对于上传大文件很有用.
+当用户请求的Content-Lenght大于max_client_body_size配置时,nginx服务会立刻向用户发送"413(Request entiry too large)"响应.但是很多客户端可能不管413返回值,仍然持续不断的上传HTTPbody,这时,经过了lingering_time设置的时间后,nginx将不管用户是否仍在上传,都会把连接关闭掉.
+```
+
+### `lingering_timeout`
+
+```
+语法: lingering_timeout time;
+默认: lingering_timeout 5s;
+配置块: http, server, location
+lingering_close生效后,在关闭连接前,会检测是否有用户发送的数据到达服务器,如果超过lingering_timeout时间后还没有数据可读,就直接关闭连接;否则,必须在读取完连接缓冲区上的数据并丢弃后才会关闭连接.
+```
+
+### 对某些浏览器禁用`keepalive`功能
+
+```
+语法: keepalive_disable [msie6 | safari | none]...;
+默认: keepalive_disable msie6 safari;
+配置块: http, server, location
+```
+
+### keepalive超时时间
+
+```
+语法: keepalive_timeout time;(默认单位: 秒)
+默认: keepalive_timeout 75;
+配置块: http, server, location
+```
+
+### 一个keepalive长连接上允许承载的请求最大数
+
+```
+语法: keepalive_requests n;
+默认: keepalive_requests 100;
+配置块: http, server, location
+```
+
+### `tcp_nodelay`
+
+```
+语法: tcp_nodelay on | off;
+默认: tcp_nodelay on;
+配置块: http, server, location
+确定对keepalive连接是否使用TCP_NODELAY选项
+```
+
+### `tcp_nopush`
+
+```
+语法: tcp_nopush on | off;
+默认: tcp_nopush off;
+配置块: http, server, location
+在打开sendfile选项时,确定是否开启FreeBSD系统上的TCP_NOPUSH或Linux系统上的TCP_CORK功能.打开tcp_nopush后,将会在发送响应时把整个响应包头放到一个TCP包中发送.
+```
+
+## MIME类型设置
+
+```
+MIME type 与文件扩展的映射
+语法: types {...}
+配置块: http, server, location
+例如:
+types {
+    text/html  html;
+    text/html  conf;
+    image/gif  gif;
+    image/jpeg jpg;
+}
+
+默认MIME type
+Syntax:  default_type mime-type;
+Default: default_type text/plain;
+Context: http, server, location
+
+Syntax:  types_hash_bucket_size size;
+Default: types_hash_bucket_size 64;
+Context: http, server, location
+
+Syntax:  types_hash_max_size size;
+Default: types_hash_max_size 1024;
+Context: http, server, location
+```
+
 # if 指令
 
 ```
@@ -474,6 +769,8 @@ level 是日志的输出级别,取值范围是 debug, info, notice, warn, error,
 # location 的匹配规则
 
 ```
+语法: location [=|~|~*|^~|@] /uri/ {...}
+
 1). = 表示把 URI 作为字符串,以便与参数中的 uri 做完全匹配.
 2). ~ 表示匹配 URI 时字母大小写敏感.
 3). ~* 表示匹配 URI 时忽略大小写.

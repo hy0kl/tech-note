@@ -128,3 +128,12 @@ GROUP BY uid
 ORDER BY max_id DESC
 ```
 
+# mysql 报错`1030 Got error 28 from storage engine`
+
+[see](https://stackoverflow.com/questions/10631387)
+
+```
+MySQL error "28 from storage engine" - means "not enough disk space".
+
+MySQL-server# df -h
+```
