@@ -673,7 +673,7 @@ error_page 404 =200 /empty.gif;
 默认: lingering_time 30s;
 配置块: http, server, location
 启用后对于上传大文件很有用.
-当用户请求的Content-Lenght大于max_client_body_size配置时,nginx服务会立刻向用户发送"413(Request entiry too large)"响应.但是很多客户端可能不管413返回值,仍然持续不断的上传HTTPbody,这时,经过了lingering_time设置的时间后,nginx将不管用户是否仍在上传,都会把连接关闭掉.
+当用户请求的Content-Lenght大client_max_body_size配置时,nginx服务会立刻向用户发送"413(Request entiry too large)"响应.但是很多客户端可能不管413返回值,仍然持续不断的上传HTTPbody,这时,经过了lingering_time设置的时间后,nginx将不管用户是否仍在上传,都会把连接关闭掉.
 ```
 
 ### `lingering_timeout`
@@ -755,6 +755,97 @@ Default: types_hash_max_size 1024;
 Context: http, server, location
 ```
 
+## 文件操作优化
+
+### sendfile系统调用
+
+```
+语法: sendfile on | off;
+默认: sendfile off;
+配置块: http, server, location
+可以启用Linux上的sendfile系统调用来发送文件,它减少了内核态与用户态之间的两次内存复制,会从磁盘中读取文件后直接在内核发送到网卡设备,提高了发送文件的效率.
+```
+
+### AIO系统调用
+
+```
+语法: aio on | off;
+默认: aio off;
+配置块: http, server, location
+此配置项表示是否在FreeBSD或Linux系统上启用内核级别的异步文件I/O功能.
+注意: 它与sendfile功能是互斥的.
+```
+
+### directio
+
+```
+Syntax:  directio size | off;
+Default: directio off;
+Context: http, server, location
+此配置项在FreeBSD和Linux系统上使用O_DIRECT选项去读取文件,缓冲区大小size,通常对大文件的读取速度有优化作用.
+注意: 它与sendfile功能是互斥.
+```
+
+### `directio_alignment`
+
+```
+Syntax:  directio_alignment size;
+Default: directio_alignment 512;
+Context: http, server, location
+它与directio配合使用,指定以directio方式读取文件时的对齐方式.一般情况下,512B已经足够了,但针对一些高情能的文件系统,如Linux下的XFS文件系统,可能需要设置到4KB作为对方方式.
+```
+
+### 打开文件缓存
+
+```
+语法: open_file_cache max=N [inactive=time] | off;
+默认: open_file_cache off;
+配置块: http, server, location
+文件缓存会在内存中存储以下3种信息:
+    文件句柄,文件大小和上次修改时间
+    已经打开过的目录结构
+    没有找到的或者没有权限操作的文件信息
+```
+
+### 是否缓存打开文件错误的信息
+
+```
+语法: open_file_cache_errors on | off;
+默认: open_file_cache_errors off;
+配置块: http, server, location
+```
+
+### 不被淘汰的最小访问次数
+
+```
+语法: open_file_cache_min_uses number;
+默认: open_file_cache_min_uses 1;
+配置块: http, server, location
+```
+
+### 检验缓存中元素的有效性的频率
+
+```
+语法: open_file_cache_valid time;
+默认: open_file_cache_valid 60s;
+配置块: http, server, location
+```
+
+## 对客户端特殊处理
+
+```
+# 忽略不合法的 HTTP 头部
+ignore_invalid_headers on;
+# HTTP 头部不允许下画线
+underscores_in_headers off;
+# 文件未找到时不记录error日志
+log_not_found off;
+# 合并相邻的"/"
+merge_slashes on;
+# 返回错误页面时不在server中注明nginx版本
+server_tokens off;
+```
+
 # if 指令
 
 ```
@@ -797,6 +888,14 @@ limit_except GET {
 }
 
 注意,允许 GET 方法意味着也允许 HEAD 方法.上面的代码表示禁止 GET/HEAD 方法,但其他 HTTP 方法是允许的.
+```
+
+## HTTP请求包体的最大值
+
+```
+语法: client_max_body_size size;
+默认: client_max_body_size 1m;
+配置块: http, server, location
 ```
 
 # 负载均衡的基本配置
