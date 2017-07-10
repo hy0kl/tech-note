@@ -1024,4 +1024,100 @@ NGX_HTTP_TRY_FILES_PHASE | ngx_http_core_try_files_phase
 NGX_HTTP_CONTENT_PHASE | ngx_http_core_content_phase
 NGX_HTTP_LOG_PHASE | ngx_http_core_generic_phase
 
+## 链表容器
+
+`src/core/ngx_list.h`
+
+```
+typedef struct ngx_list_part_s  ngx_list_part_t;
+
+struct ngx_list_part_s {
+    void             *elts;
+    ngx_uint_t        nelts;
+    ngx_list_part_t  *next;
+};
+
+
+typedef struct {
+    ngx_list_part_t  *last;
+    ngx_list_part_t   part;
+    size_t            size;
+    ngx_uint_t        nalloc;
+    ngx_pool_t       *pool;
+} ngx_list_t;
+```
+
+`ngx_list_t`描述整个链表,而`ngx_list_part_t`只描述链表的一个元素.每个链表元素`ngx_list_part_t`又是一个数组,拥有连续的内存,它既依赖于`ngx_list_t`里的`size`和`nalloc`来表示数组的容量,同时又依靠每个`ngx_list_part_t`成员中的`nelts`来表示数组当前已使用了多少容量.  `ngx_list_t`是一个链表容器,而链表中的元素又一个数组.事实上,`ngx_list_part_t`数组中的元素才是用户想要存储的东西,`ngx_list_t`链表能够容纳的元素数量由`ngx_list_part_t`数组元素的个数与每个数组所能容纳的元素相乘得到.
+
+### 设计的优点
+
+1. 链表中存储的元素是灵活的,它可以是任何一种数据结构
+1. 链表元素需要占用的内存由`ngx_list_t`管理,它已经通过数组分配好了
+1. 小块内存使用链表访问效率是低下的,使用用数组通过偏移量来直接访问内存则要高效的多
+
+
+## 内存池
+
+`src/core/ngx_palloc.h`
+
+## `ngx_table_elt_t`hash表
+
+`src/core/ngx_hash.h`
+
+```
+typedef struct {
+    ngx_uint_t        hash;
+    ngx_str_t         key;
+    ngx_str_t         value;
+    u_char           *lowcase_key;
+} ngx_table_elt_t;
+```
+
+## `ngx_buf_t`
+
+`src/core/ngx_buf.h`
+
+```
+typedef void *            ngx_buf_tag_t;
+
+typedef struct ngx_buf_s  ngx_buf_t;
+
+struct ngx_buf_s {
+    u_char          *pos; /**  */
+    u_char          *last;
+    off_t            file_pos;
+    off_t            file_last;
+
+    u_char          *start;         /* start of buffer */
+    u_char          *end;           /* end of buffer */
+    ngx_buf_tag_t    tag;
+    ngx_file_t      *file;
+    ngx_buf_t       *shadow;
+
+
+    /* the buf's content could be changed */
+    unsigned         temporary:1;
+
+    /*
+     * the buf's content is in a memory cache or in a read only memory
+     * and must not be changed
+     */
+    unsigned         memory:1;
+
+    /* the buf's content is mmap()ed and must not be changed */
+    unsigned         mmap:1;
+
+    unsigned         recycled:1;
+    unsigned         in_file:1;
+    unsigned         flush:1;
+    unsigned         sync:1;
+    unsigned         last_buf:1;
+    unsigned         last_in_chain:1;
+
+    unsigned         last_shadow:1;
+    unsigned         temp_file:1;
+
+    /* STUB */ int   num;
+};
+```
 
