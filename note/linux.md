@@ -831,3 +831,22 @@ $ find . -type f | awk '{cmd="echo "$1" | md5sum | cksum"; cmd | getline var; cl
 $ openssl rand -base64 12
 ```
 
+# ping: icmp open socket: Operation not permitted 的解决办法
+
+[see](http://www.cnblogs.com/276815076/p/5569400.html)
+
+```
+ping: icmp open socket: Operation not permitted 的解决办法:为ping加上suid即可。
+
+报错时ping的属性：
+[root@localhost ~]# ls -l /usr/bin/ping
+-rwxr-xr-x 1 root root 44896 Mar 23 18:06 /usr/bin/ping
+
+给ping加上suid：
+[root@localhost ~]# chmod u+s /usr/bin/ping
+[root@localhost ~]$ ls -l /usr/bin/ping
+-rwsr-xr-x 1 root root 44896 Mar 23 18:06 /usr/bin/ping
+
+然后就能正常执行了。
+```
+
