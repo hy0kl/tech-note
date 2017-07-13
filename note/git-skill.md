@@ -224,7 +224,7 @@ $ git ls-remote --tags  # 列出远端的所有 tags
 # 添加或修改的代码行数
 $ git log --stat | perl -ne 'END { print $c } $c += $1 if /(\d+) insertions/;'
 # 或者
-$ git log  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2; } END { printf "added lines: %s removed lines : %s total lines: %s\n", add, subs, loc; }'
+$ git log --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2; } END { printf "added lines: %s removed lines : %s total lines: %s\n", add, subs, loc; }'
 
 # 总提交数
 $ git log --oneline | wc -l
@@ -240,6 +240,7 @@ $ git log --pretty='%aN' | sort | uniq -c | sort -k1 -n -r | head -n 10
 
 # 统计某人的代码提交量,包括增加/删除
 $ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2; } END { printf "added lines: %s removed lines : %s total lines: %s\n", add, subs, loc; }'
+$ git log --author="$(git config --get user.email)" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2; } END { printf "added lines: %s removed lines : %s total lines: %s\n", add, subs, loc; }'
 ```
 
 # 问题描述
