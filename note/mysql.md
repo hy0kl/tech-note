@@ -137,3 +137,118 @@ MySQL error "28 from storage engine" - means "not enough disk space".
 
 MySQL-server# df -h
 ```
+
+# MySQL SHOW 语法
+
+## SHOW CHARACTER SET Syntax
+
+```
+SHOW CHARACTER SET
+    [LIKE 'pattern' | WHERE expr]
+
+SHOW CHARACTER SET LIKE 'utf%'
+```
+
+## SHOW COLUMNS Syntax
+
+```
+SHOW [FULL] {COLUMNS | FIELDS}
+    {FROM | IN} tbl_name
+    [{FROM | IN} db_name]
+    [LIKE 'pattern' | WHERE expr]
+
+SHOW COLUMNS FROM statistics_diary
+```
+
+## `SHOW CREATE TABLE tbl_name`
+
+## SHOW DATABASES Syntax
+
+```
+SHOW {DATABASES | SCHEMAS}
+    [LIKE 'pattern' | WHERE expr]
+```
+
+## SHOW ERRORS Syntax
+
+```
+SHOW ERRORS [LIMIT [offset,] row_count]
+SHOW COUNT(*) ERRORS
+```
+
+## SHOW GRANTS Syntax
+
+```
+SHOW GRANTS [FOR user]
+
+SHOW GRANTS FOR 'jeffrey'@'localhost';
+```
+
+## SHOW INDEX Syntax
+
+```
+SHOW {INDEX | INDEXES | KEYS}
+    {FROM | IN} tbl_name
+    [{FROM | IN} db_name]
+    [WHERE expr]
+```
+
+## `SHOW MASTER STATUS`
+
+## SHOW OPEN TABLES Syntax
+
+```
+SHOW OPEN TABLES
+    [{FROM | IN} db_name]
+    [LIKE 'pattern' | WHERE expr]
+```
+
+## `SHOW PRIVILEGES`
+
+## `SHOW [FULL] PROCESSLIST`
+
+## SHOW SLAVE STATUS Syntax
+
+```
+SHOW SLAVE STATUS [FOR CHANNEL channel]
+```
+
+## SHOW STATUS Syntax
+
+```
+SHOW [GLOBAL | SESSION] STATUS
+    [LIKE 'pattern' | WHERE expr]
+
+SHOW STATUS LIKE 'Key%';
+```
+
+## SHOW TABLE STATUS Syntax
+
+```
+SHOW TABLE STATUS
+    [{FROM | IN} db_name]
+    [LIKE 'pattern' | WHERE expr]
+```
+
+## SHOW TABLES Syntax
+
+```
+SHOW [FULL] TABLES
+    [{FROM | IN} db_name]
+    [LIKE 'pattern' | WHERE expr]
+```
+
+## SHOW VARIABLES Syntax
+
+```
+SHOW [GLOBAL | SESSION] VARIABLES
+    [LIKE 'pattern' | WHERE expr]
+```
+
+## SHOW WARNINGS Syntax
+
+```
+SHOW WARNINGS [LIMIT [offset,] row_count]
+SHOW COUNT(*) WARNINGS
+```
+
