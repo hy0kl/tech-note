@@ -78,6 +78,22 @@ set langmenu=C
 ```
 注: 如果不指定  --enable-multibyte, set enc, set fileencoding 时发现没有这样的指令.
 
+# 启动 vim 的一些选项
+
+[see](http://www.cnblogs.com/jiqingwu/archive/2012/06/14/vim_notes.html)
+
+```
+vim -c cmd file: 在打开文件前，先执行指定的命令；
+vim -r file: 恢复上次异常退出的文件；
+vim -R file: 以只读的方式打开文件，但可以强制保存；
+vim -M file: 以只读的方式打开文件，不可以强制保存；
+vim -y num file: 将编辑窗口的大小设为num行；
+vim + file: 从文件的末尾开始；
+vim +num file: 从第num行开始；
+vim +/string file: 打开file，并将光标停留在第一个找到的string上。
+vim --remote file: 用已有的vim进程打开指定的文件。 如果你不想启用多个vim会话，这个很有用。但要注意， 如果你用vim，会寻找名叫VIM的服务器；如果你已经有一个gvim在运行了， 你可以用gvim --remote file在已有的gvim中打开文件。
+```
+
 # vim 将回车替换为特殊字符 + 回车
 
 ```
@@ -136,4 +152,19 @@ set langmenu=C
 # 在 CSS 中对属性进行排序
 
 在可视模式下选择选中的行并输入 `:sort`，然后就可以对它们进行排序。
+
+## 在 vim 中用密码保护文件
+
+```
+害怕 root 用户或者其他人偷窥你的个人文件么？尝试在vim中用密码保护，输入：
+
+$ vim +X filename
+
+或者，在退出 vim 之前使用 :X 命令来加密你的文件，vim 会提示你输入一个密码。
+
+加密文件不需要加密，即停止对一个文件加密，可以把 'key' 选项设置为一个空字串：set key=
+然后在命令行模式输入：wq（保存退出）
+这样就可以把已加密文件去掉密码了。
+```
+
 
