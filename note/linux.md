@@ -10,6 +10,45 @@ print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" \
 | column -c3 -s " " -t | sort -nr | nl |  head -n10
 ```
 
+# 查找磁盘杀手`TOP 10`
+
+```
+$ du -sh * | sort -nr | head -n 10
+```
+
+# 查找内存杀手`TOP 5`
+
+```
+$ ps aux | sort -k4nr | head  -n 5
+```
+
+# 查找CPU杀手`TOP 5`
+
+```
+$ ps aux | sort -k3nr | head -n 5
+```
+
+# 用`diff`制作`patch`包
+
+```
+$ diff -ru original newfile > patch.package
+```
+
+# 过滤掉配置文件中的注释行
+
+```
+sed -i -e '/^#/d' httpd.conf
+sed -i.bak -e '/^#/d' httpd.conf # 过滤指定文件同时备份文件
+grep -v "^ *#" # 注意,中间有个空格,否则不起作用的.
+cat /usr/local/etc/apache22/httpd.conf | grep -v \# | sed '/^\s*$/d'
+```
+
+# `Linux`下安全的去重排序
+
+```
+$ sort -uf input
+```
+
 # 查看 linux 最大可以打开文件的数目
 
 ```
@@ -20,6 +59,42 @@ $ cat /proc/sys/fs/file-max
 
 ```
 IFS(Internal Field Seperator)
+```
+
+# 一条命令统计实时并发数
+
+```
+将其中的 $4 换成日志中的时间字段即可
+$ tail -f dev.access.log | awk 'BEGIN{OFS = "\t"; count = 0; iter_key = "check_key"}{count++; current = $4; if (iter_key != current) {print iter_key, count; count = 0; iter_key = current; }}'
+```
+
+# Q: 有`A`,`B`两文件列表,如何找出只在`A`列表出现过的行?
+
+```
+A: sort -T ~/tmp/ A B B | uniq -u > result.list
+```
+
+# Q: 怎样递归替换目录下所有文件中的字符串?
+
+```
+A:
+# 预览: foo => bar
+$ grep 'foo' * -R | sed -e 's/foo/bar/g'
+$ sed -e 's/foo/bar/g' `grep 'foo' * -lR --color=no`
+# 确认修改:
+$ sed -i 's/foo/bar/g' `grep 'foo' * -lR --color=no`
+```
+
+# 查看处在各种状态下的`TCP`连接数
+
+```
+$ netstat -nta | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+```
+
+## 如果要单独查看某个服务,则用端口号过滤一下
+
+```
+$ netstat -nta | grep 6379 | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ```
 
 # crontab 以日期为日志名重定向的坑
@@ -116,13 +191,6 @@ $ find ./ -inum 123456 -exec rm -rf {} \;
 注意：“{}”后要空一格再加上“\;”。
 ```
 
-# 一条命令统计实时并发数
-
-```
-将其中的 $4 换成日志中的时间字段即可
-$ tail -f dev.access.log | awk 'BEGIN{OFS = "\t"; count = 0; iter_key = "check_key"}{count++; current = $4; if (iter_key != current) {print iter_key, count; count = 0; iter_key = current; }}'
-```
-
 # linux 下查看某个端口是否被占用
 
 [FROM](http://my.oschina.net/u/193184/blog/146885)
@@ -203,6 +271,12 @@ $ arch
 
 ```
 $ date +"%Y%m%d" -d "yesterday"
+```
+
+# 取当前时间的`unix`时间戳
+
+```
+$ date +%s
 ```
 
 # sendemail 使用 163 smtp 代理发邮件报错
@@ -820,3 +894,35 @@ ping: icmp open socket: Operation not permitted 的解决办法:为ping加上sui
 然后就能正常执行了。
 ```
 
+# 转编码
+
+## iconv 转码失败?!
+
+```
+# 加 -c 参数即可
+iconv -c -f "utf-8" -t "gbk" utf-8.file -o gbk.file
+```
+
+## iconv 转化编码是忽略出错内容
+
+iconv [OPTION...] [-f encoding] [-t encoding] [inputfile ...]
+
+```
+iconv 用于字符编码转化:
+官方用法: iconv("gb2312", "UTF-8", "测试语句"); 在实际操作中，需要(最好)在第二个参数后面加上"//IGNORE"，即
+iconv("gb2312", "UTF-8//IGNORE", "测试语句"); 这个参数的意思是当转化过程中如果出错，那么就跳过错误，而不是默认的停在那里。 命令行中的用法是:
+iconv -f gbk -t utf-8//IGNORE from_file.txt -o new_format_file.txt
+```
+
+# 不解压缩直接查看*.gz和*.bz2命令
+
+```
+使用zcat可以查看*.gz文件内容
+使用bzcat可以直接查看*.bz2 文件内容
+```
+
+# `MySQL`导出查询数据
+
+```
+$ mysql -h127.0.0.1 -uroot -p3006 --default-character-set="utf8" 数据库名 < select.sql > result
+```
