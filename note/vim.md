@@ -66,6 +66,23 @@ n|  移至第n 个字元(栏)处。注意，要用 Shift 键。 n 是从头起�
 ./configure --enable-multibyte
 ```
 
+## 安装最新版vim
+
+1. 选择最新版`https://github.com/vim/vim/releases`
+  `wget https://github.com/vim/vim/archive/v版本号.tar.gz`
+1. 解压,编译,安装
+
+```
+$ mv v版本号.tar.gz vim-v版本号.tar.gz
+$ tar xf vim-v版本号.tar.gz
+$ cd vim-版本号
+$ ./configure --prefix=/usr/local --enable-multibyte
+# 视情况和权限而定
+$ ./configure --prefix=/home/work/local --enable-multibyte
+# 没有权限就 sudo
+$ make && make install
+```
+
 就可以正常显示输入的中文了。
 附上vimrc的部分内容:
 
