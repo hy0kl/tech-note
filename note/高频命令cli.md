@@ -13,6 +13,7 @@ lsof -p pid 可以看到当前进程所调用的文件
 netstat -nlp # linux 显示监听,进程
 netstat -anp # linux 查看哪些端口被打开
 netstat -anp | grep tcp
+netstat -anl | grep tcp # BSD
 sudo nmap -sT -O localhost # 更靠谱的查看那些端口被打开
 lsof -ni | grep LISTEN # mac 下类似上条命令效果
 lsof -i:9000 # 查看9000端口的占用者

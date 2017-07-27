@@ -97,6 +97,12 @@ $ netstat -nta | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 $ netstat -nta | grep 6379 | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ```
 
+# 查看 gateway 等网络情况
+
+```
+$ netstat -rn
+```
+
 # crontab 以日期为日志名重定向的坑
 
 % 在 crontab 里面是有特殊的意义的,需要使用 \ 进行转义
@@ -398,12 +404,6 @@ $ sudo apt-get install libcurl4-openssl-dev
 
 ***openssl 能用系统提供的还是尽量用系统的吧,这个组件太变态了.***
 
-# 查看 gateway 等网络情况
-
-```shell
-$ netstat -rn
-```
-
 # 个性化登陆欢迎词
 
 先安装软件
@@ -664,6 +664,7 @@ $ crontab -e
 
 ```
 $ netstat -nlp # linux 显示监听,进程
+$ netstat -anl | grep tpc # BSD
 $ lsof -ni | grep LISTEN # mac 下类似上条命令效果
 $ lsof -i:9000 # 查看9000端口的占用者
 ```
