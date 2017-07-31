@@ -1,3 +1,12 @@
+# MySQL事务隔离级别
+
+隔离级别 | 脏读(Drity Read) | 不可重复读(Non-repeatable read) | 幻读(Phantom Read)
+--- | --- | --- | ---
+Read Uncommitted（读取未提交内容） | v | v | v
+Read Committed（读取提交内容） | x | v | v
+Repeatable Read（可重读） | x | x | v
+Serializable（可串行化） | x | x | x
+
 # INSERT 时防止出现主键冲突错误的方法
 
 [参考](http://hi.baidu.com/ytjwt/item/9169ce144caa92f8746a840d)
