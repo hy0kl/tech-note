@@ -21,7 +21,7 @@ rtime | bigint | 用户发起请求的时间戳
 1. 将生成的密文串赋值给`data`
 1. 将`key`和`iv`使用`$$$$`连接起来,然后使用`RSA`公钥加密,并进行`base64`编码
 1. 将生成的密文串赋值给`signature`
-1. 通过`HTTP``POST`方式将报文发送到服务端
+1. 通过`HTTP POST`方式将报文(data=AES密文&signature=RSA密文)发送到服务端
 
 ### 接收响应解密算法
 
