@@ -457,3 +457,58 @@ string htmlspecialchars ( string $string
 3). strip_tags() 在过滤不规范 html 时存在陷井,存在过滤不符合预期的情况,可能会打断文档流.
 
 4). 三元操作符的优先级问题,适当的 () 可有效解决,并且提高代码可读性.
+
+# [php-cs-fixed](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+
+## rules
+
+### array_syntax
+
+将`[]`改写为`array()`
+
+
+### `binary_operator_spaces`
+
+- 操作符左右加一个空格(会打破原有的对齐方式)
+- 参数的`,`之后被一个空格
+
+实测发现对打乱本来对齐的代码.
+
+### `blank_line_after_namespace`
+
+### `blank_line_after_opening_tag`
+
+强制在`<?php`后空一行,不实用
+
+### `blank_line_before_return`
+
+强制`return`前空一行
+
+### braces
+
+`if`,`for`,`foreach`,`while`等的小括号和花括号格式化
+
+### `cast_spaces`
+
+### `class_definition`
+
+### `elseif`
+
+`elseif`转`else if`
+
+### `encoding`
+
+强制转为`UTF-8`,会删除`BOM`
+
+### `lowercase_keywords`
+
+关键字小写
+
+### `method_argument_space`
+
+参数列表中`,`之后加一个空格
+
+
+## 建议的rules
+
+`--rules=braces,blank_line_before_return,lowercase_keywords,method_argument_space,no_closing_tag
