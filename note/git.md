@@ -11,6 +11,8 @@
 - `master`分支为稳定主线分支,以在`master`分支打`tag`的静态版本来上线或回滚.
 - 专人负责将功能开发分支`merge`到`master`, 打`tag`和上线.
 - 合并代码的基本原则: 先人后己
+- 千万不要使用`git add *`,`git add .`,`git commit -a`,除非你知道自己在做什么
+- 尽量使用`git commit -i`,`git commit`,并唤起默认编辑器,可以有效防止误提交
 
 # git 多分支合并最佳实践
 
