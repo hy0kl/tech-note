@@ -950,3 +950,19 @@ grep -r -I -l $'^\xEF\xBB\xBF' /path | xargs sed -i 's/^\xEF\xBB\xBF//;q'
 
 这个命令会把当前目录及所有子目录下的BOM头删除掉。
 ```
+
+# centos warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+
+[see](https://my.oschina.net/u/232595/blog/1488844)
+
+1. 生成相应的locale配置文件
+
+  ```
+  # localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
+  ```
+
+2. 查看系统当前支持的locale定义
+
+  ```
+  # locale -a
+  ```
