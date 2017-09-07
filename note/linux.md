@@ -966,3 +966,14 @@ grep -r -I -l $'^\xEF\xBB\xBF' /path | xargs sed -i 's/^\xEF\xBB\xBF//;q'
   ```
   # locale -a
   ```
+
+# Linux中删除刚刚解压缩的文件
+[see](http://blog.csdn.net/lkforce/article/details/52861035)
+
+```
+如果解压缩的时候目标目录写错了，导致把文件解压到了错误的目录，可以用以下命令来把解压了的文件删除掉。
+命令如下：
+
+tar -tf {解压缩过的压缩包} | xargs rm -rf
+```
+
