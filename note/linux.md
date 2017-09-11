@@ -977,3 +977,14 @@ grep -r -I -l $'^\xEF\xBB\xBF' /path | xargs sed -i 's/^\xEF\xBB\xBF//;q'
 tar -tf {解压缩过的压缩包} | xargs rm -rf
 ```
 
+# type which
+
+```
+$ type vi
+vi is aliased to `vim'
+
+$ which vi
+alias vi='vim'
+    /usr/local/bin/vim
+```
+
