@@ -988,3 +988,16 @@ alias vi='vim'
     /usr/local/bin/vim
 ```
 
+# linux 命令执行的顺序
+
+1. 别名(alias)比内置命令(builtin)优先
+1. alias 优先级高于 function
+1. 函数function的优先级高于内置命令
+1. 内置命令比外部命令优先
+1. 在命令之前加上 builtin,那么将直接执行内置命令
+
+## 优先级排序
+
+alias > function > builtin > prgram
+
+实际上,`type -a`命令会按照bash解析的顺序依次打印该命令的类型,而`type -t`则会给出第一个将被解析的命令的类型
