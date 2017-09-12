@@ -561,3 +561,10 @@ utf-8编码还分有BOM和无BOM,坑的不要不要的,好在`git diff`能查看
 # APM
 
 [https://pecl.php.net/package/apm](https://pecl.php.net/package/apm) [https://github.com/patrickallaert/php-apm](https://github.com/patrickallaert/php-apm)
+
+# php-fpm 报诡异错误
+
+`php-fpm.log`报出形如: `php-fpm failed to ptrace ... Operation not permitted`的`ERROR`.<br />
+最后确定为session问题,由于设定为文件存储,没有清除机制,业务层错误的启用session,导报`/tmp`下无法再创建新文件,报出这样的错误.<br />
+出错信息很不明确,收到业务层报警,才发现是`session_start()`时报出的错.
+
