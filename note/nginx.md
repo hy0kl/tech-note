@@ -289,9 +289,22 @@ $ vim objs/Makefile
 找到 -Wl,-E 所在行, 加入 -ldl 即可.
 ```
 
-# 扩展模块
+# 扩展模块汇总
 
 ```
+* lua-nginx-module
+Embed the Power of Lua into NGINX HTTP servers
+https://github.com/openresty
+https://github.com/openresty/lua-nginx-module
+
+* nginx-rtmp-module
+NGINX-based Media Streaming Server
+https://github.com/arut/nginx-rtmp-module
+
+* naxsi
+NAXSI is an open-source, high performance, low rules maintenance WAF for NGINX
+https://github.com/nbs-system/naxsi
+
 * nginx-push-stream-module
 https://github.com/wandenberg/nginx-push-stream-module
 把 nginx 变成流式推服务器
@@ -305,16 +318,17 @@ https://github.com/FRiCKLE/ngx_cache_purge
 nginx module which adds ability to purge content from FastCGI, proxy, SCGI and uWSGI caches.
 
 * HttpAccessKeyModule
-http://wiki.nginx.org/HttpAccessKeyModuleChs
 防盗链
+http://wiki.nginx.org/HttpAccessKeyModuleChs
 
 * fastdfs-nginx-module
-https://code.google.com/p/fastdfs-nginx-module/
 分存存储的 nginx 代理
+https://code.google.com/p/fastdfs-nginx-module/
+https://github.com/happyfish100/fastdfs-nginx-module
 
 * nginx-upload-progress-module
-https://github.com/masterzen/nginx-upload-progress-module
 上传文件
+https://github.com/masterzen/nginx-upload-progress-module
 
 * ngx_http_ssi_module
 The ngx_http_ssi_module module is a filter that processes SSI (Server Side Includes) commands in responses passing through it. Currently, the list of supported SSI commands is incomplete.
@@ -322,6 +336,14 @@ The ngx_http_ssi_module module is a filter that processes SSI (Server Side Inclu
 * ngx_chunkin
 HTTP 1.1 chunked-encoding request body support for Nginx.
 http://wiki.nginx.org/HttpChunkinModule
+
+* nginx-limit-upstream
+limit the number of connections to upstream for NGINX
+https://github.com/cfsego/nginx-limit-upstream
+
+* nginx-module-vts
+Nginx virtual host traffic status module
+https://github.com/vozlt/nginx-module-vts
 ```
 # nginx 配置相关
 
