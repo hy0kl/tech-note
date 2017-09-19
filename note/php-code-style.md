@@ -71,7 +71,7 @@ EMBED_SUPPRESSEMBEDEXCEPTION。
 
 常量必须通过 "const" 定义为类的成员，强烈不鼓励使用 "define" 定义的全局常量。
 
-#编码风格
+# 编码风格
 
 ## PHP 代码划分（Demarcation）
 PHP 代码总是用完整的标准的 PHP 标签定界:
