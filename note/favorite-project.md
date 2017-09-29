@@ -360,8 +360,6 @@ https://github.com/Unknwon/go-study-index
 ## Go实战开发
 https://github.com/astaxie/Go-in-Action
 
-# 机器学习
-https://github.com/cjlin1/libsvm
 
 # Supervisor process control system for UNIX
 https://github.com/Supervisor/supervisor
@@ -441,6 +439,10 @@ https://github.com/tensorflow/tensorflow
 https://github.com/baidu-research/warp-ctc
 ## 腾讯
 https://github.com/Tencent/ncnn
+### A Flexible and Powerful Parameter Server for large-scale machine learning
+https://github.com/Tencent/angel
+## 机器学习 SVM 支持向量机
+https://github.com/cjlin1/libsvm
 
 # 开源分布式任务调度框架
 http://gearman.org/

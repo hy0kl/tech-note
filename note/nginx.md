@@ -361,6 +361,15 @@ https://github.com/FRiCKLE/ngx_postgres
 Lua library for HTTP cookie manipulations for OpenResty/ngx_lua
 https://github.com/cloudflare/lua-resty-cookie
 ```
+
+# nginx 应用
+
+```
+* VeryNginx
+A very powerful and friendly nginx base on lua-nginx-module( openresty ) which provide WAF, Control Panel, and Dashboards.
+https://github.com/alexazhou/VeryNginx
+```
+
 # nginx 配置相关
 
 ## nginx 配置文件中的单位记法

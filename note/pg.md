@@ -220,6 +220,7 @@ DROP SEQUENCE IF EXISTS table_name_id_seq;
 \password [USERNAME]   securely change the password for a user
 \c[onnect] {[DBNAME|- USER|- HOST|- PORT|-] | conninfo}
                        connect to new database
+\o [FILE]              send all query results to file or |pipe
 \h [NAME]              help on syntax of SQL commands, * for all commands
 ```
 
