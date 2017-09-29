@@ -1,4 +1,4 @@
-# bsd pkg 安装 Postgresql
+# bsd pkg 安装 PostgreSQL
 
 ```
 # pkg install postgresql95-client postgresql95-contrib postgresql95-server
@@ -108,10 +108,10 @@ postgres=# SELECT * FROM pg_stat_replication;
 
 关注的点:
 
-- backend_start 主从搭建的时间
-- state 同步状态 startup: 连接中、catchup: 同步中、streaming: 同步
-- sync_priority 同步Replication的优先度 0: 异步、1～?: 同步(数字越小优先度越高)
-- sync_state 有三个值，async: 异步、sync: 同步、potential: 虽然现在是异步模式，但是有可能升级到同步模式
+- `backend_start` 主从搭建的时间
+- `state` 同步状态 startup: 连接中、catchup: 同步中、streaming: 同步
+- `sync_priority` 同步Replication的优先度 0: 异步、1～?: 同步(数字越小优先度越高)
+- `sync_state` 有三个值，async: 异步、sync: 同步、potential: 虽然现在是异步模式，但是有可能升级到同步模式
 
 # 管理类SQL
 
@@ -272,7 +272,7 @@ END;
 $$ language 'plpgsql';
 ```
 
-Create a trigger on the table that calls the update_changetimestamp_column() function whenever an update occurs like so:
+Create a trigger on the table that calls the `update_changetimestamp_column()` function whenever an update occurs like so:
 
 ```sql
 CREATE TRIGGER update_ab_changetimestamp BEFORE UPDATE
@@ -398,4 +398,29 @@ setval('sequence_name', n, b=true): 设置当前值；b 默认设置 true，下�
 ```sql
 TRUNCATE table_name RESTART IDENTITY;
 ```
+
+# PostgreSQL数据库内核分析
+
+## part 2
+
+PostgreSQL的名字空间层次是: 数据库.模式.表.属性.
+
+当访问一个对象时,PostgreSQL会按以下空间顺序进行搜索:
+
+- 特殊名字空间(special),仅用于创建模式
+- 临时表的名字空间(TEMP)
+- 系统表的名字空间
+
+在PostgreSQL源代码`src/include/catalog`子目录下有一个sell脚本`unused_oids`用来输出当前版本中预分配和预留的OID的使用情况.
+
+初始化数据集簇包括创建包含数据库系统所有数据的数据目录、创建共享的系统表、创建其他的配置文件和控制文件，并创建三个数据库：模板数据库 template1 和 template0 、默认的用户数据库postgres。以后用户创建一个新数据库时，template1 数据库里的所有内容（包括系统表文件）都会拷贝过来，因此，任何在 template1 里面安装的内容都自动拷贝到之后创建的数据库中。template0 和 postgres 都是通过拷贝 template1 创建的。
+
+对于某个具体的数据库,在`PGDATA/base`里都对应一个子目录,子目录的名字是该数据库在系统表`pg_database`里的OID.
+
+在PostgreSQL中，默认情况下会将数据文件存在 PGDATA 指定的目录下，但如果 PGDATA 所在磁盘空间不足或者用户出于磁盘性能考虑，需要为系统增加新的物理存储位置（比如在另外一个磁盘上的目录），则可以使用“表空间”来进行扩展。表空间从物理意义上来说就是一个新的磁盘目录（当然这个目录可以和 PGDATA 同处一个磁盘或者不同磁盘），指定放在表空间中的数据库对象的物理文件都存放在表空间对应的目录中。如果某个数据库中的数据库对象被指定放在一个表空间中，那么在表空间的目录中会以该数据库的 OID 为名称创建一个目录，该数据库中属于该表空间的对象的物理文件都放在这个目录中。每个用户定义的表空间在`PGDATA/pg_tbspc`目录里面都有一个符号链接，它指向表空间的物理目录，该符号链接用表空间的 OID 命名。系统默认创建的表空间`pg_default`和`pg_global`并没有通过符号链接的方式指向其物理目录，而是直接对应`PGDATA/base`和`PGDATA/global`。
+
+GUC(Grand Unified Configuration)模块实现了多种数据类型（有boolean、int、float、string）的变量配置。
+
+字符串`ListenAddresses`：该字符串中存储的是服务器 IP 地址，如果是多接口主机的话，IP 地址之间用“,”隔开，“*”表示所有可用 IP 接口，缺省值为“localhost”。
+
 
