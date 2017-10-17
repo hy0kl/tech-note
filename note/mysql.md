@@ -7,6 +7,15 @@ Read Committed（读取提交内容） | x | v | v
 Repeatable Read（可重读） | x | x | v
 Serializable（可串行化） | x | x | x
 
+# 高性能MySQL拾遗
+
+## Schema与数据类型优化
+
+- 如果`EXPLAIN`执行计划的`Extra`列包含"Using temporary",则说明这个查询使用了隐式临时表
+- 如果使用的是InnoDB存储引擎,将不能在数据类型不是完全匹配的情况下创建外键,否则会有报错信息:`ERROR 1005(HY000): Can't create table`
+- MySQL提供`INEF_ATON()`和`INEF_NTOA()`函数,实现IPv4地址和32位无符号整数的互相转换
+
+
 # INSERT 时防止出现主键冲突错误的方法
 
 [参考](http://hi.baidu.com/ytjwt/item/9169ce144caa92f8746a840d)

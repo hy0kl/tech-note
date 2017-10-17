@@ -421,6 +421,36 @@ PostgreSQL的名字空间层次是: 数据库.模式.表.属性.
 
 GUC(Grand Unified Configuration)模块实现了多种数据类型（有boolean、int、float、string）的变量配置。
 
-字符串`ListenAddresses`：该字符串中存储的是服务器 IP 地址，如果是多接口主机的话，IP 地址之间用“,”隔开，“*”表示所有可用 IP 接口，缺省值为“localhost”。
+字符串`ListenAddresses`：该字符串中存储的是服务器 IP 地址，如果是多接口主机的话，IP 地址之间用“,”隔开，“\*”表示所有可用 IP 接口，缺省值为“localhost”。
 
+## part 3
 
+### 外存管理
+
+外存管理由SMGR(主要代码在smgr.c中)提供对外存操作的统一接口.
+
+VFD: 虚拟文件描述符<br/>
+FSM: 空闲空间映射表文件<br/>
+VM: 可见性映射表文件
+
+### 磁盘管理器
+
+磁盘管理器是SMGR的一种具体实现,它对外提供了管理磁盘介质的接口,其主要实现在文件`md.c`中.磁盘管理器并非对磁盘上的文件直接进行操作,而是通过VFD机制来进行文件操作.
+
+### 大数据存储
+
+- TOAST(The Oversized-Attribute Storage Technique,超尺寸字段存储技巧)
+
+  TOAST机制的实现代码在`src/backend/access/heap/tuptoaster.c`文件中.
+
+  只有在准备向支持TOAST的属性中存储超过`BLCKSZ / 4`(通常是2KB)的数据时,TOAST机制才会被触发.
+
+- 大对象
+
+  - 二进制大对象(BLOB)
+  - 字符大对象(CLOB)
+  - 双字节字符大对象(DBCLOB)
+
+### 内存管理
+
+MemoryContext内存上下文

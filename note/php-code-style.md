@@ -508,7 +508,11 @@ string htmlspecialchars ( string $string
 
 参数列表中`,`之后加一个空格
 
+### `no_whitespace_in_blank_line`
+
+删除空白行末尾的尾空格
 
 ## 建议的rules
 
-`--rules=braces,blank_line_before_return,lowercase_keywords,method_argument_space,no_closing_tag
+`--rules=braces,blank_line_before_return,lowercase_keywords,method_argument_space,no_closing_tag,no_whitespace_in_blank_line`
+
