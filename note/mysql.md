@@ -15,6 +15,88 @@ Serializable（可串行化） | x | x | x
 - 如果使用的是InnoDB存储引擎,将不能在数据类型不是完全匹配的情况下创建外键,否则会有报错信息:`ERROR 1005(HY000): Can't create table`
 - MySQL提供`INEF_ATON()`和`INEF_NTOA()`函数,实现IPv4地址和32位无符号整数的互相转换
 
+## 创建高性能的索引
+
+### 高性能的索引策略
+
+1. 独立的列
+
+  "独立的列"是指索引列不能是表达式的一部分,也不能是函数的参数
+
+1. 前缀索引和索引选择性
+
+  方法一: `SELECT COUNT(*) AS cnt, LEFT(cl, 7) AS pref FROM tbn GROUP BY pref ORDER BY cnt DESC LIMIT 10`
+
+  方法二: `SELECT COUNT(DISTINCT cl) / COUNT(*) FROM tbn`
+
+1. 多列索引
+1. 选择合适的索引列顺序
+
+  经验法则: 将选择性最高的列放到索引最前列
+
+1. 聚族索引
+
+### 覆盖索引
+
+被索引覆盖的查询,也叫做索引覆盖查询
+
+MySQL不能在索引中执行`LIKE`操作.这是底层存储引擎API的限制,MySQL5.5和更早的版本中只请允许在索引中做简单的比较操作(例如等于,不等于以及大于).MySQL能在索引中做最左前缀的匹配`LIKE`比较,因为该操作可以转换为简单的比较操作,但是如果是通配符开头的`LIKE`查询,存储引擎就无法比较匹配.
+
+延时关联(deferred join)
+
+如果`EXPLAIN`出来的`type`列的值主"index",则说MySQL使用了索引扫描来做排序
+
+MySQL可以使用同一个索引既满足排序,又用于查找行.因此,如果可能,设计索引时应该尽可能地同时满足这两种任务,这样是最好的.
+
+冗余索引和重复索引
+
+`EXPLAIN`的`Extra`列出现了`Using where`,表示MySQL服务器将存储引擎返回行以后再应用`WHERE`过滤条件
+
+InnoDB在二级索引上使用共享(读)锁,但访问主键索引需要排他(写)锁.
+
+
+### 索引案例学习
+
+1. 支持多种过滤条件
+
+    在有更多不同值的列上创建索引的选择性会更好
+
+1. 考虑其他常见的`WHERE`条件的组合
+
+    我们总是尽可能让MySQL使用更多的索引列,因为查询只能使用索引的最左前缀,直到遇到第一个范围条件列.
+
+    可以使用`IN()`来代替范围查询
+
+1. 避免多个范围条件
+
+    对于范围条件查询,MySQL无法再使用范围列后面的其他索引了,但对于"多个等值条件查询"则没有这个限制.
+
+1. 优化排序
+
+    例子: 高效使用(sex, rating)索引进行排序和分页:
+
+    ```sql
+    MySQL> SELECT <cols> FROM profiles INNER JOIN (
+        ->  SELECT <primary key cols> FROM profiles
+        ->  WHERE x.sex = 'M' ORDER BY rating 100000, 10
+        -> ) AS x USING(<primary key cols>);
+    ```
+
+1. 维护索引和表
+    1. 找到并修复损坏的表
+    1. 更新索引统计信息
+    1. `ANALYZE TABLE`
+    1. 使用`SHOW INDEX FROM`命令来查看索引的基数(Cardinality)
+    1. InnoDB会在表首次打开,或者执行`ANALYZE TABLE`,抑或表的大小发生非常大变化(大小变化超过十六分之一或者新插入了20亿行都会触发)的时候计算索引的统计信息.
+    1. InnoDB在打开某些`INFORMATION_SCHMA`表,或者使用`SHOW TABLE STATUS`和`SHOW INDEX`,抑或在MySQL客户端开启自动补全功能的时候都会触发索引统计信息的更新.客户端或监控程序触发索引信息采样更新时会导致大量的锁,给服务器带来很多的额外压力.可以关闭`innodb_stats_on_metadata`参数来避免.
+    1. 减少索引和数据的碎片.
+        - 行碎片(Row fragmentation)
+        - 行间碎片(Intra-row fragmentation)
+        - 剩余空间碎片(Free space fragmentation)
+
+## 查询性能优化
+
+查询优化,索引优化,库表结构优化需要齐头并进,一个不落.
 
 # INSERT 时防止出现主键冲突错误的方法
 
