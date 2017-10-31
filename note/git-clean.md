@@ -1,3 +1,7 @@
+# 实用小工具
+
+[delete-forever](https://github.com/hy0kl/profile/blob/master/local/bin/delete-forever.sh)
+
 # git永久性删除文件，包括日志清除，让文件无法再次恢复
 
 [git永久性删除文件，包括日志清除，让文件无法再次恢复](http://www.zhetenga.com/view/git%E6%B0%B8%E4%B9%85%E6%80%A7%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8C%85%E6%8B%AC%E6%97%A5%E5%BF%97%E6%B8%85%E9%99%A4%EF%BC%8C%E8%AE%A9%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E5%86%8D%E6%AC%A1%E6%81%A2%E5%A4%8D-512646118.html)
