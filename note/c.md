@@ -33,3 +33,14 @@ unsigned long long int t = 1ULL << 32;
 显式指定更宽的位数.
 ```
 
+# 开发环境编译参数
+
+```
+export CFLAGS="-Wall -g"
+```
+
+# 内存泄漏工具
+
+```
+valgrind --track-origins=yes ./pro
+```

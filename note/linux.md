@@ -1001,3 +1001,28 @@ alias vi='vim'
 alias > function > builtin > prgram
 
 实际上,`type -a`命令会按照bash解析的顺序依次打印该命令的类型,而`type -t`则会给出第一个将被解析的命令的类型
+
+# CentOS7 下 crontab 时区问题
+
+[see](https://menyifan.com/2016/11/08/crontab_timezone/)
+
+## 1. 同步时间
+
+```
+# ntpdate -u cn.pool.ntp.org
+```
+
+## 2. 设置时区
+
+```
+# timedatectl set-timezone Asia/Shanghai
+```
+
+## 3. 给 crontab 指定时区,重启`crond`
+
+```
+# cp -pf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# service cron restart
+```
+
+实践证明,直接第3步即可有效.
