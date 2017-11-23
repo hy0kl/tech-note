@@ -6,6 +6,7 @@
 - 索引实际上是指向一个或者多个物理`分片`的`逻辑命名空间`。
 - 分片是数据的容器，文档保存在分片内，分片又被分配到集群内的各个节点里。
 - 在请求的查询串参数中加上`pretty`参数，会调用 Elasticsearch 的 pretty-print 功能，该功能 使得 JSON 响应体更加可读。
+- `DSL`结构化查询语言.
 
 ## 检查文档是否存在
 
@@ -166,14 +167,57 @@ curl https://gist.githubusercontent.com/clintongormley/8579281/raw/563aecba1910a
 
 ## 类型和映射
 
+类型 | 表示的数据类型
+---- | -------------
+String | string(6.0 改为 text)
+Whole number | byte, short, integer, long
+Floating point | float, double
+Boolean | boolean
+Date | date
+
+### 查看映射
+
+```
+GET /{index}/_mapping/{type}
+```
+
 ## 根对象
 
 ##  动态映射
 
 ## 自定义动态映射
 
+- 区分全文(full text)字符串字段和准确字符字段(就是分词与不分词,全文的一般要分词,准确的就不需要分词)
+- 使用特定语言的分析器
+- 优化部分匹配字段
+- 指定自定义日期格式
+
+映射中最重要的字段参数是`type`
+
 ## 缺省映射
+
+`string`类型的字段默认的考虑到包含全文本,它们的值在索引前要经过分析器分析,并且在全文搜索此字段前要把查询语句做分析处理.
+
+对于`string`字段,两个最重要的映射参数是`index`和`analyer`
+
+### `index`
+
+值  | 解释
+--- | ---
+analyzed | 首先分析这个字符串,然后索引.
+`not_analyzed` | 索引这个字段,使之可以被搜索,但是索引内容和指定值一样.不分析此字段
+no | 不索引这个字段,这个字段不能为搜索到
+
+`string`类型字段默认值是`analyzed`
+
+### 分析
+
+对于`analyer`类型的字符串字段,使用`analyer`参数来指定哪一种分析器将在搜索和索引的时候使用,默认的`Elasticsearch`使用`standard`分析器,但可以通过指定一个内建的分析器来更改它,例如`whitespace`,`simple`或`english`.
+
 ## 重新索引数据
+
+1. 删除旧索引
+2. PUT mappings
 
 ## 索引别名和零停机
 
@@ -385,7 +429,7 @@ Lucene（或 Elasticsearch）使用`布尔模型（Boolean model）`查找匹配
 
 ### 忽略 TF/IDF
 
-### function_score 查询
+### `function_score`查询
 
 ### 按受欢迎度提升权重
 
