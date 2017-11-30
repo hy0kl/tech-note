@@ -399,6 +399,44 @@ setval('sequence_name', n, b=true): 设置当前值；b 默认设置 true，下�
 TRUNCATE table_name RESTART IDENTITY;
 ```
 
+# 最佳实践
+
+- 建议使用ip4,ip4r,ip6,ip6r,ipaddress,iprange 来存储IP,IP范围；使用macaddr来存储MAC (Media Access Control) address
+- 建议使用`timestamp with time zone(timestamptz)`,而不用`timestamp without time zone`,避免时间函数在对于不同时区的时间点返回值不同,也为业务国际化扫清障碍
+- 建议使用`NUMERIC(precision, scale)`来存储货币金额和其它要求精确计算的数值, 而不建议使用`real`,`double precision`
+- 建议使用`hstore`来存储非结构化,`key-value`键值型,对数不定的数据
+- 建议使用`jsonb`(比json更有优势)来存储`JSON (JavaScript Object Notation) data`
+- 建议主键的一步到位的写法: `id serial primary key`或`id bigserial primary key`
+- 建议内容系统中size较大的table主键的等效写法如下,便于后续维护：
+
+  ```
+  create table tbl_name(id serial not null);
+  create unique index CONCURRENTLY ON tbl_name (id);
+  ```
+
+- PostgreSQL 提供的`index`类型: `B-tree`,`Hash`,`GiST (Generalized Search Tree)`,`SP-GiST (space-partitioned GiST)`,`GIN (Generalized Inverted Index)`,`BRIN (Block Range Index)`,目前不建议使用`Hash`
+- 建议`create`或`drop index`时,加`CONCURRENTLY`参数,这是个好习惯，达到与写入数据并发的效果
+- 建议对于频繁`update`,`delete`的包含于`index`定义中的`column`的`table`, 用`create index CONCURRENTLY`,`drop index CONCURRENTLY`的方式进行维护其对应`index`
+- 建议用`unique index`代替`unique constraints`,便于后续维护
+- 建议对`where`中带多个字段`and`条件的高频`query`，参考数据分布情况，建多个字段的联合`index`
+- 建议对固定条件的（一般有特定业务含义）且选择比好（数据占比低）的`query`，建带`where`的`Partial Indexes`
+
+  ```
+  select * from test where status=1 and col=?; -- 其中status=1为固定的条件
+  create index on test (col) where status=1;
+  ```
+
+- 建议对经常使用表达式作为查询条件的query，可以使用表达式或函数索引加速query
+
+  ```
+  select * from test where exp(xxx);
+  create index on test ( exp(xxx) );
+  ```
+
+- 建议不要建过多`index`，一般不要超过6个，核心table（产品，订单）可适当增加`index`个数
+- 建议清空表时，使用`truncate`，不建议使用`delete`
+- 建议执行`DDL`,比如`CRAETE`、`DROP`、`ALTER`等, 尤其多条， 不要显式的开`transaction`, 因为加`lock`的`mode`非常高,极易产生`deadlock`
+
 # PostgreSQL数据库内核分析
 
 ## part 2
