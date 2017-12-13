@@ -482,3 +482,10 @@ $ cd /usr/local
 $ sudo chmod go-w mysql-5.6.19-osx10.7-x86_64
 ```
 
+# install python3
+
+zipimport.ZipImportError: can't decompress data; zlib not available
+
+```
+$ xcode-select --install
+```
