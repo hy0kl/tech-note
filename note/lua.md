@@ -76,10 +76,10 @@ end
 用lua进行面向对象的编程, 声明方法和调用方法统一用冒号,对于属性的调用全部用点号
 ```
 
-## OpenResty
+# OpenResty
 
 
-# OpenResty中可能的阻塞情况
+## OpenResty中可能的阻塞情况
 
 在`OpenResty`中,所有具备`set_keepalive`的类,库函数,说明都是支持连接池的.
 
