@@ -1,6 +1,27 @@
 # linux 下内存的统计
 
-$ cat /proc/meminfo
+`$ cat /proc/meminfo`
+
+# 诡异的 date
+
+```
+$ date -d@1271397015 # debian Linux GNU/Linux
+$ date "+%Y-%m-%d %H:%M" -d@1433327259
+$ date -r 1271397015 # Mac OS/BSD
+$ date -r 1433327259 "+%Y-%m-%d %H:%M"
+```
+
+## 取昨天的时间串
+
+```
+$ date +"%Y%m%d" -d "yesterday"
+```
+
+## 取当前时间的`unix`时间戳
+
+```
+$ date +%s
+```
 
 # history 命令字统计游戏
 
@@ -123,7 +144,7 @@ Linux wrok-dev 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86
 
 以下例子只列出百度的 http 头信息. user agent 用的是本机 Chrome.
 
-$ curl --head  --verbose --user-agent 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36' 'www.baidu.com'
+`$ curl --head  --verbose --user-agent 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36' 'www.baidu.com'`
 
 ```
 -k, --insecure      Allow connections to SSL sites without certs (H)
@@ -221,7 +242,7 @@ nginx   30785 baihe   25u  IPv4  16050      0t0  TCP *:http (LISTEN)
 
 ```
 
-# chmod 集锦
+# `chmod`集锦
 
 ```
 命令格式
@@ -273,19 +294,7 @@ $ getconf LONG_BIT
 $ arch
 ```
 
-# 取昨天的时间串
-
-```
-$ date +"%Y%m%d" -d "yesterday"
-```
-
-# 取当前时间的`unix`时间戳
-
-```
-$ date +%s
-```
-
-# sendemail 使用 163 smtp 代理发邮件报错
+# `sendemail`使用`163 smtp`代理发邮件报错
 
 [官方](https://bugs.launchpad.net/ubuntu/+source/sendemail/+bug/1072299)
 [From](http://raspberrypi.stackexchange.com/questions/2118/sendemail-failure)
@@ -374,7 +383,7 @@ $ diff -u -r dir1 dir2
 -I, --ignore-matching-lines=RE  ignore changes where all lines match RE
 ```
 
-# svn 报错
+# `svn`报错
 
 ```
 svn: warning: cannot set LC_CTYPE locale
@@ -388,7 +397,7 @@ svn: warning: please check that your locale name is correct
 export LC_ALL=C
 ```
 
-# git 添加过 key, push 时要求用户名和密码验证
+# `git`添加过`key`,`push`时却要求用户名和密码验证
 
 ```shell
 $ uname -a
@@ -441,7 +450,7 @@ fortune | cowsay -f $cowsay_file
 ## 删除一个大文件
 
 ```
-$ /path/to/file.log
+$ ls -l /path/to/file.log
 # 或使用如下格式
 $ : > /path/to/file.log
 
@@ -475,7 +484,7 @@ $ less foo.html
 ## 退出编辑器后，你可以继续用less浏览了 ##
 ```
 
-# kill 的信号量
+# `kill`的信号量
 
 ```
 Mac 下
@@ -546,43 +555,44 @@ $ kill -l
 63) SIGRTMAX-1  64) SIGRTMAX
 ```
 
-# shell 中条件判断
+# `shell`中条件判断
 
 [see](http://blog.csdn.net/ithomer/article/details/5904632)
 
-```
-[ -a FILE ]  如果 FILE 存在则为真。
-[ -b FILE ]  如果 FILE 存在且是一个块特殊文件则为真。
-[ -c FILE ]  如果 FILE 存在且是一个字特殊文件则为真。
-[ -d FILE ]  如果 FILE 存在且是一个目录则为真。
-[ -e FILE ]  如果 FILE 存在则为真。
-[ -f FILE ]  如果 FILE 存在且是一个普通文件则为真。
-[ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。 [ -h FILE ]  如果 FILE 存在且是一个符号连接则为真。
-[ -k FILE ]  如果 FILE 存在且已经设置了粘制位则为真。
-[ -p FILE ]  如果 FILE 存在且是一个名字管道(F如果O)则为真。
-[ -r FILE ]  如果 FILE 存在且是可读的则为真。
-[ -s FILE ]  如果 FILE 存在且大小不为0则为真。
-[ -t FD ]  如果文件描述符 FD 打开且指向一个终端则为真。
-[ -u FILE ]  如果 FILE 存在且设置了SUID (set user ID)则为真。
-[ -w FILE ]  如果 FILE 如果 FILE 存在且是可写的则为真。
-[ -x FILE ]  如果 FILE 存在且是可执行的则为真。
-[ -O FILE ]  如果 FILE 存在且属有效用户ID则为真。
-[ -G FILE ]  如果 FILE 存在且属有效用户组则为真。
-[ -L FILE ]  如果 FILE 存在且是一个符号连接则为真。
-[ -N FILE ]  如果 FILE 存在 and has been mod如果ied since it was last read则为真。
-[ -S FILE ]  如果 FILE 存在且是一个套接字则为真。
-[ FILE1 -nt FILE2 ]  如果 FILE1 has been changed more recently than FILE2, or 如果 FILE1 exists and FILE2 does not则为真。
-[ FILE1 -ot FILE2 ]  如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。
-[ FILE1 -ef FILE2 ]  如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。
-[ -o OPTIONNAME ]  如果 shell选项 “OPTIONNAME” 开启则为真。
-[ -z STRING ]  “STRING” 的长度为零则为真。
-[ -n STRING ] or [ STRING ]  “STRING” 的长度为非零 non-zero则为真。
-[ STRING1 == STRING2 ]  如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。
-[ STRING1 != STRING2 ]  如果字符串不相等则为真。
-[ STRING1 < STRING2 ]  如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。
-[ STRING1 > STRING2 ]  如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。
-[ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers.
-```
+操作 | 说明
+---- | ----
+[ -a FILE ] | 如果 FILE 存在则为真。
+[ -b FILE ] | 如果 FILE 存在且是一个块特殊文件则为真。
+[ -c FILE ] | 如果 FILE 存在且是一个字特殊文件则为真。
+[ -d FILE ] | 如果 FILE 存在且是一个目录则为真。
+[ -e FILE ] | 如果 FILE 存在则为真。
+[ -f FILE ] | 如果 FILE 存在且是一个普通文件则为真。
+[ -g FILE ] | 如果 FILE 存在且已经设置了SGID则为真。
+[ -h FILE ] | 如果 FILE 存在且是一个符号连接则为真。
+[ -k FILE ] |  如果 FILE 存在且已经设置了粘制位则为真。
+[ -p FILE ] | 如果 FILE 存在且是一个名字管道(F如果O)则为真。
+[ -r FILE ] | 如果 FILE 存在且是可读的则为真。
+[ -s FILE ] | 如果 FILE 存在且大小不为0则为真。
+[ -t FD ]   | 如果文件描述符 FD 打开且指向一个终端则为真。
+[ -u FILE ] | 如果 FILE 存在且设置了SUID (set user ID)则为真。
+[ -w FILE ] | 如果 FILE 如果 FILE 存在且是可写的则为真。
+[ -x FILE ] | 如果 FILE 存在且是可执行的则为真。
+[ -O FILE ] | 如果 FILE 存在且属有效用户ID则为真。
+[ -G FILE ] | 如果 FILE 存在且属有效用户组则为真。
+[ -L FILE ] | 如果 FILE 存在且是一个符号连接则为真。
+[ -N FILE ] | 如果 FILE 存在 and has been mod如果ied since it was last read则为真。
+[ -S FILE ] | 如果 FILE 存在且是一个套接字则为真。
+[ FILE1 -nt FILE2 ] | 如果 FILE1 has been changed more recently than FILE2, or 如果 FILE1 exists and FILE2 does not则为真。
+[ FILE1 -ot FILE2 ] | 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。
+[ FILE1 -ef FILE2 ] | 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。
+[ -o OPTIONNAME ]   | 如果 shell选项 “OPTIONNAME” 开启则为真。
+[ -z STRING ] | “STRING” 的长度为零则为真。
+[ -n STRING ] or [ STRING ] | “STRING” 的长度为非零 non-zero则为真。
+[ STRING1 == STRING2 ] | 如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。
+[ STRING1 != STRING2 ] | 如果字符串不相等则为真。
+[ STRING1 < STRING2 ]  | 如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。
+[ STRING1 > STRING2 ]  | 如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。
+[ ARG1 OP ARG2 ] | “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers.
 
 # 终端中文乱码
 
@@ -597,7 +607,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 ```
 
-# CentOS 查看内核版本，位数，版本号
+# `CentOS`查看内核版本，位数，版本号
 
 总是查,索性记录一下.[see](http://blog.csdn.net/painsonline/article/details/7668824)
 
@@ -652,7 +662,7 @@ Codename:       Final
 在linux中我们要操作任何东西都需要使用命令模式来操作了，所以如果想精通linux服务器的朋友可以多看看这方面的教程了，像我们这里查获系统版本都使用了几行命令了哦。
 ```
 
-# crontab 执行不发邮件
+# 让`crontab`执行不发邮件
 
 ```
 $ crontab -e
@@ -667,15 +677,6 @@ $ netstat -nlp # linux 显示监听,进程
 $ netstat -anl | grep tpc # BSD
 $ lsof -ni | grep LISTEN # mac 下类似上条命令效果
 $ lsof -i:9000 # 查看9000端口的占用者
-```
-
-# 诡异的 date
-
-```
-$ date -d@1271397015 # debian Linux GNU/Linux
-$ date "+%Y-%m-%d %H:%M" -d@1433327259
-$ date -r 1271397015 # Mac OS/BSD
-$ date -r 1433327259 "+%Y-%m-%d %H:%M"
 ```
 
 # 命令行参数自动补全
@@ -697,7 +698,7 @@ if ! shopt -oq posix; then
 fi
 ```
 
-# linux 下编辑安装 sphinx
+# `linux`下编辑安装`sphinx`
 
 ```
 如果报以下错误,请重新指定编译参数:
@@ -714,7 +715,7 @@ make: *** [all-recursive] Error 1
 ./configure --prefix=/home/work/sphinx --with-static-mysql --with-mysql-libs=/usr/lib/x86_64-linux-gnu --enable-id64
 ```
 
-# crontab 模板
+# `crontab`模板
 
 ```
 # Edit this file to introduce tasks to be run by cron.
@@ -744,7 +745,7 @@ make: *** [all-recursive] Error 1
 MAILTO=""
 ```
 
-# shell 脚本经典之 fork 炸弹
+# `shell`脚本经典之`fork`炸弹
 
 [see](http://www.ha97.com/2618.html)
 
@@ -760,7 +761,7 @@ MAILTO=""
 # ulimit -u 128
 ```
 
-# 一行永不退出的 shell
+# 一行永不退出的`shell`
 
 ```
 $ while [[ 1 ]]; do echo `date`; sleep 5; done
@@ -841,7 +842,7 @@ command <&- 关闭标准输入
 $ >myfile
 ```
 
-# 生成 ssh-key 时免交互
+# 生成`ssh-key`时免交互
 
 ```
 # 删除默认的旧key
@@ -974,7 +975,7 @@ grep -r -I -l $'^\xEF\xBB\xBF' /path | xargs sed -i 's/^\xEF\xBB\xBF//;q'
 如果解压缩的时候目标目录写错了，导致把文件解压到了错误的目录，可以用以下命令来把解压了的文件删除掉。
 命令如下：
 
-tar -tf {解压缩过的压缩包} | xargs rm -rf
+tar -tf {刚解压缩过的压缩包名} | xargs rm -rf
 ```
 
 # type which
@@ -988,7 +989,7 @@ alias vi='vim'
     /usr/local/bin/vim
 ```
 
-# linux 命令执行的顺序
+# linux命令执行的顺序
 
 1. 别名(alias)比内置命令(builtin)优先
 1. alias 优先级高于 function
@@ -1002,7 +1003,7 @@ alias > function > builtin > prgram
 
 实际上,`type -a`命令会按照bash解析的顺序依次打印该命令的类型,而`type -t`则会给出第一个将被解析的命令的类型
 
-# CentOS7 下 crontab 时区问题
+# `CentOS7`下`crontab`时区问题
 
 [see](https://menyifan.com/2016/11/08/crontab_timezone/)
 
