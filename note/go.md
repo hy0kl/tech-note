@@ -31,6 +31,14 @@
 - 一个包含`nil`指针的接口不是`nil`接口
 - 对于接口设计的一个好的标准是`ask only for what you need`(只考虑你需要的东西).
 - "顺序通信进程"(communicating sequential processes),被简称为CSP.CSP是一种现代的并发编程模型,在这种编程模型中值会在不同的运行实例(goroutine)中传递,尽管大多数情况下仍然是被限制在单一实例中.
+- `channel`是一个对应`make`创建的底层数据结构的引用.两个相同类型`channel`可以使用`==`运算比较,如果两个引用是相同的,比较结果为真,也可以和`nil`进行比较.
+- 如果`channel`的容量大于零,那么该`channel`是带缓冲的`channel`.
+- 当一个`channel`关闭后,再向该`channel`发送数据将导致`panic`异常.当一个被关闭的`channel`中已经发送的数据被成功接收后,后续的操作将不再阻塞,它们会立即返回一个零值.
+- 试图重复关闭一个`channel`将导致`panic`异常,试图关闭一个`nil`值的`channel`也将导致`panic`异常.
+- 单向`channel`,类型`chan<- T`表示一个只发送`T`的`channel`,只能发送不能接收;类型`<-chan T`表示一个只接收`T`的`channel`,只能接收不能发送.
+- `cap`函数获取`channel`内部缓存的容量,`len`函数将返回`channel`内部缓存队列中有效的元素个数.
+- 多个`goroutines`并发的向一个`channel`发送数据,或从同一个`channel`接收数据都是常见的用法.
+- 无缓存`channel`更强地保证了每个发送操作与相应的同步接收操作;对于带缓存的`channel`,发送和接收是解耦的.
 
 # 常用库
 
