@@ -242,3 +242,12 @@ git使用https方式进行连接时，默认每次推送时都要输入用户名
     $ git diff 0e9fa5d e5521e2
     ```
 
+# git管理二进制大文件
+
+## 推荐方案: `git lfs`
+
+目前`gitlab`,`github`,`coding.net`均支持.
+
+[官方网站](https://git-lfs.github.com/) [github](https://github.com/git-lfs/git-lfs)
+
+上面有详细的使用说明,请移步查看,此文档不再摘抄.

@@ -47,6 +47,9 @@
 - unicode 提供了IsDigit,IsLetter,IsUpper,和IsLower等功能
 - strconv 提供了包括布尔型,整型数,浮点型数和对应字符串的相互转换,还提供双引号转义相关的转换
 - `math/big` 精密计算
+- regexp 正则表达式
+- fmt 格式化
+- `net/http` 网络包
 
 ## JSON
 
