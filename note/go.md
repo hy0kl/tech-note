@@ -6,7 +6,11 @@
 - 内置函数 len() 和 cap() 都返回数组长度(元素数量).
 - 从 map 中取回一个 value 是临时复制品,对其成员的修改是没有任何意义的.
 - slice是引用类型，所以当引用改变其中元素的值时，其它的所有引用都会改变该值
-- new返回指针。
+  - `len`获取`slice`的长度
+  - `cap`获取`slice`的最大容量
+  - `append`向`slice`里面追加一个或者多个元素,然后返回一个和`slice`一样类型的`slice`
+  - `copy`函数`copy`从源`slice`的`src`中复制元素到目标`dst`,并且返回复制的元素个数
+- `new(T)`分配了零值填充的`T`类型的内存空间,并且返回其址,即一个`*T`类型的值.用Go的术语说,它返回了一个指针,指向新分配的类型`T`的零值.有一点非常重要:`new`返回指针.
 - make只能创建slice、map和channel，并且返回一个有初始值(非零)的T类型，而不是`*T`。
 - method的语法 `func (r ReceiverType) funcName(parameters) (results)`. Receiver 还可以是指针, 两者的差别在于, 指针作为 Receiver 会对实例对象的内容发生操作,而普通类型作为 Receiver 仅仅是以副本作为操作对象,并不对原实例对象发生操作。
 - 名字开头字母大小写决定了名字在包外的可见性.如果一个名字是大写字母开头(必须是在函数外部定义的包级名字;包级函数名本身也是包级名字),那么它将被导出.
@@ -39,6 +43,59 @@
 - `cap`函数获取`channel`内部缓存的容量,`len`函数将返回`channel`内部缓存队列中有效的元素个数.
 - 多个`goroutines`并发的向一个`channel`发送数据,或从同一个`channel`接收数据都是常见的用法.
 - 无缓存`channel`更强地保证了每个发送操作与相应的同步接收操作;对于带缓存的`channel`,发送和接收是解耦的.
+- 不要使用共享数据来通信;使用通信来共享数据
+- 避免数据竞争:
+  - 不要去写变量
+  - 避免从多个`goroutine`访问变量
+  - 互斥
+    - 二元信号量(binary semaphore)
+    - `sync.Mutex`互斥锁
+    - `sync.RWMutex`读写锁
+    - `sync.Once`初始化
+
+## 包和命名
+
+- 当创建一个包,一般要用短小的包名,但也不能太短导致难以理解
+- 包名一般采用单数形式
+- 要避免包名有其他含义
+- 当设计一个包的时候,需要考虑包名和成员名两个部分如何很好地配合
+- 专门用于保存包文档的源文件通常叫`doc.go`
+- Go语言的构建工具对包含`internal`名字的路径段的包导入路径做了特殊处理.这种包叫`internal`包,一个`internal`包只能被和`internal`目录同一个父目录的包所导入.
+
+## 测试
+
+### go test
+
+`got test`命令是一个按照一定的约定和组织的测试代码的驱动程序.在包目录内,所有以`_test.go`为后缀名的源文件并不是`go build`构建包的一部分,它们是`go test`测试的一部分.
+
+在`*_test.go`文件中,有三种类型的函数:测试函数,基准测试函数,示例函数.
+
+- 以`Test`为函数名前缀的函数,用于测试程序的一些逻辑行为是否正确
+- 基准测试函数是以`Benchmark`为函数名前缀的函数,它们用于衡量一些函数的性能
+- 示例函数是以`Example`为函数名前缀的函数,提供一个由编译器保证正确性的示例文档
+- 每个测试函数必须导入`testing`包
+
+### 测试函数
+
+- 随机测试
+- 白盒测试
+- 扩展测试包
+- 编写有效的测试
+- 避免不稳定的测试
+
+### 测试覆盖率
+
+### 基准测试
+
+## 反射
+
+`reflect.Type`和`reflect.Value`
+
+反射是由`reflect`包提供支持,它定义了两个重要的类型,`Type`和`Value`.一个`Type`表示一个Go类型,它是一个接口,有许多方法来区分类型和检查它们的组件.
+
+函数`reflect.TypeOf`接受任意的`interface{}`类型,并返回对应动态类型的`reflect.Type`
+
+一个`reflect.Value`可以持有一个任意类型的值.函数`reflect.ValueOf`接受任意的`interface{}`类型,并返回对应动态类型的`reflect.Value`.
 
 # 常用库
 
@@ -50,6 +107,10 @@
 - regexp 正则表达式
 - fmt 格式化
 - `net/http` 网络包
+- `html/template`
+  - func HTMLEscape(w io.Writer, b []byte) //把b进行转义之后写到w
+  - func HTMLEscapeString(s string) string //转义s之后返回结果字符串
+  - func HTMLEscaper(args ...interface{}) string //支持多个参数一起转义，返回结果字符串
 
 ## JSON
 
