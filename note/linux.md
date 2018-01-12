@@ -1027,3 +1027,16 @@ alias > function > builtin > prgram
 ```
 
 实践证明,直接第3步即可有效.
+
+# deluser VS userdel
+
+```
+deluser is perl script
+```
+
+# adduser VS useradd
+
+```
+adduser is perl script
+```
+

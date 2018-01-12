@@ -8,7 +8,7 @@ apt upgrade
 ## 一定得安装
 
 ```
-apt install autoconf libtool cmake unzip pkg-config pkgconf libsqlite3-dev sqlite3 silversearcher-ag htop vim ctags tree
+apt install autoconf libtool cmake unzip pkg-config pkgconf libsqlite3-dev sqlite3 silversearcher-ag htop vim ctags tree axel
 apt install openssl libssl-dev
 apt install git dos2unix mercurial libpcre3-dev libxml2-dev libxslt1-dev libreadline-dev
 apt install zlib1g-dev openssh-server
