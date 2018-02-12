@@ -251,3 +251,11 @@ git使用https方式进行连接时，默认每次推送时都要输入用户名
 [官方网站](https://git-lfs.github.com/) [github](https://github.com/git-lfs/git-lfs)
 
 上面有详细的使用说明,请移步查看,此文档不再摘抄.
+
+# [git rebase 后本地commit记录丢失](http://jonnyzheng.github.io/blog/2011/08/31/git-rebase--hou-ben-di-commit-ji-lu-diu-shi/)
+
+## 解决方法
+
+1. `cd .git/logs/refs/heads`,找到对应的分支
+2. 打开对应的文件,找到对应的日志(这个时候,认真写提交日志的好处就体现出来了)
+3. 简单粗爆法:`git reset --hard HASH`
