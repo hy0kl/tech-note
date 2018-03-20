@@ -1040,3 +1040,12 @@ deluser is perl script
 adduser is perl script
 ```
 
+# 不停止服务清空`nohup.out`文件
+
+```
+cat /dev/null > nohup.out
+cp /dev/null nohup.out
+```
+
+取其一即可
+
