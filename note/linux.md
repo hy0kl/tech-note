@@ -1049,3 +1049,9 @@ cp /dev/null nohup.out
 
 取其一即可
 
+# `grep`匹配中文的正则表达式
+
+```
+grep [^0-9a-zA-Z[:space:][:punct:]] -r <目录>
+grep [^0-z[:space:][:punct:]] -r <目录>
+```
