@@ -1055,3 +1055,29 @@ cp /dev/null nohup.out
 grep [^0-9a-zA-Z[:space:][:punct:]] -r <目录>
 grep [^0-z[:space:][:punct:]] -r <目录>
 ```
+
+# Linux出现`cannot create temp file for here-document: No space left on device`的问题解决
+
+[see1](http://www.cnblogs.com/EasonJim/p/6833354.html)
+[see2](http://www.cnblogs.com/kerrycode/p/4391859.html)
+
+在终端输入：cd /ho 按tab键时，显示错误：
+
+```
+bash: cannot create temp file for here-document: No space left on device
+
+```
+
+这是由于该磁盘的空间已经满了，这时候可以进行扩容，或者将该磁盘的部分目录迁移到别的磁盘。
+
+```
+df -h
+find . -type f -size +800M
+find . -type f -size +800M  -print0 | xargs -0 ls -l
+find . -type f -size +800M  -print0 | xargs -0 du -h
+find . -type f -size +800M  -print0 | xargs -0 du -h | sort -nr
+du -h --max-depth=1
+du -h --max-depth=2 | sort -n
+du -hm --max-depth=2 | sort -n
+du -hm --max-depth=2 | sort -nr | head -10
+```
