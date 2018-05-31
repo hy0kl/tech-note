@@ -279,3 +279,99 @@ $ sudo apt-get install python3-tk # 然后重新编译python3
 $ sudo apt-get install python-tk  # python2 的报错解决
 ```
 
+# virtualbox中的Ubuntu添加磁盘
+
+[see](https://blog.csdn.net/u011774239/article/details/50460076)
+
+
+VitrualBox是不允许更改重置硬盘大小的，所以当硬盘不足时，只能添加新硬盘。
+
+步骤如下：
+
+1. 关闭Ubuntu系统，打开VistualBox，"设置"->"存储"->“添加虚拟硬盘”
+2. 启动Ubuntu系统，操作命令如下：
+
+```
+#1 sudo fdisk -l // 查看现有系统磁盘空间
+----------------------------------------------------------------------------
+Disk /dev/sda: 10.7 GB, 10737418240 bytes
+255 heads, 63 sectors/track, 1305 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Disk identifier: 0x000af383
+
+Device Boot Start End Blocks Id System
+/dev/sda1 * 1 1244 9992398+ 83 Linux
+/dev/sda2 1245 1305 489982+ 5 Extended
+/dev/sda5 1245 1305 489951 82 Linux swap / Solaris
+
+Disk /dev/sdb: 5368 MB, 5368709120 bytes
+255 heads, 63 sectors/track, 652 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Disk identifier: 0x00000000
+
+Disk /dev/sdb doesn't contain a valid partition table
+----------------------------------------------------------------------------
+
+以上信息可以看到新增加的磁盘空间 /dev/sdb ，这里我们需要给新的磁盘空间分区。
+#2 fdisk /dev/sdb
+#3 Command (m for help): m // 键入m，可看到帮助信息
+打印结果如下：
+----------------------------------------------------------------------------
+Command action
+a toggle a bootable flag
+b edit bsd disklabel
+c toggle the dos compatibility flag
+d delete a partition
+l list known partition types
+m print this menu
+n add a new partition
+o create a new empty DOS partition table
+p print the partition table
+q quit without saving changes
+s create a new empty Sun disklabel
+t change a partition's system id
+u change display/entry units
+v verify the partition table
+w write table to disk and exit
+x extra functionality (experts only)
+----------------------------------------------------------------------------
+#4 Command (m for help): n
+打印结果如下：
+----------------------------------------------------------------------------
+Command action
+e extended
+p primary partition (1-4)
+----------------------------------------------------------------------------
+
+键入：p，选择添加主分区；
+键入：1，选择主分区编号为1， 这样创建后的主分区为sdb1；
+
+#5 First Cylinder(1-1014,default 1): 1 // 第一个主分区起始的磁盘块数
+#6 Last cylindet or +siza or +sizeM or +sizeK: +1024MB // 可以是以MB为单位的数字或者以磁盘块数，这里我们输入+1024MB表示分区大小为1G。
+
+这样我们就创建完一个分区，如果要创建更多分区可以照上面的步骤继续创建。
+最后，键入：w，保存所有并退出，完成新磁盘的分区。
+```
+
+4. 格式化磁盘分区
+
+```
+#7 sudo mkfs -t ext4 /dev/sdb1 // 用ext4格式对 /dev/sdb1 进行格式化
+```
+
+5. 挂载分区
+
+```
+#8 sudo mkdir /data // 创建新的挂载点
+#9 sudo mount /dev/sdb1 /data // 将新磁盘分区挂载到 /data 目录下
+#10 sudo df // 查看挂载结果
+```
+6. 开机自动挂载
+
+```
+#11 vi /etc/fstab // 修改 /etc/fstab 文件
+在 /etc/fstab 文件中，添加如下内容：
+/dev/sdb1 /data ext4 defaults 1 2
+```
+
+亲测有效
