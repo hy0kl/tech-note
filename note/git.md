@@ -26,7 +26,7 @@
 2. 在功能开发分支开发新功能,建议频繁按小功能完成点提交代码,完成自测
 3. 将 master 最新功能合并进功能开发分支,并推送到远端
   $ git fetch --all     # 抓取所有远端分支的最新代码
-  $ git merge origin/master     # 将远端 master 最新代码合并进入功能开发分支
+  $ git merge --no-ff origin/master     # 将远端 master 最新代码合并进入功能开发分支
 如果有冲突,用 `git log -p 冲突文件` 查看改动作者,尽量和原作者共同裁决冲突.
   $ git push origin work-branch     # 将功能开发分支推送到远端
 4. 将新功能分支 work-branch 合并到 master
@@ -35,13 +35,13 @@
   $ git checkout work-branch    # 切到待合并分支
   $ git pull origin work-branch # 拉取功能分支最新代码并在本地完成自动合并
   $ git fetch --all     # 抓取所有远端分支的最新代码
-  $ git merge origin/master     # 将远端 master 最新代码合并进入功能开发分支
+  $ git merge --no-ff origin/master     # 将远端 master 最新代码合并进入功能开发分支
   $ git push origin work-branch # 将变化推送到远端
   # 正式开始合并操作
   $ git checkout master    # 切换分支
   $ git pull origin master # 拉取并在本地合并 master 分支最新代码
   $ git fetch --all     # 抓取所有远端分支的最新代码,或者使用 git fetch -p,在抓取远端分支的同时,会清除远端已经删除而本地有记录的分支
-  $ git merge origin/work-branch  # 将功能分支的远端 origin/work-branch 合并进 master 本地分支
+  $ git merge --no-ff origin/work-branch  # 将功能分支的远端 origin/work-branch 合并进 master 本地分支
 如果有冲突,用 `git log -p 冲突文件` 查看改动作者,尽量和原作者共同裁决冲突.
   $ git push origin master # 将合并结果推送到远端,完成合并
 5. (可选)打 tag 上线,删除已合并的本地分支和远端分支
