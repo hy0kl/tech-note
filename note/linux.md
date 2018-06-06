@@ -1081,3 +1081,7 @@ du -h --max-depth=2 | sort -n
 du -hm --max-depth=2 | sort -n
 du -hm --max-depth=2 | sort -nr | head -10
 ```
+
+# 关于Linux系统清理`/tmp`文件夹
+
+RHEL/CentOS/Fedora/系统中,查看`/etc/cron.daily/tmpwatch`
