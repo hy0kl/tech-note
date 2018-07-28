@@ -1,3 +1,29 @@
+# 实用SQL
+
+## 按客户端IP分组,看哪个客户端的链接数最多
+
+```
+SELECT client_ip, COUNT(client_ip) AS client_num FROM
+    (SELECT substring_index(host, ':', 1) AS client_ip FROM information_schema.processlist) AS connect_info
+    GROUP BY client_ip ORDER BY client_num DESC;
+```
+
+## 查看正在执行的线程,并按Time倒排序
+
+```
+SELECT * FROM information_schema.processlist
+WHERE Command != 'Sleep'
+ORDER BY Time DESC;
+```
+
+## 找出所有执行时间超过5分钟的线程,拼凑出kill语句
+
+```
+SELECT CONCAT('kill ', id, ';') FROM information_schema.processlist
+WHERE Command != 'Sleep' AND Time > 300
+ORDER BY Time DESC;
+```
+
 # MySQL事务隔离级别
 
 隔离级别 | 脏读(Drity Read) | 不可重复读(Non-repeatable read) | 幻读(Phantom Read)
@@ -424,6 +450,8 @@ MySQL允许通过触发器,存储过程,函数的形式来存储代码.
 - 和基于语句的二进制日志复制合作得并不好.
 
 #### 存储过程和函数
+
+- 优化器无法使用关键字`DETERMINISTIC`来优化单个查询中多次调用存储函数的情况.
 
 # INSERT 时防止出现主键冲突错误的方法
 
