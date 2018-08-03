@@ -24,6 +24,12 @@ WHERE Command != 'Sleep' AND Time > 300
 ORDER BY Time DESC;
 ```
 
+## 统计库表的基本信息
+
+```
+SELECT TABLE_NAME, TABLE_ROWS, ENGINE, DATA_LENGTH FROM `information_schema`.`tables`  WHERE `table_schema` = 'DB_NAME';
+```
+
 # MySQL事务隔离级别
 
 隔离级别 | 脏读(Drity Read) | 不可重复读(Non-repeatable read) | 幻读(Phantom Read)
