@@ -1085,3 +1085,9 @@ du -hm --max-depth=2 | sort -nr | head -10
 # 关于Linux系统清理`/tmp`文件夹
 
 RHEL/CentOS/Fedora/系统中,查看`/etc/cron.daily/tmpwatch`
+
+# linux 如何更改软链接文件的所有者以及所属组
+
+```
+软连接必须使用chown命令的 -h 参数
+```

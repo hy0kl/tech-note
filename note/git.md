@@ -259,3 +259,11 @@ git使用https方式进行连接时，默认每次推送时都要输入用户名
 1. `cd .git/logs/refs/heads`,找到对应的分支
 2. 打开对应的文件,找到对应的日志(这个时候,认真写提交日志的好处就体现出来了)
 3. 简单粗爆法:`git reset --hard HASH`
+
+# [忽略合并日志](https://stackoverflow.com/questions/8527139/showing-commits-made-directly-to-a-branch-ignoring-merges-in-git)
+
+```
+$ git log --no-merges --first-parent
+$ git log --no-merges ^other-branch-1 ^other-branch-2 ^other-branch-3
+```
+

@@ -375,3 +375,17 @@ p primary partition (1-4)
 ```
 
 亲测有效
+
+# Ubuntu 18.04.1 LTS
+
+## 初始化
+
+```
+sudo apt install curl
+sudo apt install git
+sudo apt-get install tree ctags vim
+sudo apt install libpcre3-dev
+sudo apt install libssl-dev
+sudo apt install libzip-dev
+sudo apt install python3-pip
+```

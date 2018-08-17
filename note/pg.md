@@ -492,3 +492,15 @@ VM: 可见性映射表文件
 ### 内存管理
 
 MemoryContext内存上下文
+
+# 基本pg的分布式方案
+
+[citus](https://github.com/citusdata/citus)
+
+[GreenPlum](https://github.com/greenplum-db/gpdb)
+
+[PGPool-II](https://github.com/pgpool/pgpool2)
+
+[Postgres-XL](https://github.com/Postgres-XL/Postgres-XL) [postgres-x2](https://github.com/postgres-x2/postgres-x2)
+
+[PL/Proxy](https://plproxy.github.io/)
