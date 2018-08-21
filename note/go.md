@@ -122,3 +122,101 @@
 
 - 流式解码器`json.Decoder`,流式编码器`json.Encoder`.
 
+---
+
+# golang 项目收集
+
+# go gitlab
+https://gogs.io/
+https://github.com/gogits
+
+# goim
+https://github.com/Terry-Mao/goim
+
+# docker
+https://github.com/docker/docker
+
+# 集群管理
+https://github.com/kubernetes/kubernetes
+
+# 基于 go 语言的分布式实时消息平台
+https://github.com/bitly/nsq
+
+# go logger
+https://github.com/sirupsen/logrus
+https://github.com/cihub/seelog
+
+# go redis
+https://github.com/garyburd/redigo
+https://github.com/go-redis/redis
+
+# go HTTP web framework
+https://github.com/gin-gonic/gin
+https://github.com/astaxie/beego
+
+# golang protobuf
+https://github.com/golang/protobuf
+
+# JSON
+https://github.com/bitly/go-simplejson
+
+# golang WebSocket
+https://github.com/gorilla/websocket
+
+# Server-Sent Events implementation in Go
+https://github.com/manucorporat/sse
+
+# SQL
+https://github.com/go-sql-driver/mysql
+https://github.com/lib/pq
+https://github.com/go-pg/pg
+
+# curl 实用性不强,内核http包完全够用
+https://github.com/golang-basic/go-curl
+https://github.com/andelf/go-curl
+https://github.com/mikemintang/go-curl
+https://github.com/nareix/curl
+
+# setproctitle() for Go
+https://github.com/erikdubbelboer/gspt
+
+# spider
+https://github.com/henrylee2cn/pholcus
+https://github.com/antchfx/antch
+https://github.com/gocolly/colly
+https://github.com/PuerkitoBio/gocrawl
+https://github.com/PuerkitoBio/goquery
+
+# ES client
+https://github.com/olivere/elastic
+
+# git-lfs
+https://git-lfs.github.com/
+https://github.com/git-lfs/git-lfs
+
+# Modern SSH server for clusters and teams.
+https://github.com/gravitational/teleport
+
+# 原生数据库
+https://github.com/cockroachdb/cockroach
+
+# proxy
+https://github.com/snail007/goproxy
+
+# 标准库学习
+https://github.com/polaris1119/The-Golang-Standard-Library-by-Example
+
+# 代码分析
+https://github.com/360EntSecGroup-Skylar/goreporter
+https://github.com/alecthomas/gometalinter
+
+# 图像处理
+https://github.com/disintegration/imaging
+
+# go 圣经
+https://yar999.gitbooks.io/gopl-zh/content/
+https://github.com/adonovan/gopl.io
+
+# gopkg 参考例子
+https://github.com/astaxie/gopkg
+
