@@ -384,8 +384,10 @@ p primary partition (1-4)
 sudo apt install curl
 sudo apt install git
 sudo apt-get install tree ctags vim
+sudo apt install silversearcher-ag
 sudo apt install libpcre3-dev
 sudo apt install libssl-dev
 sudo apt install libzip-dev
 sudo apt install python3-pip
+sudo apt install net-tools
 ```

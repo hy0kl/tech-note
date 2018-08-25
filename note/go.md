@@ -97,6 +97,36 @@
 
 一个`reflect.Value`可以持有一个任意类型的值.函数`reflect.ValueOf`接受任意的`interface{}`类型,并返回对应动态类型的`reflect.Value`.
 
+## [golang下划线(underscore)的意义](https://www.jianshu.com/p/309f55a152db)
+
+### 用在import
+
+```
+import  _  "net/http/pprof"
+```
+
+引入包，会先调用包中的初始化函数，这种使用方式仅让导入的包做初始化，而不使用包中其他功能
+
+### 用在返回值
+
+```
+for _, v := range Slice{}
+_, err := funcCall()
+```
+
+表示忽略某个值。单函数有多个返回值，用来获取某个特定的值
+
+### 用在变量
+
+```
+type T struct{}
+var _ I = T{}
+
+// 其中I为interface
+```
+
+用来判断`type T`是否实现了`I`,用作类型断言，如果`T`没有实现接口`I`，则编译错误
+
 # 常用库
 
 - strings 提供了许多如字符串的查找,替换,比较,截断,拆分,和合并功能
@@ -143,8 +173,10 @@ https://github.com/kubernetes/kubernetes
 https://github.com/bitly/nsq
 
 # go logger
+https://github.com/uber-go/zap
 https://github.com/sirupsen/logrus
 https://github.com/cihub/seelog
+https://github.com/alecthomas/log4go
 
 # go redis
 https://github.com/garyburd/redigo
@@ -220,3 +252,22 @@ https://github.com/adonovan/gopl.io
 # gopkg 参考例子
 https://github.com/astaxie/gopkg
 
+# 解析配置文件
+https://github.com/go-ini/ini
+https://github.com/go-gcfg/gcfg
+https://github.com/kylelemons/go-gypsy
+https://github.com/go-yaml/yaml
+https://github.com/ghodss/yaml
+https://github.com/micro/go-config
+https://github.com/uber-go/config
+https://github.com/emitter-io/config
+https://github.com/zpatrick/go-config
+https://github.com/astaxie/beego
+https://github.com/larspensjo/config
+
+# shadowsocks
+https://github.com/shadowsocks/shadowsocks-go
+https://github.com/shadowsocks/go-shadowsocks2 https://github.com/riobard/go-shadowsocks2
+
+# 数据库管理
+https://github.com/go-xorm/dbweb
