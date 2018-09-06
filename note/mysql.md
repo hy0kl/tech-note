@@ -27,7 +27,15 @@ ORDER BY Time DESC;
 ## 统计库表的基本信息
 
 ```
-SELECT TABLE_NAME, TABLE_ROWS, ENGINE, DATA_LENGTH FROM `information_schema`.`tables`  WHERE `table_schema` = 'DB_NAME';
+SELECT TABLE_NAME, TABLE_ROWS, ENGINE, DATA_LENGTH, INDEX_LENGTH
+FROM `information_schema`.`tables`  WHERE `table_schema` = 'DB_NAME';
+```
+
+## 统计库占用空间大小
+
+```
+SELECT SUM(DATA_LENGTH) + SUM(INDEX_LENGTH)
+FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'DB_NAME';
 ```
 
 # MySQL事务隔离级别
