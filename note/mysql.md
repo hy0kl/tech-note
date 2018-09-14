@@ -4,8 +4,8 @@
 
 ```
 SELECT client_ip, COUNT(client_ip) AS client_num FROM
-    (SELECT substring_index(host, ':', 1) AS client_ip FROM information_schema.processlist) AS connect_info
-    GROUP BY client_ip ORDER BY client_num DESC;
+(SELECT substring_index(host, ':', 1) AS client_ip FROM information_schema.processlist) AS connect_info
+GROUP BY client_ip ORDER BY client_num DESC;
 ```
 
 ## 查看正在执行的线程,并按Time倒排序
@@ -36,6 +36,12 @@ FROM `information_schema`.`tables`  WHERE `table_schema` = 'DB_NAME';
 ```
 SELECT SUM(DATA_LENGTH) + SUM(INDEX_LENGTH)
 FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'DB_NAME';
+```
+
+## 查看表最后修改时间
+
+```
+SELECT TABLE_NAME, UPDATE_TIME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'DB_NAME';
 ```
 
 # MySQL事务隔离级别

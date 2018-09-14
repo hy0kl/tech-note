@@ -27,4 +27,34 @@ pip3 install keras
 1. 调优超参数
 1. 发布/预测结果
 
+# 其他
+
+## 线性回归 cost/lost function
+
+$$ cost(W,b) = \frac{1}{m}\sum_{i=1}^{m}(H(x^{(i)})-y^{(i)})^{2} $$
+
+`hypothesis = X * W + b`
+
+`cost = tf.reduce_mean(tf.squre(hypothesis - Y))`
+
+## 逻辑回归
+
+$$ H(X) = sigmoid(XW) = \frac{1}{1 + e^{-XW}} $$
+
+`hypothesis = tf.sigmoid(tf.matmul(X, W) + b)`
+
+$$ cost(W) = -\frac{1}{m}\sum ylog(H(x)) + (1 -y)(log(1 - H(x))) $$
+
+`cont = -tf.reduce_mean(Y * tf.log(hypothesis) + (1 - Y) * tf.log(1 - hypothesis))`
+
+## Softmax Classification
+
+`hypothesis = tf.nn.softmax(tf.matmul(X, W) + b)`
+
+## Cost function: cross entropy
+
+`cost = tf.reduce_mean(-tf.reduce_sum(Y * tf.log(hypothesis), axis=1))`
+
+## Neural Networks
+
 
