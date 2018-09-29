@@ -267,3 +267,9 @@ $ git log --no-merges --first-parent
 $ git log --no-merges ^other-branch-1 ^other-branch-2 ^other-branch-3
 ```
 
+# 从git提交历史中「恢复」文件修改时间
+
+```
+git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file"; done
+
+```

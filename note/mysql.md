@@ -44,6 +44,12 @@ FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'DB_NAME';
 SELECT TABLE_NAME, UPDATE_TIME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'DB_NAME';
 ```
 
+## 查看MySQL的最大连接数
+
+```
+SHOW VARIABLES LIKE 'max_connections';
+```
+
 # MySQL事务隔离级别
 
 隔离级别 | 脏读(Drity Read) | 不可重复读(Non-repeatable read) | 幻读(Phantom Read)

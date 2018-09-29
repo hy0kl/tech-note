@@ -271,3 +271,6 @@ https://github.com/shadowsocks/go-shadowsocks2 https://github.com/riobard/go-sha
 
 # 数据库管理
 https://github.com/go-xorm/dbweb
+
+# 热更新
+https://github.com/fvbock/endless
