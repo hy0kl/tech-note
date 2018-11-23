@@ -245,4 +245,70 @@ Lisp允许在符号`&rest`之后包括一揽子形参.如果函数带有`&rest`�
 
 ## 第7章 宏: 标准控制构造
 
+- 核心语言有了宏,就有可能构造成新的语法.
 
+### WHEN 和 UNLESS
+
+```
+(if condition then-form [else-form])
+```
+
+*condition*被求值,如果其值非`NIL`,那么*then-form*会被求值并返回其结果.否则,如果有`else-form`,它将被求值并返回结果.如果*condition*是`NIL`并且没有*else-form*,那么`IF`返回`NIL`.
+
+- 特殊操作符`PROGN`可以按顺序执行任意数量的形式并返回最后一个形式的值.
+
+```
+(defmacro when (condition &rest body)
+  `(if ,condition (progn ,@body)))
+
+(defmacro unless (condition &rest body)
+  `(if (not ,condition) (progn ,@body)))
+```
+
+### COND
+
+```
+(cond
+  (test-1 form*)
+    .
+    .
+    .
+  (test-N form*))
+```
+
+主体中的每个元素都代表一个条件分支,并由一个列表所构成,列表中含有一个条件形式,以及零或多个当该分支被选择时将被求值的形式.这些条件形式按照分支在主体中出现的顺序被依次求值,直到它们中的一个求值为真.这时,该分支中的其余形式将被求值,且分支中最后一个形式的值将作为整个`COND`的返回值.如果该分支的其余形式之后不再含有其他形式,那么就将返回该条件形式的值.
+
+### AND OR 和 NOT
+
+- `NOT`接受单一参数并对其真值取反,当参数为`NIL`时返回`T`,否则返回`NIL`.
+- `AND`和`OR`是宏,实现了对任意数量子表达式的逻辑合取和析取操作,并被定义成宏以便支持"短路"特性.
+
+### 循环
+
+### DOLIST 和 DOTIMES
+
+- `DOLIST`在一个列表的元素上循环操作,使用一个依次持有列表中所有后继元素的变量来执行循环体.
+- 如果想在列表结束之前中断一个`DOLIST`循环,则可以使用`RETURN`.
+- `DOTIMES`是用于循环计数的高级循环构造,其基本模板和`DOLIST`非常相似.其中的`count-form`必须要能求值一个整数.通过每次循环,`var`所持有的整数依次从0到比那个数小1的每一个后继整数.
+
+```
+(dolist (var list-form)
+  body-form*)
+
+(dotimes (var count-form)
+  body-form*)
+```
+
+### DO
+
+- `DO`允许绑定任意数量的变量,并且变量值在每次循环中的改变方式也是完全可控的也可以定义测试条件来决定何时终止循环,并可以提供一个形式,在循环结束时进行求值来为`DO`表达式整体生成一个返回值.
+
+```
+(do (variable-definition*)
+    (end-test-form result-form*)
+  statement*)
+```
+
+当`end-test-form`求值为真时,`result-form`(结果形式)将被求值,且最后一个结果形式的值将被作为`DO`表达式的值返回.
+
+### 强大的`LOOP`
