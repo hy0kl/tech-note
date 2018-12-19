@@ -391,3 +391,16 @@ sudo apt install libzip-dev
 sudo apt install python3-pip
 sudo apt install net-tools
 ```
+
+# ubuntu下定时执行工具cron开启关闭重启
+
+控制脚本一般为/etc/init.d/cron
+
+```
+启动：sudo /etc/init.d/cron start
+关闭：sudo /etc/init.d/cron stop
+重启：sudo /etc/init.d/cron restart
+重新载入配置：sudo /etc/init.d/cron reload
+```
+
+可以用`ps aux | grep cron`命令查看`cron`是否已启动
