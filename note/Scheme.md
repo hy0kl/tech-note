@@ -1,3 +1,5 @@
+# [Scheme](http://deathking.github.io/yast-cn/)
+
 # 将Scheme用作计算器
 
 ## 算术操作
@@ -323,3 +325,80 @@ MIT-Scheme提供了`sort`（实为`merge-sort`实现）和`quick-sort`函数。
 - `(string-copy s)` 复制字符串`s`。
 
 # 符号
+
+符号是一种通过地址管理字符串的数据。符号可以被如`eq?`这样运行迅速地函数处理，而纯字符串需要被更慢的`equal?`处理。
+
+## 有关符号的基本函数
+
+- `(symbol? x)` 如果`x`是一个符号则返回`#t`。
+- `(string->symbol str)` 将`str`转换为符号。`str`应该都是小写的，否则地址系统可能无法正常工作。
+- `(symbol->string sym)` 将`sym`转换为字符。
+
+## 关联表和哈希表
+
+### 关联表
+
+关联表是一个由序对组成的表，它是一个用于表达关联的基本数据类型。符号，字符，和数字常被作为键使用，因为它们可以使用诸如`eq?`或者`eqv?`的快速比较函数被比较。在作为键被使用前，字符串应该被转换为符号，从而获得更好的性能。
+
+函数`assq`，`assv`，和`assoc`从关联表中搜寻一个项。如果它们找到序对的`car`等于给定的`key`，就返回该序对。如果找不到函数返回`#f`。这些函数分别使用`eq?`，`eqv?`，和`equal?`比较键，这意味着`assq`最快，`assoc`最慢。
+
+### 哈希表
+
+哈希表是一种数据类型，它使用哈希函数将键转化为整数，并将值存储在由该整数所指示的位置。当表足够稀疏时，搜索，插入，更新都能以`O(1)`完成。
+
+- `(make-eq-hash-table size)`
+- `(make-eqv-hash-table size)`
+- `(make-equal-hash-table size)`
+- `(make-string-hash-table size)`
+
+分别使用`eq?`，`eqv?`，`equal?`，和`string=?`比较键的值。哈希表的初始大小`（size）`可以选择性指定`（optional）`。由于只比较键的地址，所以`eq-hash-table`是最快的。由于键是序列，所以`equal-hash-table`和`string-hash-table`比较慢。
+
+- `(hash-table/put! hash-table key datum)` 将`hash-table`中`key`对应的值设为`datum`。
+- `(hash-table/get hash-table key default)` 返回`hash-table`中的`key`对应的值。如果`key`不存在于`hash-table`中，返回`default`。
+- `(hash-table->alist hash-table)` 将`hash-table`转换为关联表。
+
+# 向量和结构体
+
+## 向量
+
+### 字面值
+
+向量通过闭合的`#(`和`)`表示。作为字面值`（literals）`时，它们应该被引用`（be quoted）`。
+
+### 向量函数
+
+- `(vector? obj)` 如果`obj`是一个向量则返回`#t`。
+- `(make-vector k)`
+- `(make-vector k fill)` 返回有`k`个元素的向量。如果指定了第二个参数`(fill)`，那么所有的元素都会被初始化为`fill`。
+- `(vector obj …)` 返回由参数列表构成的向量。
+- `(vector-length vector)` 返回向量`vector`的长度。
+- `(vector-ref vector k)` 返回向量`vector`的索引为`k`的元素。
+- `(vector-set! vector k obj)` 将向量`vector`的索引为`k`的元素修改为`obj`。
+- `(vector->list vector)` 将`vector`转换为表。
+- `(list->vector list)` 将`list`转换为向量。
+- `(vector-fill! vector fill)` 将向量`vector`的所有元素设置为`fill`。
+
+## 结构体
+
+结构体通过不同的属性清楚地表示数据。定义结构体的宏自动为结构体创建`取值器（accessor）`和`赋值器（setter）`。
+
+### MIT-Scheme中的结构体
+
+在MIT-Scheme中，结构体通过函数`define-structure`来定义。
+
+- 一个名字形如`[the name of structure]?`的函数用于检查某对象是否为特定结构体。
+- 一个名字形如`copy-[structure name]`的函数用于拷贝结构体。
+- 一个名字形如`set-[结构体名称]-[属性名称]!`用于将某属性设定为特定值。
+- 一个名字形如`[structure name]-[attribute name]`的函数用于读取结构体某属性的值。
+
+# 定义语法
+
+用户定义语法称作`宏（Macro）`。
+
+`宏是代码的变换。`代码在被求值或编译前进行变换，程序会继续执行就像变换后的代码一开始就写好了一样。
+
+可以在Scheme中通过用符合R5RS规范的`syntax-rules`轻易地定义简单宏。使用`syntax-rules`可以直接定义宏而不用担心`变量捕获（Variable Capture）`。
+
+## 局部语法
+
+在Scheme中，可以使用`let-syntax`和`letrec-syntax`来定义`局部语法（Local Syntax）`。

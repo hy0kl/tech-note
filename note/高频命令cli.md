@@ -59,10 +59,13 @@ cat config | grep -v '^#' --color=no | grep -v '^$'
 mysqldump --xml --opt -d -u db_user  db_name -p > db_name.xml
 ```
 
-## 只导出数据
+## 导出数据
 
 ```
+# 仅导出数据
 mysqldump -t -u db_user db_name -p > db_name.sql
+# 导出表结构,跳过锁表和注释
+mysqldump --add-drop-table --skip-add-locks --skip-comments -u db_user db_name -p > db_name.sql
 ```
 
 # PostgreSQL
