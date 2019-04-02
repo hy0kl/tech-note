@@ -741,3 +741,10 @@ SHOW WARNINGS [LIMIT [offset,] row_count]
 SHOW COUNT(*) WARNINGS
 ```
 
+# 创建数据库时指定字符集
+
+[see](https://dba.stackexchange.com/questions/76788/create-a-mysql-database-with-charset-utf-8)
+
+```
+CREATE DATABASE db-name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
