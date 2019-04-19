@@ -748,3 +748,5 @@ SHOW COUNT(*) WARNINGS
 ```
 CREATE DATABASE db-name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
+
+Note that `utf8_general_ci` is no longer recommended best practice.

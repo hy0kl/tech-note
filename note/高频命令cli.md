@@ -9,12 +9,16 @@ $ ssh-keygen -t RSA -b 4096 -C "your_email@example.com"
 # 进程和服务端口相关
 
 ```
-lsof -p pid 可以看到当前进程所调用的文件
+
+# linux -n显示端口号 -a 全部监听 -p 程序名
 netstat -nlp # linux 显示监听,进程
 netstat -anp # linux 查看哪些端口被打开
 netstat -anp | grep tcp
 netstat -anl | grep tcp # BSD
+
 sudo nmap -sT -O localhost # 更靠谱的查看那些端口被打开
+
+lsof -p pid 可以看到当前进程所调用的文件
 lsof -ni | grep LISTEN # mac 下类似上条命令效果
 lsof -i:9000 # 查看9000端口的占用者
 ```
@@ -121,3 +125,25 @@ $ ssh-keygen -lf /path/to/ssh/key
 $ ssh-keygen -E md5 -lf /path/to/ssh/key
 ```
 
+# 强大的 find
+
+```
+# 查找指定目录深度范围内的可执行文件
+find . -perm 0755 -type f -depth 1
+
+# 删除最后修改时间在当天之前的 jpep 文件
+find . -name '*.jpeg' -mmin +$((`date +%k` * 60)) -exec rm  {} \;
+
+# 删除指定属主且文件最后修改时在当天之前的文件
+find . -user nginx -mmin +$((`date +%k` * 60)) -exec rm {} \;
+
+# 删除最后修改时间在30天以前的文件
+find . -type f -mtime +30 -exec rm -rf {} \;
+```
+
+# 进程追踪
+
+```
+strace -o PID.log -T -tt -e trace=all -p PID
+strace -f -tt -T -p PID
+```
