@@ -148,6 +148,8 @@ SET_TARGET_PROPERTIES(target1 target2 ...
 INCLUDE_DIRECTORIES([AFTER|BEFORE] [SYSTEM] dir1 dir2 ...)
 
 向工程添加多个特定的头文件搜索路径，路径之间用空格分割
+
+相当于 g++ 选项中的 -I 参数的作用，也相当于环境变量中增加路径到 CPLUS_INCLUDE_PATH 变量的作用.
 ```
 
 1. `CMAKE_INCLUDE_DIRECTORIES_BEFORE`，通过`SET`这个`cmake`变量为`on`，可以将添加的头文件搜索路径放在已有路径的前面。
@@ -159,10 +161,14 @@ INCLUDE_DIRECTORIES([AFTER|BEFORE] [SYSTEM] dir1 dir2 ...)
 LINK_DIRECTORIES 和 TARGET_LINK_LIBRARIES
 
 LINK_DIRECTORIES(directory1 directory2 ...)
+当于 g++ 命令的 -L 选项的作用，也相当于环境变量中增加 LD_LIBRARY_PATH 的路径的作用。
 
 TARGET_LINK_LIBRARIES(target library1
         <debug | optimized> library2
         ...)
+设置要链接的库文件的名称.可以写库全名,也可简写.如: libevent.so, event.
+
+LINK_LIBRARIES 添加需要链接的库文件路径，注意是全路径.注: 应该是不推荐使用了.
 ```
 
 ## 特殊的环境变量 `CMAKE_INCLUDE_PATH` 和 `CMAKE_LIBRARY_PATH`
