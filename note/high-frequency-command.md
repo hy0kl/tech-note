@@ -10,10 +10,12 @@ $ ssh-keygen -t RSA -b 4096 -C "your_email@example.com"
 
 ```
 
-# linux -n显示端口号 -a 全部监听 -p 程序名
+# linux -n 显示端口号 -a 全部监听 -p 程序名 -l 显示监控中的服务器的socket
+# -t 显示TCP传输协议的连线状况 -u 显示UDP传输协议的连线状况
 netstat -nlp # linux 显示监听,进程
 netstat -anp # linux 查看哪些端口被打开
 netstat -anp | grep tcp
+
 netstat -anl | grep tcp # BSD
 
 sudo nmap -sT -O localhost # 更靠谱的查看那些端口被打开
