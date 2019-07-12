@@ -25,6 +25,14 @@ lsof -ni | grep LISTEN # mac 下类似上条命令效果
 lsof -i:9000 # 查看9000端口的占用者
 ```
 
+# 流量监控排查
+
+```
+# 查看防火墙iptables转发规则
+iptables -t nat -nL
+service iptables status
+```
+
 # mysql 相关
 
 ```
