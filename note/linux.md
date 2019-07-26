@@ -1091,3 +1091,9 @@ RHEL/CentOS/Fedora/系统中,查看`/etc/cron.daily/tmpwatch`
 ```
 软连接必须使用chown命令的 -h 参数
 ```
+
+# 强制活动用户退出
+
+```
+# pkill -kill -t [TTY]
+```
