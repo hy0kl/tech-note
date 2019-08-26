@@ -404,3 +404,10 @@ sudo apt install net-tools
 ```
 
 可以用`ps aux | grep cron`命令查看`cron`是否已启动
+
+# disable ssh login welcome message
+
+```
+sudo chmod -x /etc/update-motd.d/*
+```
+
