@@ -1097,3 +1097,9 @@ RHEL/CentOS/Fedora/系统中,查看`/etc/cron.daily/tmpwatch`
 ```
 # pkill -kill -t [TTY]
 ```
+
+# linux查找被删除但是未释放空间的文件
+
+```
+lsof | grep deleted
+```
