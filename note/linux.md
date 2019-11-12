@@ -1116,4 +1116,19 @@ lsof | grep deleted
 # vi /etc/ssh/ssh_config
 
 StrictHostKeyChecking no
+HashKnownHosts yes
 ```
+
+# linux 文件优化
+
+```
+# apt update && apt upgrade
+# echo 284289 > /proc/sys/fs/file-max
+# vim /etc/security/limits.conf
+soft nofile 65535
+hard nofile 65535
+soft nproc 65535
+hard nproc 65535
+# reboot
+```
+
