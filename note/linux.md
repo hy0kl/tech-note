@@ -55,6 +55,12 @@ $ ps aux | sort -k3nr | head -n 5
 $ diff -ru original newfile > patch.package
 ```
 
+# 打补丁
+
+```
+$ patch -p[num] < patchfile
+```
+
 # 过滤掉配置文件中的注释行
 
 ```
@@ -1102,4 +1108,12 @@ RHEL/CentOS/Fedora/系统中,查看`/etc/cron.daily/tmpwatch`
 
 ```
 lsof | grep deleted
+```
+
+# Host key verification failed
+
+```
+# vi /etc/ssh/ssh_config
+
+StrictHostKeyChecking no
 ```

@@ -411,3 +411,10 @@ sudo apt install net-tools
 sudo chmod -x /etc/update-motd.d/*
 ```
 
+# `Error in `appstreamcli': double free or corruption (fasttop)`
+
+```
+https://askubuntu.com/questions/943832/after-automatic-upgrade-apt-get-update-cause-error-in-appstreamcli-double-f?noredirect=1&lq=1
+
+sudo apt-get --fix-missing upgrade
+```
