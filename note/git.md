@@ -222,6 +222,14 @@ git使用https方式进行连接时，默认每次推送时都要输入用户名
 
 为当前仓库设置记住密码，设置后，只要在推送一次，以后就不需要用户名和密码了
 
+## 方法二
+
+```
+vim .git/config
+
+url = https://user-name:password@git.work.com/group-name/preject-name
+```
+
 # 查看某次合并操作中的代码改动
 
 1. 找到合并操作对应的log
