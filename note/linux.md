@@ -1132,3 +1132,12 @@ hard nproc 65535
 # reboot
 ```
 
+# Mac 终端走 V2ray 代理
+
+```shell
+# 开启
+export all_proxy=socks5://127.0.0.1:1080
+# 关闭
+unset all_proxy
+```
+
