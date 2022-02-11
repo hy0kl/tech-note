@@ -127,6 +127,19 @@ var _ I = T{}
 
 用来判断`type T`是否实现了`I`,用作类型断言，如果`T`没有实现接口`I`，则编译错误
 
+### 用在函数定义返回值
+
+```
+func Parse(base *PosBase, src io.Reader, errh ErrorHandler, pragh PragmaHandler, mode Mode) (_ *File, first error) {
+	var p parser
+	p.init(base, src, errh, pragh, mode)
+	p.next()
+	return p.fileOrNil(), p.first
+}
+```
+
+占位使用,减少变量声明.
+
 # 常用库
 
 - strings 提供了许多如字符串的查找,替换,比较,截断,拆分,和合并功能
@@ -151,6 +164,50 @@ var _ I = T{}
 - 编码的逆操作是解码,对应将JSON数据解码为Go语言的数据结构,Go语中一般叫unmarshaling,通过`json.Unmarshal`函数完成.
 
 - 流式解码器`json.Decoder`,流式编码器`json.Encoder`.
+
+# Go语言设计与实现
+
+## 编译原理
+
+抽象语法树（Abstract Syntax Tree、AST）
+静态单赋值（Static Single Assignment、SSA）是中间代码的特性
+
+1. 词法与语法分析
+1. 类型检查
+    1. 常量、类型和函数名及类型；
+    1. 变量的赋值和初始化；
+    1. 函数和闭包的主体；
+    1. 哈希键值对的类型；
+    1. 导入函数体；
+    1. 外部的声明；
+1. 中间代码生成
+1. 机器码生成
+
+### 编译器入口
+
+1. 检查常量、类型和函数的类型；
+1. 处理变量的赋值；
+1. 对函数的主体进行类型检查；
+1. 决定如何捕获变量；
+1. 检查内联函数的类型；
+1. 进行逃逸分析；
+1. 将闭包的主体转换成引用的捕获变量；
+1. 编译顶层函数；
+1. 检查外部依赖的声明；
+
+有限自动机（Deterministic Finite Automaton、DFA）
+Go 语言的词法解析是通过 src/cmd/compile/internal/syntax/scanner.go6 文件中的 cmd/compile/internal/syntax.scanner 结构体实现的
+顶层声明有五大类型，分别是常量、类型、变量、函数和方法
+Go 语言的解析器使用了 LALR(1) 的文法来解析词法分析过程中输出的 Token 序列20，最右推导加向前查看构成了 Go 语言解析器的最基本原理
+词法分析器 cmd/compile/internal/syntax.scanner 作为结构体被嵌入到了 cmd/compile/internal/syntax.parser 中，所以这个方法中的 p.next() 实际上调用的是 cmd/compile/internal/syntax.scanner.next 方法，它会直接获取文件中的下一个 Token，所以词法和语法分析一起进行的。
+复杂指令集（CISC）和精简指令集（RISC）
+数组是否应该在堆栈中初始化是在编译期就确定了.
+
+## 反射三大法则
+
+1. 从 interface{} 变量可以反射出反射对象；
+1. 从反射对象可以获取 interface{} 变量；
+1. 要修改反射对象，其值必须可设置；
 
 ---
 
