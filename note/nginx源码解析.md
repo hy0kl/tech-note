@@ -157,55 +157,69 @@ nginx 全局错误码
 
 返回值 | 意义
 ------ | ---
-NGX_OK | 如果在 nginx.conf 中配置了 satisfy all,那么将按照顺序执行下一个 ngx_http_handler_pt 处理方法;如果在 nginx.conf 中配置了 satisfy any,那么将执行下一个 ngx_http_phases 阶段中的第一个 ngx_http_handler_pt 处理方法.
-NGX_DECLINED | 按照顺序执行下一个 ngx_http_handler_pt 处理方法
-NGX_AGAIN <br /> NGX_DONE | 当前的 ngx_http_handler_pt 处理方法尚未结束,这意味着该处理方法在当前阶段中有机会再次被调用.这时会把控制权交还给事件模块,下次可写事件发生时会再次执行到该 ngx_http_handler_pt 处理方法.
-NGX_HTTP_FORBIDDEN <br /> HGX_HTTP_UNAUTHORIZED | 如果在 nginx.conf 中配置了 satisfy any,那么将 ngx_http_request_t 中的 access_code 成员设为返回值,按照顺序执行下一个 ngx_http_handler_pt 处理方法;如果在 nginx.conf 中配置了 satisfy all,那么调用 ngx_http_finalize_request 结束请求.
-NGX_ERROR <br /> 其他 | 需要调用 ngx_http_finalize_request 结束请求.
+NGX_OK | 如果在 nginx.conf 中配置了 satisfy all,那么将按照顺序执行下一个 `ngx_http_handler_pt` 处理方法;如果在 nginx.conf 中配置了 satisfy any,那么将执行下一个 `ngx_http_phases` 阶段中的第一个 `ngx_http_handler_pt` 处理方法.
+`NGX_DECLINED` | 按照顺序执行下一个 `ngx_http_handler_pt` 处理方法
+`NGX_AGAIN` <br /> `NGX_DONE` | 当前的 `ngx_http_handler_pt` 处理方法尚未结束,这意味着该处理方法在当前阶段中有机会再次被调用.这时会把控制权交还给事件模块,下次可写事件发生时会再次执行到该 `ngx_http_handler_pt` 处理方法.
+`NGX_HTTP_FORBIDDEN` <br /> `NGX_HTTP_UNAUTHORIZED` | 如果在 nginx.conf 中配置了 satisfy any,那么将 `ngx_http_request_t` 中的 `access_code` 成员设为返回值,按照顺序执行下一个 `ngx_http_handler_pt` 处理方法;如果在 nginx.conf 中配置了 satisfy all,那么调用 `ngx_http_finalize_request` 结束请求.
+`NGX_ERROR` <br /> 其他 | 需要调用 `ngx_http_finalize_request` 结束请求.
 
 # ngx_log_error 日志接口 level 参数取值范围
 
 级别名称 | 值 | 意义
 -------- | --- | ---
-NGX_LOG_STDERR  | 0 | 最高级别日志,日志的内容不会再写入 log 参数指定的文件,而是会直接将日志输出到标准错误设备,如控制台屏幕
-NGX_LOG_EMERG   | 1 | 大于 NGX_LOG_ALERT 级别,而小于或等于 NGX_LOG_EMERG 级别的日志都会输出到 log 参数指定的文件中
-NGX_LOG_ALERT   | 2 | 大于 NGX_LOG_CRIT 级别
-NGX_LOG_CRIT    | 3 | 大于 NGX_LOG_ERR 级别
-NGX_LOG_ERR     | 4 | 大于 NGX_LOG_WARN 级别
-NGX_LOG_WARN    | 5 | 大于 NGX_LOG_NOTICE 级别
-NGX_LOG_NOTICE  | 6 | 大于 NGX_LOG_INFO 级别
-NGX_LOG_INFO    | 7 | 大于 NGX_LOG_DEBUG 级别
-NGX_LOG_DEBUG   | 8 | 调试级别,最低级别日志
+`NGX_LOG_STDERR`  | 0 | 最高级别日志,日志的内容不会再写入 log 参数指定的文件,而是会直接将日志输出到标准错误设备,如控制台屏幕
+`NGX_LOG_EMERG`   | 1 | 大于` NGX_LOG_ALERT` 级别,而小于或等于 `NGX_LOG_EMERG` 级别的日志都会输出到 log 参数指定的文件中
+`NGX_LOG_ALERT`   | 2 | 大于 `NGX_LOG_CRIT` 级别
+`NGX_LOG_CRIT`    | 3 | 大于 `NGX_LOG_ERR` 级别
+`NGX_LOG_ERR `    | 4 | 大于 `NGX_LOG_WARN` 级别
+`NGX_LOG_WARN`    | 5 | 大于 `NGX_LOG_NOTICE` 级别
+`NGX_LOG_NOTICE`  | 6 | 大于 `NGX_LOG_INFO` 级别
+`NGX_LOG_INFO`    | 7 | 大于 `NGX_LOG_DEBUG` 级别
+`NGX_LOG_DEBUG`   | 8 | 调试级别,最低级别日志
 
 # ngx_log_debug 日志接口 level 参数的取值范围
 
 级别名称 | 值 | 意义
 -------- | --- | ---
-NGX_LOG_DEBUG_CORE  | 0x010 | nginx 核心模块的调试日志
-NGX_LOG_DEBUG_ALLOC | 0x020 | nginx 在分配内存时使用的调试日志
-NGX_LOG_DEBUG_MUTEX | 0x040 | nginx 在使用进程锁时使用的调试日志
-NGX_LOG_DEBUG_EVENT | 0x080 | nginx 事件模块的调试日志
-NGX_LOG_DEBUG_HTTP  | 0x100 | nginx http 模块的调试日志
-NGX_LOG_DEBUG_MAIL  | 0x200 | nginx 邮件模块的调试日志
-NGX_LOG_DEBUG_MYSQL | 0x400 | nginx 表示与 MySQL 相关的 nginx 模块所使用的调试日志
+`NGX_LOG_DEBUG_CORE`  | 0x010 | nginx 核心模块的调试日志
+`NGX_LOG_DEBUG_ALLOC` | 0x020 | nginx 在分配内存时使用的调试日志
+`NGX_LOG_DEBUG_MUTEX` | 0x040 | nginx 在使用进程锁时使用的调试日志
+`NGX_LOG_DEBUG_EVENT` | 0x080 | nginx 事件模块的调试日志
+`NGX_LOG_DEBUG_HTTP`  | 0x100 | nginx http 模块的调试日志
+`NGX_LOG_DEBUG_MAIL`  | 0x200 | nginx 邮件模块的调试日志
+`NGX_LOG_DEBUG_MYSQL` | 0x400 | nginx 表示与 MySQL 相关的 nginx 模块所使用的调试日志
 
 # HTTP 框架为 11 个阶段实现的 checker 方法
 
 阶段名称 | checker 方法
 -------- | -----------
-NGX_HTTP_POST_READ_PHASE | ngx_http_core_generic_phase
-NGX_HTTP_SERVER_REWRITE_PHASE | ngx_http_core_rewrite_phase
-NGX_HTTP_FIND_CONFIG_PHASE | ngx_http_core_find_config_phase
-NGX_HTTP_REWRITE_PHASE | ngx_http_core_rewrite_phase
-NGX_HTTP_POST_REWRITE_PHASE | ngx_http_core_post_rewrite_phase
-NGX_HTTP_PREACCESS_PHASE | ngx_http_core_generic_phase
-NGX_HTTP_ACCESS_PHASE | ngx_http_core_access_phase
-NGX_HTTP_POST_ACCESS_PHASE | ngx_http_core_post_access_phase
-NGX_HTTP_TRY_FILES_PHASE | ngx_http_core_try_files_phase
-NGX_HTTP_CONTENT_PHASE | ngx_http_core_content_phase
-NGX_HTTP_LOG_PHASE | ngx_http_core_generic_phase
+`NGX_HTTP_POST_READ_PHASE` | `ngx_http_core_generic_phase`
+`NGX_HTTP_SERVER_REWRITE_PHASE` | `ngx_http_core_rewrite_phase`
+`NGX_HTTP_FIND_CONFIG_PHASE` | `ngx_http_core_find_config_phase`
+`NGX_HTTP_REWRITE_PHASE` | `ngx_http_core_rewrite_phase`
+`NGX_HTTP_POST_REWRITE_PHASE` | `ngx_http_core_post_rewrite_phase`
+`NGX_HTTP_PREACCESS_PHASE` | `ngx_http_core_generic_phase`
+`NGX_HTTP_ACCESS_PHASE` | `ngx_http_core_access_phase`
+`NGX_HTTP_POST_ACCESS_PHASE` | `ngx_http_core_post_access_phase`
+`NGX_HTTP_TRY_FILES_PHASE` | `ngx_http_core_try_files_phase`
+`NGX_HTTP_CONTENT_PHASE` | `ngx_http_core_content_phase`
+`NGX_HTTP_LOG_PHASE` | `ngx_http_core_generic_phase`
 
-## 链表容器
+# 数据结构
+
+## 基础数据类型封装
+
+```c
+typedef intptr_t        ngx_int_t;
+typedef uintptr_t       ngx_uint_t;
+
+typedef struct {
+    size_t      len;
+    u_char     *data;
+} ngx_str_t;
+```
+
+## 单链表容器
 
 `src/core/ngx_list.h`
 
@@ -213,17 +227,17 @@ NGX_HTTP_LOG_PHASE | ngx_http_core_generic_phase
 typedef struct ngx_list_part_s  ngx_list_part_t;
 
 struct ngx_list_part_s {
-    void             *elts;
-    ngx_uint_t        nelts;
-    ngx_list_part_t  *next;
+    void             *elts;  // 指向数组的起始地址
+    ngx_uint_t        nelts; // 数组中已经使用了多少个元素
+    ngx_list_part_t  *next;  // 下一个链表元素 ngx_list_part_t 的地址
 };
 
 
 typedef struct {
-    ngx_list_part_t  *last;
-    ngx_list_part_t   part;
-    size_t            size;
-    ngx_uint_t        nalloc;
+    ngx_list_part_t  *last; // 指向链表的最后一个数组元素
+    ngx_list_part_t   part; // 链表的首个数组元素
+    size_t            size; // 每一个数组元素的占用的空间大小
+    ngx_uint_t        nalloc; // 表示每个ngx_list_part_t数组的容量
     ngx_pool_t       *pool;
 } ngx_list_t;
 ```
@@ -235,6 +249,131 @@ typedef struct {
 1. 链表中存储的元素是灵活的,它可以是任何一种数据结构
 1. 链表元素需要占用的内存由`ngx_list_t`管理,它已经通过数组分配好了
 1. 小块内存使用链表访问效率是低下的,使用用数组通过偏移量来直接访问内存则要高效的多
+
+### 操作方法
+
++ `ngx_list_create()`
++ `ngx_list_init()`
++ `ngx_list_push()`
+
+# `ngx_queue_t`双向链表
+
+```c
+typedef struct ngx_queue_s  ngx_queue_t;
+struct ngx_queue_s {
+    ngx_queue_t  *prev;
+    ngx_queue_t  *next;
+};
+```
+
+## `ngx_queue_t`容器提供的操作方法
+
+### `ngx_queue_t`容器
+
++ `ngx_queue_init()`
++ `ngx_queue_empty()`
++ `ngx_queue_insert_head()`
++ `ngx_queue_insert_tail()`
++ `ngx_queue_head()`
++ `ngx_queue_last()`
++ `ngx_queue_sentinel()`
++ `ngx_queue_remove()`
++ `ngx_queue_split()`
++ `ngx_queue_add()`
++ `ngx_queue_middle()`
++ `ngx_queue_sort()`
+
+### `ngx_queue_t`容器中的元素
+
++ `ngx_queue_next()`
++ `ngx_queue_prev()`
++ `ngx_queue_data()`
++ `ngx_queue_insert_after()`
+
+# `ngx_array_t`动态数组
+
+```c
+typedef struct ngx_array_s ngx_array_t;
+struct ngx_array_s {
+    // elts指向数组的首地址
+    void        *elts;
+
+    // nelts是数组中已经使用的元素个数
+    ngx_uint_t   nelts;
+
+    // 每个数组元素占用的内存大小”
+    size_t       size;
+
+    // 当前数组中能够容纳元素个数的总大小
+    ngx_uint_t   nalloc;
+
+    // 内存池对象
+    ngx_pool_t  *pool;
+};
+```
+
+## `ngx_array_t`动态数组提供的方法
+
++ `ngx_array_create()`
++ `ngx_array_init()`
++ `ngx_array_destroy()`
++ `ngx_array_push()`
++ `ngx_array_push_n()`
+
+# `ngx_rbtree_t`红黑树
+
+```c
+typedef ngx_uint_t  ngx_rbtree_key_t;
+typedef struct ngx_rbtree_node_s  ngx_rbtree_node_t;
+struct ngx_rbtree_node_s {
+    // 无符号整型的关键字
+    ngx_rbtree_key_t       key;
+
+    // 左子节点
+    ngx_rbtree_node_t     *left;
+
+    // 右子节点
+    ngx_rbtree_node_t     *right;
+
+    // 父节点
+    ngx_rbtree_node_t     *parent;
+
+    // 节点的颜色，0表示黑色，1表示红色
+    u_char                 color;
+
+    // 仅1个字节的节点数据。由于表示的空间太小，所以一般很少使用
+    u_char                 data;
+};
+
+typedef struct ngx_rbtree_s  ngx_rbtree_t;
+    /*为解决不同节点含有相同关键字的元素冲突问题，红黑树设置了
+        ngx_rbtree_insert_pt指针，这样可灵活地添加冲突元素
+    */
+
+typedef void (*ngx_rbtree_insert_pt) (ngx_rbtree_node_t *root,
+    ngx_rbtree_node_t *node, ngx_rbtree_node_t *sentinel);
+
+struct ngx_rbtree_s {
+    // 指向树的根节点。注意，根节点也是数据元素
+    ngx_rbtree_node_t     *root;
+
+    // 指向NIL哨兵节点
+    ngx_rbtree_node_t     *sentinel;
+
+    // 表示红黑树添加元素的函数指针，它决定在添加新节点时的行为究竟是替换还是新增
+    ngx_rbtree_insert_pt   insert;
+};
+```
+
+## 红黑树节点操作方法
+
++ `ngx_rbt_red()`
++ `ngx_rbt_black()`
++ `ngx_rbt_is_red()`
++ `ngx_rbt_is_black()`
++ `ngx_rbt_copy_color()`
++ `ngx_rbt_sentinel_init()`
++ `ngx_rbt_min()`
 
 
 ## 内存池
@@ -274,7 +413,6 @@ struct ngx_buf_s {
     ngx_buf_tag_t    tag; 		/** 表示当前缓冲区的类型,例如由哪个模块使用就指向这个模块 ngx_module_t 变量的地址 */
     ngx_file_t      *file; 		/** 引用文件 */
     ngx_buf_t       *shadow;	/** 当前缓冲区的影子缓冲区 */
-
 
     /* the buf's content could be changed */
     unsigned         temporary:1;	/** 临时内存标志位,为 1 时表示数据内存中且这段内存可以修改 */
